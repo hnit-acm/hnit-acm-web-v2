@@ -1,24 +1,12 @@
-# hnit-oj-web
+# hnit-acm-web-v2
 
-## Project setup
-```
-npm install
-```
+Status: 
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Language: TypeScript
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Framework: Vue3,AntUI2.0,Axios
 
-### Lints and fixes files
-```
-npm run lint
-```
+## todo
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- [ ] Continuous integration.
+- [ ] Rank list component.
