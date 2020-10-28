@@ -4,7 +4,7 @@ Language: TypeScript
 
 Framework: Vue3,AntUI2.0,Axios
 
-Coding: https://nekilc.coding.net/public/gateway/server/git/files
+Coding: https://nekilc.coding.net/public/hnit-acm-web/hit-acm-web-v2/git/files
 
 Docker container name: nekilc-docker.pkg.coding.net/hnit-acm-web/docker/hnit-acm-web-v2
 
