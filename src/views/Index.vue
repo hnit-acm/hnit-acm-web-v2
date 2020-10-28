@@ -1,5 +1,5 @@
 <template>
-  <a-row type="flex" align="center">
+  <a-row type="flex">
     <a-col :sm="18" :lg="18" :xxl="14">
       <a-carousel class="carousel" autoplay>
         <div class="img-t"><h3>1</h3></div>
@@ -12,7 +12,7 @@
       <div style="width: 100%;height: 100px;border: black solid;background: black;"></div>
     </a-col>
   </a-row>
-  <a-row :gutter="24" type="flex" align="center" style="margin-top: 1em;">
+  <a-row :gutter="24" type="flex" style="margin-top: 1em;">
     <a-col :xs="24" :sm="12" :lg="12" :xxl="9">
       <rank-list></rank-list>
 

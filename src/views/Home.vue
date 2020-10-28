@@ -2,7 +2,7 @@
   <a-layout>
     <a-layout-header class="header-nav">
       <div class="nav-left">
-        <img style="height: 68%;width: auto;" src="../assets/nav-logo.png">
+        <img style="height: 68%;width: auto;" src="../assets/nav-logo-color.png">
       </div>
       <a-menu
           theme="dark"

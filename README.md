@@ -7,6 +7,9 @@ Language: TypeScript
 Framework: Vue3,AntUI2.0,Axios
 
 ## todo
-
+#### 2020.10.26
 - [ ] Continuous integration.
-- [ ] Rank list component.
+- [x] Rank list component.
+
+#### 2020.10.28
+- [ ] Announcement component.
