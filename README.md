@@ -10,7 +10,7 @@ Docker container name: nekilc-docker.pkg.coding.net/hnit-acm-web/docker/hnit-acm
 
 Status:
 
-|服务|代码扫描|构建状态|链接|
+|Service|Code check|Build|Link|
 |:---:|:---:|:---:|:---:|
 |Web|[![构建状态](https://nekilc.coding.net/badges/hnit-acm-web/job/354766/master/build.svg)](https://nekilc.coding.net/p/hnit-acm-web/ci/job)|[![构建状态](https://nekilc.coding.net/badges/hnit-acm-web/job/354770/master/build.svg)](https://nekilc.coding.net/p/hnit-acm-web/ci/job)|[链接](http://code.nekilc.com:8900)|
 
@@ -22,5 +22,6 @@ Build by Coding.
 - [x] Rank list component.
 
 #### 2020.10.28
-- [ ] Announcement component.
+- [x] Announcement component.
 - [ ] Optimize build.
+- [ ] Single and list announcement View.

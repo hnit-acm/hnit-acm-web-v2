@@ -1,0 +1,82 @@
+<template>
+  <a-card title="公告" style="height: 100%;" :headStyle="{color:'white'}">
+    <a-list
+        :split="false"
+        :loading="loading"
+        item-layout="horizontal"
+        :data-source="data.slice(0,6)"
+        size="middle"
+    >
+      <template v-slot:renderItem="{ item }">
+        <a-list-item style="text-align: left;padding: 1px;">
+          <a-list-item-meta>
+            <template v-slot:title>
+              <div style="height: 1.5em;overflow: hidden;">
+                <a style="color: white;" :href="item.link">{{ item.name }}</a>
+                <a-tag color="red" v-if="item.label" style="float: right;">{{ item.label }}</a-tag>
+              </div>
+            </template>
+          </a-list-item-meta>
+        </a-list-item>
+      </template>
+    </a-list>
+    <a-button style="float: right;bottom: 0;color: white;" type="link">
+      <template v-slot:icon>
+        <DoubleRightOutlined/>
+      </template>
+      更多
+    </a-button>
+  </a-card>
+</template>
+
+<script lang="ts">
+
+import {defineComponent} from 'vue';
+
+export class AnnounceListItem {
+  name!: string
+  link!: string
+  label?: string
+}
+
+export default defineComponent({
+  name: "AnnounceBox",
+  props: {
+    data: {
+      type: Array,
+      default: () => [
+        {
+          name: "Nekilc测试用的超长的字符串",
+          link: '//www.baidu.com',
+          label: '重要'
+        },
+        {
+          name: "嘤嘤嘤",
+          link: '//www.baidu.com'
+        },
+        {
+          name: "嘤嘤嘤",
+          link: '//www.baidu.com',
+          label: '重要'
+        },
+        {
+          name: "嘤嘤嘤",
+          link: '//www.baidu.com'
+        },
+        {
+          name: "嘤嘤嘤",
+          link: '//www.baidu.com'
+        },
+        {
+          name: "嘤嘤嘤",
+          link: '//www.baidu.com'
+        }
+      ] as AnnounceListItem[]
+    }
+  }
+})
+</script>
+
+<style scoped>
+
+</style>

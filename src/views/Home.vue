@@ -103,6 +103,6 @@ export default defineComponent({
   align-items center
 
 .content
-  padding 3%
+  padding 2%
 
 </style>
