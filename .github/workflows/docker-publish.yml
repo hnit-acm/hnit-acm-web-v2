@@ -58,16 +58,17 @@ jobs:
           docker push $IMAGE_ID:$VERSION
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
+        env:
+          username: ${{github.actor}}
+          password: ${{secrets.CR_PAT}}
+          name: $IMAGE_NAME
+          cname: $IMAGE_ID:$VERSION
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
-          env:
-            username: ${{github.actor}}
-            password: ${{secrets.CR_PAT}}
-            name: $IMAGE_NAME
-            cname: $IMAGE_ID:$VERSION
+          envs: name,cname,username,password
           script: |
             echo "${{ secrets.CR_PAT }}" | docker login https://docker.pkg.github.com -u $username -p $password
             docker pull $cname
