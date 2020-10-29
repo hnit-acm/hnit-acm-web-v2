@@ -17,11 +17,19 @@ Status:
 Build by Coding.
 
 ## todo
+
 #### 2020.10.26
+
 - [x] Continuous integration.
 - [x] Rank list component.
 
 #### 2020.10.28
+
 - [x] Announcement component.
 - [ ] Optimize build.
 - [ ] Single and list announcement View.
+
+#### 2020.10.29
+
+- [ ]Competition view pagination.
+- [ ]Practice view pagination.

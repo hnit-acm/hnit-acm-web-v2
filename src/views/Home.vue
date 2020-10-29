@@ -47,9 +47,6 @@
     </a-layout-header>
     <a-layout-content class="content">
       <router-view></router-view>
-<!--      <div :style="{ background: '#fff', padding: '24px', minHeight: '380px' }">-->
-<!--        Content-->
-<!--      </div>-->
     </a-layout-content>
     <a-layout-footer :style="{ textAlign: 'center' }">
       ©2020 Power by Nekilc
@@ -103,6 +100,6 @@ export default defineComponent({
   align-items center
 
 .content
-  padding 2%
+  //padding 2%
 
 </style>
