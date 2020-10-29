@@ -70,7 +70,7 @@ jobs:
           port: ${{ secrets.PORT }}
           envs: name,cname,username,password
           script: |
-            echo "${{ secrets.CR_PAT }}" | docker login https://docker.pkg.github.com -u $username -p $password
+            docker login https://docker.pkg.github.com -u $username -p $password
             docker pull $cname
             docker rm -f $name | true
             docker run --net=host --name $name -d $cname
