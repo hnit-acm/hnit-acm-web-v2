@@ -31,5 +31,5 @@ Build by Coding.
 
 #### 2020.10.29
 
-- [ ]Competition view pagination.
-- [ ]Practice view pagination.
+- [ ] Competition view pagination.
+- [ ] Practice view pagination.

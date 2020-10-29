@@ -10,12 +10,12 @@
             </p>
             <a-row>
               <a-col :span="12">
-                <p style="font-size: 0.5em">
+                <p style="font-size: 0.9em">
                   竞赛时间：{{ item.startTime }}
                 </p>
               </a-col>
               <a-col :span="12">
-                <p style="font-size: 0.5em">
+                <p style="font-size: 0.9em">
                   报名截止时间：{{ item.endTime }}
                 </p>
               </a-col>
