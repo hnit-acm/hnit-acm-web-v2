@@ -18,12 +18,6 @@ env:
   IMAGE_NAME: hnit-acm-web-v2
 
 jobs:
-  # Run tests.
-  # See also https://docs.docker.com/docker-hub/builds/automated-testing/
-
-
-  # Push image to GitHub Packages.
-  # See also https://docs.docker.com/docker-hub/builds/
   push:
     # Ensure test job passes before pushing image.
     runs-on: ubuntu-latest
@@ -32,11 +26,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2.1.2
-      
-      
-      - name: Install 
+
+
+      - name: Install
         run: npm install
-      
+
       - name: Build Dist
         run: chmod 777 build.sh && ./build.sh
 
@@ -62,3 +56,20 @@ jobs:
           echo VERSION=$VERSION
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
+      - name: executing remote ssh commands using password
+          uses: appleboy/ssh-action@master
+          with:
+            host: ${{ secrets.HOST }}
+            username: ${{ secrets.USERNAME }}
+            key: ${{ secrets.KEY }}
+            port: ${{ secrets.PORT }}
+            env:
+              username: ${{github.actor}}
+              password: ${{secrets.CR_PAT}}
+              name: $IMAGE_NAME
+              cname: $IMAGE_ID:$VERSION
+            script: |
+              echo "${{ secrets.CR_PAT }}" | docker login https://docker.pkg.github.com -u $username -p $password
+              docker pull $cname
+              docker rm -f $name | true
+              docker run --net=host --name $name -d $cname
