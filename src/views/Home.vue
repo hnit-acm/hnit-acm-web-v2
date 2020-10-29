@@ -100,6 +100,7 @@ export default defineComponent({
   align-items center
 
 .content
+  background white
   //padding 2%
 
 </style>

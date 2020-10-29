@@ -9,12 +9,12 @@
               {{ item.description }}
             </p>
             <a-row>
-              <a-col :span="12">
+              <a-col :xs="24" :sm="12" :lg="12" :xxl="9">
                 <p style="font-size: 0.9em">
                   竞赛时间：{{ item.startTime }}
                 </p>
               </a-col>
-              <a-col :span="12">
+              <a-col :xs="24" :sm="12" :lg="12" :xxl="9">
                 <p style="font-size: 0.9em">
                   报名截止时间：{{ item.endTime }}
                 </p>
@@ -78,7 +78,17 @@ export default defineComponent({
         {
           title: 'Joe的比赛',
           href: 'http://www.baidu.com',
-          description: 'dasdaaaaaaaaaaaahkfsd',
+          description: '这个比赛呢，啥也没有，就是测试字符串长度足够长的时候，会不会隐藏文字，啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦',
+          startTime: '2020-02-02',
+          endTime: '2020-02-02',
+          numberPepole: 123,
+          avatar: 'https://www.baidu.com/img/flexible/logo/pc/result.png',
+          finish: 1
+        },
+        {
+          title: 'Heiko的比赛',
+          href: 'http://www.baidu.com',
+          description: '这个比赛呢，啥也没有，就是测试字符串长度足够长的时候，会不会隐藏文字，啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦',
           startTime: '2020-02-02',
           endTime: '2020-02-02',
           numberPepole: 123,
@@ -91,7 +101,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 
 .t-hover-shadow
   margin 8px

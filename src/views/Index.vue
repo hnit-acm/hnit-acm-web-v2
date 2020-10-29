@@ -1,6 +1,6 @@
 <template>
     <a-row type="flex" align="center" style="margin: 2%;">
-      <a-col :sm="24" :lg="24" :xxl="18">
+      <a-col :xs="24" :sm="24" :lg="24" :xxl="18">
         <announce-box
             style="z-index:1;position: absolute;right: 0;opacity: 80%;background: black;color: white;"></announce-box>
         <a-carousel class="carousel" autoplay>
