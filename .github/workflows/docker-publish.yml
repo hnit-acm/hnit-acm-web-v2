@@ -1,4 +1,4 @@
-name: Docker
+name: Build and Package
 
 on:
   push:
@@ -18,7 +18,7 @@ env:
   IMAGE_NAME: hnit-acm-web-v2
 
 jobs:
-  push:
+  Build:
     # Ensure test job passes before pushing image.
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
@@ -56,22 +56,3 @@ jobs:
           echo VERSION=$VERSION
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@master
-        env:
-          DOCKERUSERNAME: ${{ github.actor }}
-          DOCKERPASSWORD: ${{ secrets.CR_PAT }}
-          NAME: hnit-acm-web-v2
-          CNAME: docker.pkg.github.com/${{ github.repository }}/hnit-acm-web-v2
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
-          port: ${{ secrets.PORT }}
-          envs: DOCKERUSERNAME,DOCKERPASSWORD,NAME,CNAME
-          script: |
-            echo "$DOCKERUSERNAME,$NAME,$CNAME"
-            docker login https://docker.pkg.github.com -u $DOCKERUSERNAME -p $DOCKERPASSWORD
-            docker pull $CNAME
-            docker rm -f $NAME | true
-            docker run --net=host --name $NAME -d $CNAME

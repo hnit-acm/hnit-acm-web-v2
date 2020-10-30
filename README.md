@@ -33,3 +33,6 @@ Build by Coding.
 
 - [ ] Competition view pagination.
 - [ ] Practice view pagination.
+
+#### 2020.10.30
+- [x] Optimize continuous integration steps.
