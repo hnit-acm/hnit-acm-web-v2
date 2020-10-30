@@ -1,9 +1,9 @@
 name: SSh remote deploy
 on:
   registry_package:
-    types: [published]
+    types: [published,updated]
 jobs:
-  Build:
+  Deploy:
     runs-on: ubuntu-latest
     steps:
     - name: Remote deploy
