@@ -1,5 +1,5 @@
 <template>
-    <a-row type="flex" align="center" style="margin: 2%;">
+    <a-row type="flex" justify="center" style="margin: 2%;">
       <a-col :xs="24" :sm="24" :lg="24" :xxl="18">
         <announce-box
             style="z-index:1;position: absolute;right: 0;opacity: 80%;background: black;color: white;"></announce-box>
@@ -11,7 +11,7 @@
         </a-carousel>
       </a-col>
     </a-row>
-    <a-row type="flex" style="margin-top: 1em;margin: 2%;" align="center" >
+    <a-row type="flex" style="margin-top: 1em;margin: 2%;" justify="center" >
       <a-col :xs="24" :sm="12" :lg="12" :xxl="9" style="padding-right: 0.5em;">
         <rank-list></rank-list>
       </a-col>

@@ -36,3 +36,7 @@ Build and Deploy by Github Action.
 #### 2020.10.30
 
 - [x] Optimize continuous integration steps.
+
+#### 2020.11.1
+
+- [ ] Complete the registration of the validator.

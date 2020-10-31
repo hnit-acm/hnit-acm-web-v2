@@ -2,7 +2,8 @@
   <a-layout>
     <a-layout-header class="header-nav">
       <div class="nav-left">
-        <img style="height: 68%;width: auto;" src="../assets/nav-logo-color.png">
+<!--        <img style="height: 68%;width: auto;" src="../assets/nav-logo-color.png">-->
+        <span style="color: white;font-size: 2em;">HNITACM</span>
       </div>
       <a-menu
           theme="dark"
@@ -37,7 +38,7 @@
           </a-button>
           <span class="navigation-item">|</span>
           <a-button type="link">
-            <router-link to="/register">
+            <router-link to="register">
               <span class="navigation-item">注册</span>
             </router-link>
           </a-button>
