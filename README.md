@@ -39,4 +39,4 @@ Build and Deploy by Github Action.
 
 #### 2020.11.1
 
-- [ ] Complete the registration of the validator.
+- [x] Complete the registration of the validator.
