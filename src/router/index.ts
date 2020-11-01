@@ -5,8 +5,8 @@ const routes: Array<RouteRecordRaw> = [
         path: '/',
         name: 'Home',
         component: () => import('@/views/Home.vue'),
-        redirect:{
-            path:'/index'
+        redirect: {
+            path: '/index'
         },
         children: [
             {
@@ -36,6 +36,10 @@ const routes: Array<RouteRecordRaw> = [
                 path: '/register',
                 name: 'Register',
                 component: () => import('@/views/Register.vue')
+            },
+            {
+                path: '/announcement',
+                component: () => import('@/views/Announcement.vue')
             }
         ]
     },

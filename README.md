@@ -40,3 +40,7 @@ Build and Deploy by Github Action.
 #### 2020.11.1
 
 - [x] Complete the registration of the validator.
+
+#### 2020.11.2
+
+- [ ] Complete the Announcement view by using [here](https://2x.antdv.com/components/page-header-cn/#components-page-header-demo-use-with-breadcrumbs).

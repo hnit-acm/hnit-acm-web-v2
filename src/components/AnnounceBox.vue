@@ -32,7 +32,7 @@
       <template v-slot:icon>
         <DoubleRightOutlined/>
       </template>
-      更多
+      <router-link to="announcement">更多</router-link>
     </a-button>
   </a-card>
 </template>
