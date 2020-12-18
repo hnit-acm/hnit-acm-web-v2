@@ -43,7 +43,7 @@
 
 <script lang="ts">
 import {defineComponent, ref, toRaw} from 'vue';
-import useRegisterForm from "@/composables/useRegisterForm";
+import useRegisterForm from "/@/composables/useRegisterForm";
 import {SetupContext} from "@vue/runtime-core";
 import {message} from 'ant-design-vue'
 

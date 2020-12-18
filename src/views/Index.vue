@@ -24,8 +24,8 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import RankList from "@/components/RankList.vue";
-import AnnounceBox from "@/components/AnnounceBox.vue";
+import RankList from "/@/components/RankList.vue";
+import AnnounceBox from "/@/components/AnnounceBox.vue";
 
 export default defineComponent({
   name: "Index",

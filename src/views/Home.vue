@@ -58,7 +58,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import LoginDialog from "@/components/LoginDialog.vue";
+import LoginDialog from "/@/components/LoginDialog.vue";
 
 export default defineComponent({
   name: 'Home',

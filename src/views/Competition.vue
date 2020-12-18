@@ -28,7 +28,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import CompetitionList from "@/components/competition/CompetitionList.vue";
+import CompetitionList from "/@/components/competition/CompetitionList.vue";
 
 
 export default defineComponent({
