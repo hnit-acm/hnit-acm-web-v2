@@ -1,5 +1,5 @@
 <template>
-    <a-row type="flex" justify="center" style="margin: 2%;">
+    <a-row type="flex" justify="center" style="margin: 1% 2% 2% 2%;">
       <a-col :xs="24" :sm="24" :lg="24" :xxl="18">
         <announce-box
             style="z-index:1;position: absolute;right: 0;opacity: 80%;background: black;color: white;"></announce-box>

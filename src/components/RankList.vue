@@ -85,42 +85,31 @@ export default defineComponent({
         {
           username: 'nekilc',
           number: 10,
-          avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
+          avatar: 'https://s3.ax1x.com/2020/12/19/rUKmPP.jpg',
           percent: '99%'
         },
         {
           username: 'nekilc',
           number: 8,
-          avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
+          avatar: 'https://s3.ax1x.com/2020/12/19/rUKmPP.jpg',
           percent: '22%'
         },
         {
           username: 'nekilc',
           number: 1,
-          avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
+          avatar: 'https://s3.ax1x.com/2020/12/19/rUKmPP.jpg',
           percent: '10%'
         },
         {
           username: 'nekilc',
           number: 1,
-          avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
+          avatar: 'https://s3.ax1x.com/2020/12/19/rUKmPP.jpg',
           percent: '10%'
         },
         {
           username: 'nekilc',
           number: 1,
-          avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
-          percent: '10%'
-        },
-        {
-          username: 'nekilc',
-          number: 1,
-          percent: '10%'
-        },
-        {
-          username: 'nekilc',
-          number: 1,
-          avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
+          avatar: 'https://s3.ax1x.com/2020/12/19/rUKmPP.jpg',
           percent: '10%'
         },
         {
@@ -131,12 +120,23 @@ export default defineComponent({
         {
           username: 'nekilc',
           number: 1,
+          avatar: 'https://s3.ax1x.com/2020/12/19/rUKmPP.jpg',
           percent: '10%'
         },
         {
           username: 'nekilc',
           number: 1,
-          avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
+          percent: '10%'
+        },
+        {
+          username: 'nekilc',
+          number: 1,
+          percent: '10%'
+        },
+        {
+          username: 'nekilc',
+          number: 1,
+          avatar: 'https://s3.ax1x.com/2020/12/19/rUKmPP.jpg',
           percent: '10%'
         },
       ] as RankList[]

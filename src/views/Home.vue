@@ -85,9 +85,13 @@ export default defineComponent({
   flex-direction row
   justify-content flex-start
   align-items center
+  height auto
+  line-height unset
+  padding 0 2em
 
 .nav-left
   height 100%
+  margin-right 1em
 
 
 .nav-middle
