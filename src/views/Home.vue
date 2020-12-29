@@ -11,22 +11,22 @@
           class="nav-middle"
       >
         <a-menu-item key="1">
-          <router-link to="index">
+          <router-link to="/index">
             <span class="navigation-item">首页</span>
           </router-link>
         </a-menu-item>
         <a-menu-item key="2">
-          <router-link to="practice">
+          <router-link to="/practice">
             <span class="navigation-item">算法练习</span>
           </router-link>
         </a-menu-item>
         <a-menu-item key="3">
-          <router-link to="competition">
+          <router-link to="/competition">
             <span class="navigation-item">在线竞赛</span>
           </router-link>
         </a-menu-item>
         <a-menu-item key="4">
-          <router-link to="about">
+          <router-link to="/about">
             <span class="navigation-item">关于我们</span>
           </router-link>
         </a-menu-item>
