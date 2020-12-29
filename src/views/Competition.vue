@@ -29,13 +29,23 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import CompetitionList from "/@/components/competition/CompetitionList.vue";
-
+import useBreadcrumb from "/@/composables/useBreadcrumb";
 
 export default defineComponent({
   name: "Competition",
   components: {CompetitionList},
+  setup(){
+    useBreadcrumb()
+    return {
+    }
+  },
   data() {
-    return {};
+    return {
+
+    };
+  },
+  mounted() {
+
   }
 
 })

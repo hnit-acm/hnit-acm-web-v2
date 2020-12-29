@@ -48,3 +48,8 @@ Build and Deploy by Github Action.
 #### 2020.12.18
 
 - [ ] Import on demand
+
+#### 2020.12.29
+
+- [ ] AnnouncementContent view.
+- [ ] Determine the usage scenario of Breadcrumb.

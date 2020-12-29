@@ -19,11 +19,29 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue'
+import useBreadcrumb from "/@/composables/useBreadcrumb";
 
 export default defineComponent({
   name: "Announcement",
+  setup(){
+    useBreadcrumb()
+  },
   data() {
     return {
+      routes: [
+        {
+          path: 'index',
+          breadcrumbName: 'First-level Menu',
+        },
+        {
+          path: 'first',
+          breadcrumbName: 'Second-level Menu',
+        },
+        {
+          path: 'second',
+          breadcrumbName: 'Third-level Menu',
+        },
+      ],
       data: [
         {
           title:'123',

@@ -2,7 +2,7 @@
   <a-layout>
     <a-layout-header class="header-nav">
       <div class="nav-left">
-<!--        <img style="height: 68%;width: auto;" src="../assets/nav-logo-color.png">-->
+        <!--        <img style="height: 68%;width: auto;" src="../assets/nav-logo-color.png">-->
         <span style="color: white;font-size: 2em;">HNITACM</span>
       </div>
       <a-menu
@@ -47,26 +47,54 @@
       </div>
     </a-layout-header>
     <a-layout-content class="content">
+      <div style="display: flex" v-if="!isIndex">
+        <a-breadcrumb :routes="routes">
+          <template #itemRender="{ route, params, routes, paths }">
+            <router-link :to="`${paths.join('/')}`">
+              {{ route.breadcrumbName }}
+            </router-link>
+          </template>
+        </a-breadcrumb>
+      </div>
       <router-view></router-view>
     </a-layout-content>
     <a-layout-footer :style="{ textAlign: 'center' }">
       ©2020 Power by Nekilc
+      <a-button @click="">Test</a-button>
     </a-layout-footer>
     <login-dialog :visible="visible" @cancel="visible=false"></login-dialog>
   </a-layout>
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {defineComponent, ref, watch, computed} from 'vue';
 import LoginDialog from "/@/components/LoginDialog.vue";
+import {useRoute, useRouter} from "vue-router";
+import useBreadcrumb from "/@/composables/useBreadcrumb";
+import {useStore} from "vuex";
 
 export default defineComponent({
   name: 'Home',
   components: {LoginDialog},
+  setup() {
+    const {isIndex, getRoutes} = useBreadcrumb()
+    const {afterEach} = useRouter()
+    const routes = ref(getRoutes())
+    afterEach((to, from) => {
+      routes.value = getRoutes()
+    })
+    return {
+      isIndex,
+      routes
+    }
+  },
   data: () => {
     return {
-      visible: Boolean(false)
+      visible: Boolean(false),
+
     }
+  },
+  mounted() {
   }
 });
 </script>
@@ -106,6 +134,7 @@ export default defineComponent({
 
 .content
   background white
-  //padding 2%
+
+//padding 2%
 
 </style>

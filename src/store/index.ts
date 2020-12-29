@@ -1,12 +1,14 @@
-import { createStore } from 'vuex'
+import {createStore} from 'vuex'
 
 export default createStore({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
+    state: {
+        isIndex: false
+    },
+    mutations: {
+        setIsIndex(state, payload) {
+            state.isIndex = payload
+        }
+    },
+    actions: {},
+    modules: {}
 })

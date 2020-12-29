@@ -41,9 +41,13 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
+import useBreadcrumb from "/@/composables/useBreadcrumb";
 
 export default defineComponent({
   name: "Practice",
+  setup(){
+    useBreadcrumb()
+  },
   data() {
     return {
       data: [
