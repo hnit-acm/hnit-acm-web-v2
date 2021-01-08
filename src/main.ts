@@ -5,10 +5,10 @@ import store from './store'
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
 import * as Icons from "@ant-design/icons-vue";
-
-const icons: any = Icons;
 // todo Optimize build.
 // - Introduce on demand
+
+const icons: any = Icons;
 const app = createApp(App);
 app.use(store)
     .use(router)
@@ -18,4 +18,3 @@ for (const i in icons) {
     app.component(i, icons[i]);
 }
 
-// todo test todo
