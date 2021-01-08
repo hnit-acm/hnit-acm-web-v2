@@ -9,7 +9,7 @@
       <a-tabs @change="callback" :tabBarStyle="{textAlign:'left'}">
         <a-tab-pane key="1" tab="全部">
           <competition-list></competition-list>
-<!--          todo Competition view pagination-->
+<!--          // todo Competition view pagination-->
         </a-tab-pane>
         <a-tab-pane key="2" tab="即将发布" force-render>
           <competition-list></competition-list>
@@ -28,8 +28,8 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import CompetitionList from "/@/components/competition/CompetitionList.vue";
-import useBreadcrumb from "/@/composables/useBreadcrumb";
+import CompetitionList from '/@/components/competition/CompetitionList.vue';
+import useBreadcrumb from '/@/composables/useBreadcrumb';
 
 export default defineComponent({
   name: "Competition",

@@ -1,13 +1,24 @@
 <template>
-
+  {{ id }}asdsadasdqdqw
 </template>
 
 <script lang="ts">
 
 import {defineComponent} from 'vue';
-
+import {useRoute, useRouter} from 'vue-router';
+// todo 公告详情页
 export default defineComponent({
-  name: "AnnouncementContent"
+  name: "AnnouncementContent",
+  props: {
+    id: () => 0
+  },
+  setup() {
+    const {params} = useRoute()
+    console.log(params)
+    return {
+      params
+    }
+  }
 })
 
 
