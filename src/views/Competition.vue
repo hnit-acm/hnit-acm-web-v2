@@ -28,8 +28,8 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import CompetitionList from "/@/components/competition/CompetitionList.vue";
-import useBreadcrumb from "/@/composables/useBreadcrumb";
+import CompetitionList from '/@/components/competition/CompetitionList.vue';
+import useBreadcrumb from '/@/composables/useBreadcrumb';
 
 export default defineComponent({
   name: "Competition",

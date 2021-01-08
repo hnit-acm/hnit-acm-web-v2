@@ -5,7 +5,7 @@ import {Payload, useStore} from "vuex";
 
 export default function useBreadcrumb() {
     const route = useRoute()
-    const getRoutes = ()=> route.matched.map(value => {
+    const getRoutes = () => route.matched.map(value => {
         return {
             path: value.path,
             breadcrumbName: value.meta.title,

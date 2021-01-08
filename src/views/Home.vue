@@ -50,7 +50,7 @@
       <div style="display: flex" v-if="!isIndex">
         <a-breadcrumb :routes="routes">
           <template #itemRender="{ route, params, routes, paths }">
-            <router-link :to="`${paths.join('/')}`">
+            <router-link :to="`/${paths.join('/')}`">
               {{ route.breadcrumbName }}
             </router-link>
           </template>
