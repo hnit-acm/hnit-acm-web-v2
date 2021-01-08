@@ -17,3 +17,5 @@ app.use(store)
 for (const i in icons) {
     app.component(i, icons[i]);
 }
+
+// todo test todo
