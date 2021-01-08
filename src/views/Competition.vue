@@ -9,7 +9,7 @@
       <a-tabs @change="callback" :tabBarStyle="{textAlign:'left'}">
         <a-tab-pane key="1" tab="全部">
           <competition-list></competition-list>
-<!--          todo Competition view pagination-->
+<!--          // todo Competition view pagination-->
         </a-tab-pane>
         <a-tab-pane key="2" tab="即将发布" force-render>
           <competition-list></competition-list>
