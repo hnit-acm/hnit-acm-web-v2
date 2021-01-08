@@ -5,7 +5,8 @@ import store from './store'
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
 import * as Icons from "@ant-design/icons-vue";
-
+// todo Optimize build.
+// - Introduce on demand
 
 const icons: any = Icons;
 const app = createApp(App);
