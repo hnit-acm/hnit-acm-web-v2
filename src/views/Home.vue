@@ -47,6 +47,11 @@
       </div>
     </a-layout-header>
     <a-layout-content class="content">
+      <div class="page-banner" v-if="currentRoute.meta.banner"
+           style="width: 100%;height: auto;background: aqua;display: flex;align-items: center;flex-direction: column;overflow: hidden;">
+        <img style="width: auto;height: auto;background: aqua;"
+             :src="currentRoute.meta.banner">
+      </div>
       <div style="display: flex" v-if="!isIndex">
         <a-breadcrumb :routes="routes">
           <template #itemRender="{ route, params, routes, paths }">
@@ -78,12 +83,13 @@ export default defineComponent({
   components: {LoginDialog},
   setup() {
     const {isIndex, getRoutes} = useBreadcrumb()
-    const {afterEach} = useRouter()
+    const {afterEach, currentRoute} = useRouter()
     const routes = ref(getRoutes())
     afterEach((to, from) => {
       routes.value = getRoutes()
     })
     return {
+      currentRoute,
       isIndex,
       routes
     }
@@ -136,5 +142,14 @@ export default defineComponent({
   background white
 
 //padding 2%
+
+.page-banner
+  width 100%
+  height auto
+  background aqua
+  display flex
+  align-items center
+  flex-direction column
+  overflow hidden
 
 </style>

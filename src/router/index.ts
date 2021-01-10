@@ -21,7 +21,8 @@ const routes: Array<RouteRecordRaw> = [
                 path: '/practice',
                 name: 'Practice',
                 meta: {
-                    title: "算法练习"
+                    title: "算法练习",
+                    banner:"https://ali-cdn.educoder.net/images/avatars/LaboratorySetting/1_competition_banner?t=1591241723"
                 },
                 component: () => import('/@/views/Practice.vue')
             },
@@ -29,7 +30,8 @@ const routes: Array<RouteRecordRaw> = [
                 path: '/competition',
                 name: 'Competition',
                 meta: {
-                    title: "在线竞赛"
+                    title: "在线竞赛",
+                    banner:"https://ali-cdn.educoder.net/images/avatars/LaboratorySetting/1_competition_banner?t=1591241723"
                 },
                 component: () => import('/@/views/Competition.vue')
             },

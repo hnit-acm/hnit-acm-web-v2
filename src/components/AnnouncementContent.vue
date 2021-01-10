@@ -10,7 +10,7 @@ import {useRoute, useRouter} from 'vue-router';
 export default defineComponent({
   name: "AnnouncementContent",
   props: {
-    id: () => 0
+    id: () => 0 // 公告id，给后端使用
   },
   setup() {
     const {params} = useRoute()
