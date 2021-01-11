@@ -76,6 +76,7 @@ import {defineComponent, ref, watch, computed} from 'vue';
 import LoginDialog from "/@/components/LoginDialog.vue";
 import {useRoute, useRouter} from "vue-router";
 import useBreadcrumb from "/@/composables/useBreadcrumb";
+import usePageBanner from "/@/composables/usePageBanner";
 import {useStore} from "vuex";
 
 export default defineComponent({
@@ -83,7 +84,9 @@ export default defineComponent({
   components: {LoginDialog},
   setup() {
     const {isIndex, getRoutes} = useBreadcrumb()
-    const {afterEach, currentRoute} = useRouter()
+    const {afterEach,currentRoute} = useRouter()
+    const {meta} = usePageBanner()
+    console.log(currentRoute.value.path)
     const routes = ref(getRoutes())
     afterEach((to, from) => {
       routes.value = getRoutes()

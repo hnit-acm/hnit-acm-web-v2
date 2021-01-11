@@ -25,12 +25,14 @@
 import {defineComponent} from 'vue';
 import CompetitionList from '/@/components/competition/CompetitionList.vue';
 import useBreadcrumb from '/@/composables/useBreadcrumb';
+import usePageBanner from "/@/composables/usePageBanner";
 
 export default defineComponent({
   name: "Competition",
   components: {CompetitionList},
   setup(){
     useBreadcrumb()
+    usePageBanner()
     return {
     }
   },
