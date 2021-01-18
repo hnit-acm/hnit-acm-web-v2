@@ -52,9 +52,9 @@
         <img style="width: auto;height: auto;background: aqua;"
              :src="banner">
       </div>
-      <div style="display: flex" v-if="visible">
+      <div style="display: flex" v-if="breadcrumbCtx.visible">
         xxx
-        <a-breadcrumb :routes="routes">
+        <a-breadcrumb :routes="breadcrumbCtx.routes">
           <template #itemRender="{ route, params, routes, paths }">
             <router-link :to="`/${paths.join('/')}`">
               {{ route.breadcrumbName }}
@@ -73,24 +73,21 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, watch, computed} from 'vue';
+import {defineComponent, onUpdated, onMounted, ref} from 'vue';
 import LoginDialog from "/@/components/LoginDialog.vue";
-import {useRoute, useRouter} from "vue-router";
-import {useBreadcrumbProvide} from "/@/composables/useBreadcrumb";
-import {usePageBannerProvide} from "/@/composables/usePageBanner";
+import {useRouter} from "vue-router";
+import {useBreadcrumbProvide} from "/@/composables/Home/useBreadcrumb";
+import {usePageBannerProvide} from "/@/composables/Home/usePageBanner";
 
 export default defineComponent({
   name: 'Home',
   components: {LoginDialog},
   setup() {
-    const {visible,setVisible,routes} = useBreadcrumbProvide()
-    const {afterEach, currentRoute,back} = useRouter()
+    const breadcrumbCtx = ref(useBreadcrumbProvide())
+    const {back} = useRouter()
     const {banner} = usePageBannerProvide()
     return {
-      currentRoute,
-      visible,
-      setVisible,
-      routes,
+      breadcrumbCtx,
       banner,
       back
     }

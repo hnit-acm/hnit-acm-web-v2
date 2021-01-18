@@ -6,7 +6,8 @@
 
 import {defineComponent, inject, onUnmounted, onMounted} from 'vue';
 import {useRoute, useRouter} from 'vue-router';
-import {useBreadcrumbInject} from "/@/composables/useBreadcrumb";
+import {useBreadcrumbInject} from "/@/composables/Home/useBreadcrumb";
+import {useListInject} from "/@/composables/Home/Announcement/useList";
 // todo 公告详情页
 export default defineComponent({
   name: "AnnouncementContent",
@@ -20,17 +21,17 @@ export default defineComponent({
     // 处理路由参数
     const {params, meta} = useRoute()
     // 本页面相关
-    const {setListVisible} = inject("list")
+    const listCtx = useListInject()
     // setListVisible(false)
     onMounted(() => {
-      setListVisible(false)
+      listCtx.setVisible(false)
     })
     onUnmounted(()=>{
-      setListVisible(true)
+      listCtx.setVisible(true)
     })
     return {
       params,
-      setVisible
+      listCtx
     }
   },
   created(){

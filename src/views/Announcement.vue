@@ -1,6 +1,6 @@
 <template>
   <a-list
-      v-if="listVisible"
+      v-if="listCtx.visible"
       class="demo-loadmore-list"
       :loading="loading"
       item-layout="horizontal"
@@ -20,19 +20,19 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, onUpdated, provide, ref, onMounted,onActivated} from 'vue'
-import {useBreadcrumbInject} from "/@/composables/useBreadcrumb";
-import {usePageBannerInject} from "/@/composables/usePageBanner";
+import {defineComponent, onUpdated, provide, ref, onMounted, onActivated} from 'vue'
+import {useBreadcrumbInject} from "/@/composables/Home/useBreadcrumb";
+import {usePageBannerInject} from "/@/composables/Home/usePageBanner";
 import {useRoute} from "vue-router";
+import {useListProvide} from "/@/composables/Home/Announcement/useList";
 
 export default defineComponent({
   name: "Announcement",
   setup() {
     // 配置首页面包屑
-    const {setVisible,refresh} = useBreadcrumbInject()
-    setVisible(true)
-    onUpdated(() => {
-      refresh()
+    const breadcrumbCtx = useBreadcrumbInject()
+    onMounted(() => {
+      breadcrumbCtx.setVisible(true)
     })
     // 配置页面横幅
     const pb = usePageBannerInject()
@@ -42,18 +42,10 @@ export default defineComponent({
     // 处理路由相关
     const {fullPath} = useRoute()
     // 本页面相关
-    const listVisible = ref(true)
-    const setListVisible = (val:boolean)=>{
-      listVisible.value = val
-    }
-    provide("list",{
-      listVisible,
-      setListVisible
-    })
+    const listCtx = ref(useListProvide())
     return {
       fullPath,
-      setVisible,
-      listVisible
+      listCtx
     }
   },
   data() {
@@ -82,18 +74,18 @@ export default defineComponent({
       ]
     }
   },
-  created(){
+  created() {
     console.log('2 created')
   },
-  mounted(){
+  mounted() {
     console.log('2 mounted')
 
   },
-  updated(){
+  updated() {
     console.log('2 updated')
 
   },
-  unmounted(){
+  unmounted() {
     console.log('2 unmounted')
 
   }

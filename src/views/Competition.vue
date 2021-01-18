@@ -21,17 +21,19 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {defineComponent, onMounted} from 'vue';
 import CompetitionList from '/@/components/competition/CompetitionList.vue';
-import {useBreadcrumbInject} from '/@/composables/useBreadcrumb';
-import {usePageBannerInject} from "/@/composables/usePageBanner";
+import {useBreadcrumbInject} from '/@/composables/Home/useBreadcrumb';
+import {usePageBannerInject} from "/@/composables/Home/usePageBanner";
 
 export default defineComponent({
   name: "Competition",
   components: {CompetitionList},
   setup() {
     const {setVisible} = useBreadcrumbInject()
-    setVisible(true)
+    onMounted(() => {
+      setVisible(true)
+    })
     const {refresh} = usePageBannerInject()
     refresh()
     return {

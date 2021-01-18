@@ -3,16 +3,16 @@
 
 import {useRoute} from "vue-router";
 import axios from "axios";
-import {inject, provide, Ref, ref} from "vue";
+import {inject,onBeforeMount, provide, Ref, ref} from "vue";
 
 type PageBannerContext = {
     banner: Ref<string>
-    refresh: () => {}
+    refresh: () => void
 };
 
 const PageBannerSymbol = Symbol();
 
-export function usePageBannerProvide() {
+export function usePageBannerProvide(): PageBannerContext {
     const banner = ref('')
     const refresh = () => {
         const {path} = useRoute()
@@ -32,14 +32,16 @@ export function usePageBannerProvide() {
     }
 }
 
-export function usePageBannerInject() {
-    const booksContext = inject<PageBannerContext>(PageBannerSymbol);
-    if (!booksContext) {
+export function usePageBannerInject(): PageBannerContext {
+    const ctx = inject<PageBannerContext>(PageBannerSymbol);
+    if (!ctx) {
         throw new Error(`useBookListInject must be used after useBookListProvide`);
     }
     const defaultFunc = () => {
-        booksContext.refresh()
+        ctx.refresh()
     }
-    defaultFunc()
-    return booksContext;
+    onBeforeMount(() => {
+        defaultFunc()
+    })
+    return ctx;
 }
