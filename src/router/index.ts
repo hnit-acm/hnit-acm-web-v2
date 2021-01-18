@@ -5,9 +5,6 @@ const routes: Array<RouteRecordRaw> = [
         path: '/',
         name: 'Home',
         component: () => import('/@/views/Home.vue'),
-        redirect: {
-            path: '/index'
-        },
         children: [
             {
                 path: '/index',
@@ -22,7 +19,7 @@ const routes: Array<RouteRecordRaw> = [
                 name: 'Practice',
                 meta: {
                     title: "算法练习",
-                    banner:"https://ali-cdn.educoder.net/images/avatars/LaboratorySetting/1_competition_banner?t=1591241723"
+                    banner: ""
                 },
                 component: () => import('/@/views/Practice.vue')
             },
@@ -31,7 +28,8 @@ const routes: Array<RouteRecordRaw> = [
                 name: 'Competition',
                 meta: {
                     title: "在线竞赛",
-                    banner:"https://ali-cdn.educoder.net/images/avatars/LaboratorySetting/1_competition_banner?t=1591241723"
+                    banner: ""
+                    // banner:"https://ali-cdn.educoder.net/images/avatars/LaboratorySetting/1_competition_banner?t=1591241723"
                 },
                 component: () => import('/@/views/Competition.vue')
             },
@@ -50,7 +48,7 @@ const routes: Array<RouteRecordRaw> = [
                 path: '/register',
                 name: 'Register',
                 meta: {
-                    title: "首页"
+                    title: "注册"
                 },
                 component: () => import('/@/views/Register.vue')
             },
@@ -62,7 +60,7 @@ const routes: Array<RouteRecordRaw> = [
                 component: () => import('/@/views/Announcement.vue'),
                 children: [
                     {
-                        path: 'content/:id',
+                        path: ':id',
                         meta: {
                             title: "标题"
                         },
@@ -70,6 +68,7 @@ const routes: Array<RouteRecordRaw> = [
                     },
                 ]
             },
+
 
         ]
     },

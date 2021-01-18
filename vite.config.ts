@@ -9,5 +9,12 @@ export default defineConfig({
     )],
     alias: {
         "/@": resolve(__dirname, ".", 'src'),
+    },
+    optimizeDeps:{
+        include:[
+            'ant-design-vue/es/form/utils/validateUtil',
+            'ant-design-vue/es/form/utils/messages',
+            'ant-design-vue/es/form/utils/asyncUtil'
+        ]
     }
 })

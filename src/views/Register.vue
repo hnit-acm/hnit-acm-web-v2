@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, toRaw} from 'vue';
+import {defineComponent, ref,useContext} from 'vue';
 import useRegisterForm from "/@/composables/useRegisterForm";
 import {SetupContext} from "@vue/runtime-core";
 import {message} from 'ant-design-vue'
@@ -53,7 +53,7 @@ export default defineComponent({
   setup(props: {}, ctx: SetupContext<any>) {
     const isSuccess = ref(false)
     const {modelRef, validateInfos, onSubmit} = useRegisterForm()
-
+    const c =useContext()
     const success = () => {
       message.success("success")
     }

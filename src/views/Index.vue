@@ -26,13 +26,17 @@
 import {defineComponent} from 'vue';
 import RankList from "/@/components/RankList.vue";
 import AnnounceBox from "/@/components/AnnounceBox.vue";
-import useBreadcrumb from "/@/composables/useBreadcrumb";
+import {useBreadcrumbInject} from "/@/composables/useBreadcrumb";
+import {usePageBannerInject} from "/@/composables/usePageBanner";
 
 export default defineComponent({
   name: "Index",
   components: {RankList, AnnounceBox},
   setup() {
-    useBreadcrumb()
+    const {setVisible} = useBreadcrumbInject()
+    setVisible(false)
+    usePageBannerInject()
+    return {}
   }
 })
 </script>
