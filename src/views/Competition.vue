@@ -20,29 +20,27 @@
   </a-row>
 </template>
 
-
 <script lang="ts">
 import {defineComponent} from 'vue';
 import CompetitionList from '/@/components/competition/CompetitionList.vue';
-import useBreadcrumb from '/@/composables/useBreadcrumb';
-import usePageBanner from "/@/composables/usePageBanner";
+import {useBreadcrumbInject} from '/@/composables/useBreadcrumb';
+import {usePageBannerInject} from "/@/composables/usePageBanner";
 
 export default defineComponent({
   name: "Competition",
   components: {CompetitionList},
-  setup(){
-    useBreadcrumb()
-    usePageBanner()
+  setup() {
+    const {setVisible} = useBreadcrumbInject()
+    setVisible(true)
+    const {refresh} = usePageBannerInject()
+    refresh()
     return {
     }
   },
   data() {
-    return {
-
-    };
+    return {}
   },
   mounted() {
-
   }
 
 })

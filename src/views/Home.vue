@@ -33,7 +33,7 @@
       </a-menu>
       <div class="nav-right">
         <a-space>
-          <a-button type="link" @click="visible=true">
+          <a-button type="link" @click="loginVisible=true">
             <span class="navigation-item">登录</span>
           </a-button>
           <span class="navigation-item">|</span>
@@ -47,12 +47,13 @@
       </div>
     </a-layout-header>
     <a-layout-content class="content">
-      <div class="page-banner" v-if="currentRoute.meta.banner"
+      <div class="page-banner" v-if="banner"
            style="width: 100%;height: auto;background: aqua;display: flex;align-items: center;flex-direction: column;overflow: hidden;">
         <img style="width: auto;height: auto;background: aqua;"
-             :src="currentRoute.meta.banner">
+             :src="banner">
       </div>
-      <div style="display: flex" v-if="!isIndex">
+      <div style="display: flex" v-if="visible">
+        xxx
         <a-breadcrumb :routes="routes">
           <template #itemRender="{ route, params, routes, paths }">
             <router-link :to="`/${paths.join('/')}`">
@@ -65,9 +66,9 @@
     </a-layout-content>
     <a-layout-footer :style="{ textAlign: 'center' }">
       ©2020 Power by Nekilc
-      <a-button @click="">Test</a-button>
+      <a-button @click="back">Test</a-button>
     </a-layout-footer>
-    <login-dialog :visible="visible" @cancel="visible=false"></login-dialog>
+    <login-dialog :visible="loginVisible" @cancel="loginVisible=false"></login-dialog>
   </a-layout>
 </template>
 
@@ -75,35 +76,35 @@
 import {defineComponent, ref, watch, computed} from 'vue';
 import LoginDialog from "/@/components/LoginDialog.vue";
 import {useRoute, useRouter} from "vue-router";
-import useBreadcrumb from "/@/composables/useBreadcrumb";
-import usePageBanner from "/@/composables/usePageBanner";
-import {useStore} from "vuex";
+import {useBreadcrumbProvide} from "/@/composables/useBreadcrumb";
+import {usePageBannerProvide} from "/@/composables/usePageBanner";
 
 export default defineComponent({
   name: 'Home',
   components: {LoginDialog},
   setup() {
-    const {isIndex, getRoutes} = useBreadcrumb()
-    const {afterEach,currentRoute} = useRouter()
-    const {meta} = usePageBanner()
-    console.log(currentRoute.value.path)
-    const routes = ref(getRoutes())
-    afterEach((to, from) => {
-      routes.value = getRoutes()
-    })
+    const {visible,setVisible,routes} = useBreadcrumbProvide()
+    const {afterEach, currentRoute,back} = useRouter()
+    const {banner} = usePageBannerProvide()
     return {
       currentRoute,
-      isIndex,
-      routes
+      visible,
+      setVisible,
+      routes,
+      banner,
+      back
     }
   },
   data: () => {
     return {
-      visible: Boolean(false),
-
+      loginVisible: Boolean(false),
     }
   },
+  created() {
+
+  },
   mounted() {
+
   }
 });
 </script>

@@ -36,12 +36,18 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import useBreadcrumb from "/@/composables/useBreadcrumb";
+import {useBreadcrumbInject} from "/@/composables/useBreadcrumb";
+import {usePageBannerInject} from "/@/composables/usePageBanner";
 
 export default defineComponent({
   name: "Practice",
   setup(){
-    useBreadcrumb()
+    const {setVisible} = useBreadcrumbInject()
+    setVisible(true)
+    const {} = usePageBannerInject()
+
+  },
+  created() {
   },
   data() {
     return {
