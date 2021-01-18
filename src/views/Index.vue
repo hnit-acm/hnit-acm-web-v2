@@ -23,19 +23,21 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {defineComponent, onMounted} from 'vue';
 import RankList from "/@/components/RankList.vue";
 import AnnounceBox from "/@/components/AnnounceBox.vue";
-import {useBreadcrumbInject} from "/@/composables/useBreadcrumb";
-import {usePageBannerInject} from "/@/composables/usePageBanner";
+import {useBreadcrumbInject} from "/@/composables/Home/useBreadcrumb";
+import {usePageBannerInject} from "/@/composables/Home/usePageBanner";
 
 export default defineComponent({
   name: "Index",
   components: {RankList, AnnounceBox},
   setup() {
     const {setVisible} = useBreadcrumbInject()
-    setVisible(false)
-    usePageBannerInject()
+    onMounted(() => {
+      setVisible(false)
+    })
+    const {} = usePageBannerInject()
     return {}
   }
 })

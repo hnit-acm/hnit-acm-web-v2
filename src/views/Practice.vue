@@ -35,15 +35,17 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
-import {useBreadcrumbInject} from "/@/composables/useBreadcrumb";
-import {usePageBannerInject} from "/@/composables/usePageBanner";
+import {defineComponent, onMounted} from 'vue';
+import {useBreadcrumbInject} from "/@/composables/Home/useBreadcrumb";
+import {usePageBannerInject} from "/@/composables/Home/usePageBanner";
 
 export default defineComponent({
   name: "Practice",
-  setup(){
+  setup() {
     const {setVisible} = useBreadcrumbInject()
-    setVisible(true)
+    onMounted(() => {
+      setVisible(true)
+    })
     const {} = usePageBannerInject()
 
   },

@@ -1,17 +1,17 @@
-import {computed, ref, Ref, provide, inject} from "vue";
+import {computed, ref, Ref, provide, inject, onUpdated} from "vue";
 import {useRoute} from "vue-router";
 
 type BreadcrumbContext = {
     visible: Ref<boolean>;
     setVisible: (value: boolean) => void;
-    routes: Ref<[]>
+    routes: Ref<{ path: string; breadcrumbName: string }[]>
     refresh: () => void
     push: (item: { path: string, breadcrumbName: string }) => void
 };
 
 const BreadcrumbSymbol = Symbol();
 
-export function useBreadcrumbProvide() {
+export function useBreadcrumbProvide(): BreadcrumbContext {
 
     const visible = ref(true)
 
@@ -42,6 +42,9 @@ export function useBreadcrumbProvide() {
         refresh,
         push
     })
+    onUpdated(() => {
+        refresh()
+    })
     return {
         visible,
         setVisible,
@@ -51,12 +54,12 @@ export function useBreadcrumbProvide() {
     }
 }
 
-export function useBreadcrumbInject() {
-    const booksContext = inject<BreadcrumbContext>(BreadcrumbSymbol);
+export function useBreadcrumbInject(): BreadcrumbContext {
+    const ctx = inject<BreadcrumbContext>(BreadcrumbSymbol);
 
-    if (!booksContext) {
+    if (!ctx) {
         throw new Error(`useBookListInject must be used after useBookListProvide`);
     }
 
-    return booksContext;
+    return ctx;
 }
