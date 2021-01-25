@@ -46,11 +46,14 @@ import {defineComponent, ref,useContext} from 'vue';
 import useRegisterForm from "/@/composables/useRegisterForm";
 import {SetupContext} from "@vue/runtime-core";
 import {message} from 'ant-design-vue'
+import {usePageBannerInject} from "/@/composables/Home/usePageBanner";
 
 export default defineComponent({
   name: "Register",
   props: {},
   setup(props: {}, ctx: SetupContext<any>) {
+    const {} = usePageBannerInject()
+
     const isSuccess = ref(false)
     const {modelRef, validateInfos, onSubmit} = useRegisterForm()
     const c =useContext()

@@ -1,12 +1,17 @@
-import {computed, ref, Ref, provide, inject, onUpdated} from "vue";
+import {computed, ref, Ref, provide, inject, onUpdated, readonly} from "vue";
 import {useRoute} from "vue-router";
 
+type BreadcrumbItem = {
+    path: string,
+    breadcrumbName: string
+}
+
 type BreadcrumbContext = {
-    visible: Ref<boolean>;
+    readonly visible: Ref<boolean>;
     setVisible: (value: boolean) => void;
-    routes: Ref<{ path: string; breadcrumbName: string }[]>
+    readonly routes: Ref<readonly BreadcrumbItem[]>
     refresh: () => void
-    push: (item: { path: string, breadcrumbName: string }) => void
+    push: (item: BreadcrumbItem) => void
 };
 
 const BreadcrumbSymbol = Symbol();
@@ -16,12 +21,15 @@ export function useBreadcrumbProvide(): BreadcrumbContext {
     const visible = ref(true)
 
     const route = useRoute()
+
+
     const getRoutes = () => route.matched.map(value => {
         return {
             path: value.path,
-            breadcrumbName: value.meta.title,
-        }
+            breadcrumbName: value.meta.title as string,
+        } as BreadcrumbItem
     })
+
     const routes = ref(getRoutes())
     const refresh = () => {
         routes.value = getRoutes()
@@ -32,26 +40,21 @@ export function useBreadcrumbProvide(): BreadcrumbContext {
         }
         visible.value = value
     }
-    const push = (item: { path: string, breadcrumbName: string }) => {
+    const push = (item: BreadcrumbItem) => {
         routes.value.push(item)
     }
-    provide(BreadcrumbSymbol, {
-        visible,
+    const ctx: BreadcrumbContext = {
+        visible: readonly(visible),
         setVisible,
-        routes,
+        routes: readonly(routes),
         refresh,
         push
-    })
+    }
+    provide(BreadcrumbSymbol, ctx)
     onUpdated(() => {
         refresh()
     })
-    return {
-        visible,
-        setVisible,
-        routes,
-        refresh,
-        push
-    }
+    return ctx
 }
 
 export function useBreadcrumbInject(): BreadcrumbContext {

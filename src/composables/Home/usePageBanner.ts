@@ -3,10 +3,10 @@
 
 import {useRoute} from "vue-router";
 import axios from "axios";
-import {inject,onBeforeMount, provide, Ref, ref} from "vue";
+import {inject, onBeforeMount, provide, readonly, Ref, ref} from "vue";
 
 type PageBannerContext = {
-    banner: Ref<string>
+    readonly banner: Ref<string>
     refresh: () => void
 };
 
@@ -16,20 +16,19 @@ export function usePageBannerProvide(): PageBannerContext {
     const banner = ref('')
     const refresh = () => {
         const {path} = useRoute()
+        banner.value = ''
         axios.get("http://localhost:4523/mock/371014/api/sys/banner?page_name=" + path.split("/")[1]).then(
             (value: { data: { data: string; }; }) => {
                 banner.value = value.data.data
             }
         )
     }
-    provide(PageBannerSymbol, {
-        banner,
-        refresh
-    })
-    return {
-        banner,
+    const ctx: PageBannerContext = {
+        banner: readonly(banner),
         refresh
     }
+    provide(PageBannerSymbol, ctx)
+    return ctx
 }
 
 export function usePageBannerInject(): PageBannerContext {

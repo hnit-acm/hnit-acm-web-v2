@@ -16,7 +16,11 @@
       </a-list-item>
     </template>
   </a-list>
-  <router-view></router-view>
+  <a-row type="flex" style="margin-top: 1em;" align="center">
+    <a-col :xs="24" :sm="20" :lg="20" :xxl="15">
+      <router-view></router-view>
+    </a-col>
+  </a-row>
 </template>
 
 <script lang="ts">
