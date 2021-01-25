@@ -12,10 +12,8 @@
           <a-list-item-meta>
             <template v-slot:title style="color: white;">
               <div style="display: flex;flex-direction: row;">
-                <a :href="item.link" style="width:16em;color:white;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1;">
-                  {{ item.name }}
-                </a>
-                <a-tag color="red" v-if="item.label" style="float: right;">{{ item.label }}</a-tag>
+                <router-link class="list-item" :to="item.link">{{ item.name }}</router-link>
+                <a-tag color="red" v-if="item.label" style="margin-left: auto;">{{ item.label }}</a-tag>
               </div>
               <!--              <div style="height: 1.5em;overflow: hidden;">-->
               <!--                <a style="color: white;" :href="item.link">-->
@@ -55,7 +53,7 @@ export default defineComponent({
       default: () => [
         {
           name: "Nekilc测试用的超长的字符串aaaaaaaa",
-          link: '//www.baidu.com',
+          link: '/announcement/1',
           label: '重要'
         },
         {
@@ -85,6 +83,15 @@ export default defineComponent({
 })
 </script>
 
-<style scoped>
+<style lang="stylus" scoped>
+
+.list-item
+  width 16em
+  color white
+  overflow hidden
+  text-overflow ellipsis
+  display -webkit-box
+  -webkit-box-orient vertical
+  -webkit-line-clamp 1
 
 </style>

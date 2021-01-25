@@ -3,7 +3,9 @@
     <a-layout-header class="header-nav">
       <div class="nav-left">
         <!--        <img style="height: 68%;width: auto;" src="../assets/nav-logo-color.png">-->
-        <span style="color: white;font-size: 2em;">HNITACM</span>
+        <router-link to="/">
+          <span style="color: white;font-size: 2em;">HNITACM</span>
+        </router-link>
       </div>
       <a-menu
           theme="dark"
@@ -43,32 +45,40 @@
             </router-link>
           </a-button>
         </a-space>
-
       </div>
     </a-layout-header>
     <a-layout-content class="content">
-      <div class="page-banner" v-if="banner"
+      <div class="page-banner" v-if="bannerCtx.banner"
            style="width: 100%;height: auto;background: aqua;display: flex;align-items: center;flex-direction: column;overflow: hidden;">
         <img style="width: auto;height: auto;background: aqua;"
-             :src="banner">
+             :src="bannerCtx.banner">
       </div>
-      <div style="display: flex" v-if="breadcrumbCtx.visible">
-        xxx
-        <a-breadcrumb :routes="breadcrumbCtx.routes">
-          <template #itemRender="{ route, params, routes, paths }">
-            <router-link :to="`/${paths.join('/')}`">
-              {{ route.breadcrumbName }}
-            </router-link>
-          </template>
-        </a-breadcrumb>
-      </div>
+      <a-row type="flex" style="margin-top: 1em;" align="center">
+        <a-col :xs="24" :sm="20" :lg="20" :xxl="15">
+          <div style="display: flex;height: auto;align-items: center;" v-if="breadcrumbCtx.visible">
+            <a-breadcrumb :routes="breadcrumbCtx.routes">
+              <template #itemRender="{ route, params, routes, paths }">
+                <router-link :to="`/${paths.join('/')}`">
+                  {{ route.breadcrumbName }}
+                </router-link>
+              </template>
+            </a-breadcrumb>
+            <div></div>
+            <a-button type="link" v-on:click="back" style="margin-left: auto;">
+              <template #icon>
+                <LeftCircleTwoTone/>
+              </template>
+              返回
+            </a-button>
+          </div>
+        </a-col>
+      </a-row>
       <router-view></router-view>
     </a-layout-content>
     <a-layout-footer :style="{ textAlign: 'center' }">
       ©2020 Power by Nekilc
-      <a-button @click="back">Test</a-button>
     </a-layout-footer>
-    <login-dialog :visible="loginVisible" @cancel="loginVisible=false"></login-dialog>
+    <login-dialog v-bind:visible="loginVisible" v-on:cancel="loginVisible=false" v-on:login="login"></login-dialog>
   </a-layout>
 </template>
 
@@ -85,11 +95,16 @@ export default defineComponent({
   setup() {
     const breadcrumbCtx = ref(useBreadcrumbProvide())
     const {back} = useRouter()
-    const {banner} = usePageBannerProvide()
+    const bannerCtx = ref(usePageBannerProvide())
+    const login = (form) => {
+      console.log(form)
+      form.username = '12312313'
+    }
     return {
       breadcrumbCtx,
-      banner,
-      back
+      bannerCtx,
+      back,
+      login,
     }
   },
   data: () => {
@@ -123,6 +138,7 @@ export default defineComponent({
   height auto
   line-height unset
   padding 0 2em
+  background #49a9ea
 
 .nav-left
   height 100%
@@ -131,9 +147,11 @@ export default defineComponent({
 
 .nav-middle
   width auto
+  background #49a9ea
 
 .nav-right
-  width 100%
+  //width 100%
+  margin-left auto
   display flex
   flex-direction row
   justify-content flex-end

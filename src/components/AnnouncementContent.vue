@@ -1,13 +1,21 @@
 <template>
-  {{ params.id }}asdsadasdqdqw
+  <h1>title</h1>
+  <div v-html="content" class="content"></div>
+  <div style="text-align: right;">
+    Signature
+  </div>
+
 </template>
 
 <script lang="ts">
 
-import {defineComponent, inject, onUnmounted, onMounted} from 'vue';
+import {defineComponent, inject, onUnmounted, onMounted, ref,} from 'vue';
 import {useRoute, useRouter} from 'vue-router';
 import {useBreadcrumbInject} from "/@/composables/Home/useBreadcrumb";
 import {useListInject} from "/@/composables/Home/Announcement/useList";
+import {useMarkdown} from "/@/composables/useMarkdown";
+import {useAnnouceContent} from "/@/repositories/useAnnouncement";
+
 // todo 公告详情页
 export default defineComponent({
   name: "AnnouncementContent",
@@ -16,7 +24,7 @@ export default defineComponent({
   },
   setup() {
     // 首页面包屑
-    const {setVisible,push} = useBreadcrumbInject()
+    const {setVisible, push} = useBreadcrumbInject()
     setVisible(true)
     // 处理路由参数
     const {params, meta} = useRoute()
@@ -26,26 +34,41 @@ export default defineComponent({
     onMounted(() => {
       listCtx.setVisible(false)
     })
-    onUnmounted(()=>{
+    onUnmounted(() => {
       listCtx.setVisible(true)
     })
+    const {get} = useAnnouceContent()
+    let content = ref('')
+    get(1).then(
+        value => {
+          console.log(value)
+          content.value = useMarkdown(value).content.value
+        }
+    )
     return {
       params,
-      listCtx
+      listCtx,
+      content
     }
   },
-  created(){
+  data() {
+    return {
+      content: '123'
+    }
+  },
+  methods: {},
+  created() {
     console.log('1 created')
   },
-  mounted(){
+  mounted() {
     console.log('1 mounted')
 
   },
-  updated(){
+  updated() {
     console.log('1 updated')
 
   },
-  unmounted(){
+  unmounted() {
     console.log('1 unmounted')
   }
 })
@@ -53,6 +76,10 @@ export default defineComponent({
 
 </script>
 
-<style scoped>
-
+<style lang="stylus" scoped>
+.content
+  text-align initial
+  padding-left 2em
+  padding-right 2em
+  background #d0f5b6
 </style>
