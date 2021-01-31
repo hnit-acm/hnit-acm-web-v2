@@ -31,7 +31,7 @@ Build and Deploy by Github Action.
 #### 2020.10.29
 
 - [ ] Competition view pagination.
-- [ ] Practice view pagination.
+- [x] Practice view pagination.
 
 #### 2020.10.30
 
