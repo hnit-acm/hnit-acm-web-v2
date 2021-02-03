@@ -37,7 +37,7 @@
           </template>
         </a-list-item-meta>
         <a-space direction="vertical" style="width: 20%;" align="end">
-          <span>已报名:{{ item.numberPepole }}人</span>
+          <span>已报名:{{ item.numberPeople }}人</span>
           <a-button type="primary" ghost="true" :disabled="item.finish">{{ item.finish ? '报名截止' : '立即报名' }}</a-button>
         </a-space>
       </a-list-item>
@@ -56,7 +56,7 @@ export class CompetitionListItem {
   endTime!: string
   finish!: number
   avatar!: string
-  numberPepole!: number
+  numberPeople!: number
 }
 
 export default defineComponent({
@@ -71,7 +71,7 @@ export default defineComponent({
           description: '这个比赛呢，啥也没有，就是测试字符串长度足够长的时候，会不会隐藏文字，啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦',
           startTime: '2020-02-02',
           endTime: '2020-02-02',
-          numberPepole: 123,
+          numberPeople: 123,
           avatar: 'https://www.baidu.com/img/flexible/logo/pc/result.png',
           finish: 0
         },
@@ -81,7 +81,7 @@ export default defineComponent({
           description: '这个比赛呢，啥也没有，就是测试字符串长度足够长的时候，会不会隐藏文字，啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦',
           startTime: '2020-02-02',
           endTime: '2020-02-02',
-          numberPepole: 123,
+          numberPeople: 123,
           avatar: 'https://www.baidu.com/img/flexible/logo/pc/result.png',
           finish: 1
         },
@@ -91,7 +91,7 @@ export default defineComponent({
           description: '这个比赛呢，啥也没有，就是测试字符串长度足够长的时候，会不会隐藏文字，啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦',
           startTime: '2020-02-02',
           endTime: '2020-02-02',
-          numberPepole: 123,
+          numberPeople: 123,
           avatar: 'https://www.baidu.com/img/flexible/logo/pc/result.png',
           finish: 1
         },
