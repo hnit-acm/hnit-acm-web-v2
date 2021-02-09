@@ -13,7 +13,8 @@ const routes: Array<RouteRecordRaw> = [
                 path: '/index',
                 name: 'Index',
                 meta: {
-                    title: "首页"
+                    title: "首页",
+                    isMenu: true
                 },
                 component: () => import('/@/views/Index.vue')
             },
@@ -22,7 +23,8 @@ const routes: Array<RouteRecordRaw> = [
                 name: 'Practice',
                 meta: {
                     title: "算法练习",
-                    banner: ""
+                    banner: "",
+                    isMenu: true
                 },
                 component: () => import('/@/views/Practice.vue')
             },
@@ -31,7 +33,8 @@ const routes: Array<RouteRecordRaw> = [
                 name: 'Competition',
                 meta: {
                     title: "在线竞赛",
-                    banner: ""
+                    banner: "",
+                    isMenu: true
                     // banner:"https://ali-cdn.educoder.net/images/avatars/LaboratorySetting/1_competition_banner?t=1591241723"
                 },
                 component: () => import('/@/views/Competition.vue')
@@ -40,7 +43,8 @@ const routes: Array<RouteRecordRaw> = [
                 path: '/about',
                 name: 'About',
                 meta: {
-                    title: "关于我们"
+                    title: "关于我们",
+                    isMenu: true
                 },
                 // route level code-splitting
                 // this generates a separate chunk (about.[hash].js) for this route
