@@ -1,38 +1,39 @@
+<script lang="ts" setup="props">
+import LoginDialog from "/@/components/LoginDialog.vue";
+
+import {ref} from "vue";
+import {useBreadcrumbProvide} from "/@/composables/Home/useBreadcrumb";
+import {useRouter} from "vue-router";
+import {usePageBannerProvide} from "/@/composables/Home/usePageBanner";
+import {useMenu} from "/@/composables/useMenu";
+
+declare const props: {}
+
+const loginVisible = ref(false)
+const breadcrumbCtx = ref(useBreadcrumbProvide())
+const {back} = useRouter()
+const bannerCtx = ref(usePageBannerProvide())
+const {menuRouters} = useMenu()
+console.log(menuRouters)
+const login = (form: any) => {
+  console.log(form)
+  form.username = '12312313'
+}
+</script>
+
 <template>
-  <a-layout>
-    <a-layout-header class="header-nav">
+  <el-container>
+    <el-header class="header-nav">
       <div class="nav-left">
-        <!--        <img style="height: 68%;width: auto;" src="../assets/nav-logo-color.png">-->
         <router-link to="/">
           <span style="color: white;font-size: 2em;">HNITACM</span>
         </router-link>
       </div>
-      <a-menu
-          theme="dark"
-          mode="horizontal"
-          class="nav-middle"
-      >
-        <a-menu-item key="1">
-          <router-link to="/index">
-            <span class="navigation-item">首页</span>
-          </router-link>
-        </a-menu-item>
-        <a-menu-item key="2">
-          <router-link to="/practice">
-            <span class="navigation-item">算法练习</span>
-          </router-link>
-        </a-menu-item>
-        <a-menu-item key="3">
-          <router-link to="/competition">
-            <span class="navigation-item">在线竞赛</span>
-          </router-link>
-        </a-menu-item>
-        <a-menu-item key="4">
-          <router-link to="/about">
-            <span class="navigation-item">关于我们</span>
-          </router-link>
-        </a-menu-item>
-      </a-menu>
+      <el-menu class="nav-middle" router mode="horizontal" text-color="white" active-text-color="white" background-color="#49a9ea">
+        <el-menu-item v-for="(route,index) in menuRouters" :key="index" :index="route.path" >
+          {{ route.meta.title }}
+        </el-menu-item>
+      </el-menu>
       <div class="nav-right">
         <a-space>
           <a-button type="link" @click="loginVisible=true">
@@ -46,8 +47,8 @@
           </a-button>
         </a-space>
       </div>
-    </a-layout-header>
-    <a-layout-content class="content">
+    </el-header>
+    <el-main class="content">
       <div class="page-banner" v-if="bannerCtx.banner"
            style="width: 100%;height: auto;background: aqua;display: flex;align-items: center;flex-direction: column;overflow: hidden;">
         <img style="width: auto;height: auto;background: aqua;"
@@ -74,54 +75,17 @@
         </a-col>
       </a-row>
       <router-view></router-view>
-    </a-layout-content>
-    <a-layout-footer :style="{ textAlign: 'center' }">
+    </el-main>
+    <el-footer :style="{ textAlign: 'center' }">
       ©2020 Power by Nekilc
-    </a-layout-footer>
+    </el-footer>
     <login-dialog v-bind:visible="loginVisible" v-on:cancel="loginVisible=false" v-on:login="login"></login-dialog>
-  </a-layout>
+  </el-container>
 </template>
 
-<script lang="ts">
-import {defineComponent, onUpdated, onMounted, ref} from 'vue';
-import LoginDialog from "/@/components/LoginDialog.vue";
-import {useRouter} from "vue-router";
-import {useBreadcrumbProvide} from "/@/composables/Home/useBreadcrumb";
-import {usePageBannerProvide} from "/@/composables/Home/usePageBanner";
-
-export default defineComponent({
-  name: 'Home',
-  components: {LoginDialog},
-  setup() {
-    const breadcrumbCtx = ref(useBreadcrumbProvide())
-    const {back} = useRouter()
-    const bannerCtx = ref(usePageBannerProvide())
-    const login = (form) => {
-      console.log(form)
-      form.username = '12312313'
-    }
-    return {
-      breadcrumbCtx,
-      bannerCtx,
-      back,
-      login,
-    }
-  },
-  data: () => {
-    return {
-      loginVisible: Boolean(false),
-    }
-  },
-  created() {
-
-  },
-  mounted() {
-
-  }
-});
-</script>
-
 <style lang="stylus" scoped>
+@import "../assets/stylus/main.styl"
+
 .navigation-item
   font-family -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol
   font-family -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'
