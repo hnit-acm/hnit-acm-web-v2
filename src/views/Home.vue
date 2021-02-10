@@ -21,13 +21,13 @@ const login = (form: any) => {
 </script>
 <template lang="pug">
 el-container
-  el-header.header-nav
+  el-header.header-nav.flex-row-start.flex-align-center
     .nav-left.flex-row-start
       router-link(to="/")
         span HNITACM
       el-menu.nav-middle(mode='horizontal' :router="true" )
         el-menu-item(v-for="(route,index) in menuRouters" :index='route.path') {{route.meta.title}}
-    .nav-right
+    .nav-right.flex-row-end.flex-align-center
       a-space
         a-button(type='link' @click="loginVisible=true" )
           span.navigation-item 登录
@@ -36,11 +36,18 @@ el-container
           router-link(to="/register")
             span.navigation-item 注册
   el-main.content
-    .page-banner(v-if="bannerCtx.banner")
+    .page-banner.flex-col-start.flex-align-center(v-if="bannerCtx.banner")
       img(:src="bannerCtx.banner")
-    a-row
-      a-col
-        div(v-if="breadcrumbCtx.visible")
+    a-row(type="flex" style="margin-top: 1em;" align="center")
+      a-col(:xs="24" :sm="20" :lg="20" :xxl="15")
+        .flex-row-start.flex-align-center(v-if="breadcrumbCtx.visible" style={height:'auto'})
+            a-breadcrumb(:routes="breadcrumbCtx.routes")
+              template(#itemRender="{route, params, routes, paths}")
+                router-link(to="`/${paths.join('/')}`") {{route.breadcrumbName}}
+            a-button(type="link" v-on:click="back" style={marginLeft:'auto'})
+              template(#icon)
+                LeftCircleTwoTone/
+              | 返回
     router-view/
 
 
@@ -119,10 +126,6 @@ el-container
   color white
 
 .header-nav
-  display flex
-  flex-direction row
-  justify-content flex-start
-  align-items center
   height auto
   line-height unset
   padding 0 2em
@@ -140,10 +143,6 @@ el-container
 .nav-right
   //width 100%
   margin-left auto
-  display flex
-  flex-direction row
-  justify-content flex-end
-  align-items center
 
 .content
   background white
@@ -154,9 +153,6 @@ el-container
   width 100%
   height auto
   background aqua
-  display flex
-  align-items center
-  flex-direction column
   overflow hidden
 
 </style>
