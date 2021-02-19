@@ -21,101 +21,54 @@ const login = (form: any) => {
 </script>
 <template lang="pug">
 el-container
-  el-header.header-nav.flex-row-start.flex-align-center
-    .nav-left.flex-row-start
+  el-header.header-nav.flex-row-start.flex-align-center.main-blue
+    .nav-left.flex-row-start.flex-align-center
       router-link(to="/")
-        span HNITACM
-      el-menu.nav-middle(mode='horizontal' :router="true" )
-        el-menu-item(v-for="(route,index) in menuRouters" :index='route.path') {{route.meta.title}}
+        span.logo-font HNITACM
+      el-menu.nav-middle.flex-row-start.margin-left-1em(mode='horizontal' :router="true" background-color="#49a9ea"  text-color="white" active-text-color="blue")
+        el-menu-item.nav-font(v-for="(route,index) in menuRouters" :index='route.path') {{route.meta.title}}
     .nav-right.flex-row-end.flex-align-center
-      a-space
+      el-space.font-color-white(spacer="|" size="small")
         a-button(type='link' @click="loginVisible=true" )
           span.navigation-item 登录
-        span.navigation-item |
         a-button(type='link')
           router-link(to="/register")
             span.navigation-item 注册
   el-main.content
     .page-banner.flex-col-start.flex-align-center(v-if="bannerCtx.banner")
       img(:src="bannerCtx.banner")
+    el-row
+      el-col()
     a-row(type="flex" style="margin-top: 1em;" align="center")
       a-col(:xs="24" :sm="20" :lg="20" :xxl="15")
         .flex-row-start.flex-align-center(v-if="breadcrumbCtx.visible" style={height:'auto'})
-            a-breadcrumb(:routes="breadcrumbCtx.routes")
-              template(#itemRender="{route, params, routes, paths}")
-                router-link(to="`/${paths.join('/')}`") {{route.breadcrumbName}}
-            a-button(type="link" v-on:click="back" style={marginLeft:'auto'})
-              template(#icon)
-                LeftCircleTwoTone/
-              | 返回
+          a-breadcrumb(:routes="breadcrumbCtx.routes")
+            template(#itemRender="{route, params, routes, paths}")
+              router-link(:to="`/${paths.join('/')}`") {{route.breadcrumbName}}
+          a-button(type="link" v-on:click="back" style={marginLeft:'auto'})
+            template(#icon)
+              LeftCircleTwoTone/
+            | 返回
     router-view/
-
+  el-footer
+    | ©2020 Power by Nekilc
+  login-dialog(v-bind:visible="loginVisible" v-on:cancel="loginVisible=false" v-on:login="login")
 
 </template>
-<!--<template>-->
-<!--  <el-container>-->
-<!--    <el-header class="header-nav">-->
-<!--      <div class="nav-left">-->
-<!--        <router-link to="/">-->
-<!--          <span style="color: white;font-size: 2em;">HNITACM</span>-->
-<!--        </router-link>-->
-<!--      </div>-->
-<!--      <el-menu class="nav-middle" mode="horizontal" router text-color="white" active-text-color="white" background-color="#49a9ea">-->
-<!--        <el-menu-item v-for="(route,index) in menuRouters" :index="route.path" >-->
-<!--          {{ route.meta.title }}-->
-<!--        </el-menu-item>-->
-<!--      </el-menu>-->
-<!--      <div class="nav-right">-->
-<!--        <a-space>-->
-<!--          <a-button type="link" @click="loginVisible=true">-->
-<!--            <span class="navigation-item">登录</span>-->
-<!--          </a-button>-->
-<!--          <span class="navigation-item">|</span>-->
-<!--          <a-button type="link">-->
-<!--            <router-link to="register">-->
-<!--              <span class="navigation-item">注册</span>-->
-<!--            </router-link>-->
-<!--          </a-button>-->
-<!--        </a-space>-->
-<!--      </div>-->
-<!--    </el-header>-->
-<!--    <el-main class="content">-->
-<!--      <div class="page-banner" v-if="bannerCtx.banner"-->
-<!--           style="width: 100%;height: auto;background: aqua;display: flex;align-items: center;flex-direction: column;overflow: hidden;">-->
-<!--        <img style="width: auto;height: auto;background: aqua;"-->
-<!--             :src="bannerCtx.banner">-->
-<!--      </div>-->
-<!--      <a-row type="flex" style="margin-top: 1em;" align="center">-->
-<!--        <a-col :xs="24" :sm="20" :lg="20" :xxl="15">-->
-<!--          <div style="display: flex;height: auto;align-items: center;" v-if="breadcrumbCtx.visible">-->
-<!--            <a-breadcrumb :routes="breadcrumbCtx.routes">-->
-<!--              <template #itemRender="{ route, params, routes, paths }">-->
-<!--                <router-link :to="`/${paths.join('/')}`">-->
-<!--                  {{ route.breadcrumbName }}-->
-<!--                </router-link>-->
-<!--              </template>-->
-<!--            </a-breadcrumb>-->
-<!--            <div></div>-->
-<!--            <a-button type="link" v-on:click="back" style="margin-left: auto;">-->
-<!--              <template #icon>-->
-<!--                <LeftCircleTwoTone/>-->
-<!--              </template>-->
-<!--              返回-->
-<!--            </a-button>-->
-<!--          </div>-->
-<!--        </a-col>-->
-<!--      </a-row>-->
-<!--      <router-view></router-view>-->
-<!--    </el-main>-->
-<!--    <el-footer :style="{ textAlign: 'center' }">-->
-<!--      ©2020 Power by Nekilc-->
-<!--    </el-footer>-->
-<!--    <login-dialog v-bind:visible="loginVisible" v-on:cancel="loginVisible=false" v-on:login="login"></login-dialog>-->
-<!--  </el-container>-->
-<!--</template>-->
 
 <style lang="stylus" scoped>
 @import "../assets/stylus/main.styl"
+@import "../assets/stylus/color.styl"
+@import "../assets/stylus/font.styl"
+@import "../assets/stylus/margin.styl"
+
+.nav-font
+  @extend .main-font-bold-1_2em
+  @extend .font-color-white
+
+.logo-font
+  @extend .main-font-bold-2em
+  @extend .font-color-white
 
 .navigation-item
   font-family -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol
@@ -129,7 +82,6 @@ el-container
   height auto
   line-height unset
   padding 0 2em
-  background #49a9ea
 
 .nav-left
   height 100%
