@@ -23,7 +23,10 @@ export function useBreadcrumbProvide(): BreadcrumbContext {
     const route = useRoute()
 
 
-    const getRoutes = () => route.matched.map(value => {
+    const getRoutes = () => route.matched.filter(
+        (value, index) => {
+        if (value.meta.title) return true
+    }).map(value => {
         return {
             path: value.path,
             breadcrumbName: value.meta.title as string,

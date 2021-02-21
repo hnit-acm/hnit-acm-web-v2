@@ -1,19 +1,3 @@
-<template lang="pug">
-el-row
-
-a-row(type="flex" justify="center" style="margin: 1% 2% 2% 2%;")
-  a-col(:xs="24" :sm="24" :lg="24" :xxl="18")
-    announce-box(style="height:100%;z-index:999;position: absolute;right: 0;opacity: 80%;background: #ea4949;color: white;")
-    el-carousel
-      el-carousel-item(v-for="(item) in [1,2,3,4]")
-        .img-t {{item}}
-a-row(type="flex" style="margin-top: 1em;margin: 2%;" justify="center")
-  a-col(:xs="24" :sm="12" :lg="12" :xxl="9" style="padding-right: 0.5em;")
-    rank-list/
-  a-col(:xs="24" :sm="12" :lg="12" :xxl="9" style="padding-right: 0.5em;")
-    rank-list/
-</template>
-
 <script lang="ts" setup>
 import RankList from "/@/components/RankList.vue";
 import AnnounceBox from "/@/components/AnnounceBox.vue";
@@ -29,6 +13,21 @@ onMounted(() => {
 const {} = usePageBannerInject()
 </script>
 
+<template lang="pug">
+el-row(type="flex" justify="center" style="margin: 1% 2% 2% 2%;")
+  el-col(:xs="24" :sm="24" :md="24" :lg="24" :xl="18")
+    announce-box(style="height:100%;z-index:999;position: absolute;right: 0;opacity: 80%;background: #ea4949;color: white;")
+    el-carousel
+      el-carousel-item(v-for="(item) in [1,2,3,4]")
+        .img-t {{item}}
+el-row(type="flex" style="margin-top: 1em;margin: 2%;" justify="center")
+  el-col(:xs="24" :sm="12" :lg="12" :xl="9")
+    rank-list/
+  el-col(:xs="24" :sm="12" :lg="12" :xl="9")
+    rank-list/
+</template>
+
+
 <style lang="stylus" scoped>
 .carousel
   height 100%
@@ -36,4 +35,5 @@ const {} = usePageBannerInject()
 
 .img-t
   height 300px
+  background-color #49a9ea
 </style>

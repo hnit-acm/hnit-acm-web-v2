@@ -1,52 +1,31 @@
-<template>
-  <a-row type="flex" style="margin-top: 1em;" align="center">
-    <a-col :xs="24" :sm="20" :lg="20" :xxl="15">
-      <a-tabs @change="callback" :tabBarStyle="{textAlign:'left'}">
-        <a-tab-pane key="1" tab="全部">
-          <competition-list></competition-list>
-          <!--          // todo Competition view pagination-->
-        </a-tab-pane>
-        <a-tab-pane key="2" tab="即将发布" force-render>
-          <competition-list></competition-list>
-        </a-tab-pane>
-        <a-tab-pane key="3" tab="进行中">
-          <competition-list></competition-list>
-        </a-tab-pane>
-        <a-tab-pane key="4" tab="往期比赛">
-          <competition-list></competition-list>
-        </a-tab-pane>
-      </a-tabs>
-    </a-col>
-  </a-row>
-</template>
-
-<script lang="ts">
-import {defineComponent, onMounted} from 'vue';
+<script lang="ts" setup>
 import CompetitionList from '/@/components/competition/CompetitionList.vue';
+
+import {defineComponent, onMounted} from 'vue';
 import {useBreadcrumbInject} from '/@/composables/Home/useBreadcrumb';
 import {usePageBannerInject} from "/@/composables/Home/usePageBanner";
 
-export default defineComponent({
-  name: "Competition",
-  components: {CompetitionList},
-  setup() {
-    const {setVisible} = useBreadcrumbInject()
-    onMounted(() => {
-      setVisible(true)
-    })
-    const {refresh} = usePageBannerInject()
-    refresh()
-    return {
-    }
-  },
-  data() {
-    return {}
-  },
-  mounted() {
-  }
-
+const {setVisible} = useBreadcrumbInject()
+onMounted(() => {
+  setVisible(true)
 })
+const {refresh} = usePageBannerInject()
+refresh()
 </script>
+
+<template lang="pug">
+el-row(type="flex" style="margin-top: 1em;" justify="center")
+  el-col(:xs="24" :sm="20" :lg="20" :xl="15")
+    el-tabs(:stretch="true")
+      el-tab-pane(label="全部")
+        competition-list/
+      el-tab-pane(label="即将发布")
+        competition-list/
+      el-tab-pane(label="进行中")
+        competition-list/
+      el-tab-pane(label="往期比赛")
+        competition-list/
+</template>
 
 <style scoped>
 

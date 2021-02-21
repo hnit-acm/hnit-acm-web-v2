@@ -1,13 +1,13 @@
 <script lang="ts" setup="props">
 import LoginDialog from "/@/components/LoginDialog.vue";
 
-import {ref} from "vue";
+import {defineProps, ref} from "vue";
 import {useBreadcrumbProvide} from "/@/composables/Home/useBreadcrumb";
 import {useRouter} from "vue-router";
 import {usePageBannerProvide} from "/@/composables/Home/usePageBanner";
 import {useMenu} from "/@/composables/useMenu";
 
-declare const props: {}
+const props = defineProps({})
 
 const loginVisible = ref(false)
 const breadcrumbCtx = ref(useBreadcrumbProvide())
@@ -16,24 +16,26 @@ const bannerCtx = ref(usePageBannerProvide())
 const {menuRouters} = useMenu()
 const login = (form: any) => {
   console.log(form)
-  form.username = '12312313'
+  // form.username = '12312313'
+  loginVisible.value = false
 }
 </script>
 <template lang="pug">
-el-container
-  el-header.header-nav.flex-row-start.flex-align-center.main-blue
-    .nav-left.flex-row-start.flex-align-center
-      router-link(to="/")
-        span.logo-font HNITACM
-      el-menu.nav-middle.flex-row-start.margin-left-1em(mode='horizontal' :router="true" background-color="#49a9ea"  text-color="white" active-text-color="blue")
-        el-menu-item.nav-font(v-for="(route,index) in menuRouters" :index='route.path') {{route.meta.title}}
-    .nav-right.flex-row-end.flex-align-center
-      el-space.font-color-white(spacer="|" size="small")
-        a-button(type='link' @click="loginVisible=true" )
-          span.navigation-item 登录
-        a-button(type='link')
-          router-link(to="/register")
-            span.navigation-item 注册
+el-container.main
+  el-affix(z-index="9999" target=".main")
+    el-header.header-nav.flex-row-start.flex-align-center.main-blue
+      .nav-left.flex-row-start.flex-align-center
+        router-link(to="/")
+          span.logo-font HNITACM
+        el-menu.nav-middle.flex-row-start.margin-left-1em(mode='horizontal' :router="true" background-color="#49a9ea"  text-color="white" active-text-color="blue")
+          el-menu-item.nav-font(v-for="(route,index) in menuRouters" :index='route.path') {{route.meta.title}}
+      .nav-right.flex-row-end.flex-align-center
+        el-space.font-color-white(spacer="|" size="small")
+          a-button(type='link' @click="loginVisible=true" )
+            span.navigation-item 登录
+          a-button(type='link')
+            router-link(to="/register")
+              span.navigation-item 注册
   el-main.content
     .page-banner.flex-col-start.flex-align-center(v-if="bannerCtx.banner")
       img(:src="bannerCtx.banner")
@@ -52,15 +54,12 @@ el-container
     router-view/
   el-footer
     | ©2020 Power by Nekilc
-  login-dialog(v-bind:visible="loginVisible" v-on:cancel="loginVisible=false" v-on:login="login")
+  login-dialog(v-bind:visible="loginVisible" v-on:event-closed="loginVisible=false" v-on:event-login="login")
 
 </template>
 
 <style lang="stylus" scoped>
 @import "../assets/stylus/main.styl"
-@import "../assets/stylus/color.styl"
-@import "../assets/stylus/font.styl"
-@import "../assets/stylus/margin.styl"
 
 .nav-font
   @extend .main-font-bold-1_2em

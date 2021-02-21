@@ -5,8 +5,8 @@ const routes: Array<RouteRecordRaw> = [
         path: '/',
         name: 'Home',
         component: () => import('/@/views/Home.vue'),
-        redirect:{
-            path:'/index'
+        redirect: {
+            path: '/index'
         },
         children: [
             {
@@ -64,19 +64,24 @@ const routes: Array<RouteRecordRaw> = [
                 meta: {
                     title: "公告"
                 },
-                component: () => import('/@/views/Announcement.vue'),
+                component: () => import('/@/views/announcement/Announcement.vue'),
                 children: [
                     {
+                        path: "",
+                        component: () => import('/@/views/announcement/List.vue'),
+                    },
+                    {
                         path: ':id',
-                        meta: {
-                            title: "标题"
-                        },
-                        component: () => import('/@/components/AnnouncementContent.vue'),
+                        component: () => import('/@/views/announcement/Content.vue'),
+                        props: true,
                     },
                 ]
             },
-
-
+            // {
+            //     path: '/announcement/:id',
+            //     component: () => import('/@/components/Content.vue'),
+            //     props: true,
+            // },
         ]
     },
 ]
