@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import RankList from "/@/components/RankList.vue";
-import AnnounceBox from "/@/components/AnnounceBox.vue";
+import AnnounceBox,{AnnounceBoxProps} from "/@/components/AnnounceBox.vue";
 
 import {defineComponent, onMounted} from 'vue';
 import {useBreadcrumbInject} from "/@/composables/Home/useBreadcrumb";
@@ -10,13 +10,20 @@ const {setVisible} = useBreadcrumbInject()
 onMounted(() => {
   setVisible(false)
 })
+
 const {} = usePageBannerInject()
+
+const announceBoxProps:AnnounceBoxProps={
+  list:[],
+  title:'公告'
+}
+
 </script>
 
 <template lang="pug">
 el-row(type="flex" justify="center" style="margin: 1% 2% 2% 2%;")
   el-col(:xs="24" :sm="24" :md="24" :lg="24" :xl="18")
-    announce-box(style="height:100%;z-index:999;position: absolute;right: 0;opacity: 80%;background: #ea4949;color: white;")
+    announce-box(:data="" style="height:100%;z-index:999;position: absolute;right: 0;opacity: 80%;background: #ea4949;color: white;")
     el-carousel
       el-carousel-item(v-for="(item) in [1,2,3,4]")
         .img-t {{item}}

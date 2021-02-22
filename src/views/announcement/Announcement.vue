@@ -48,11 +48,10 @@ const data =
 </script>
 
 <template lang="pug">
-a-row(type="flex" style={marginTop:'1em'} align="center")
-  a-col(:xs="24" :sm="20" :lg="20" :xxl="15")
-    router-view()/
+el-row(type="flex" align="center")
+  el-col(:xs="24" :sm="20" :lg="20" :xxl="15")
+    router-view/
 </template>
-
 
 <style scoped>
 

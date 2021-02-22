@@ -1,22 +1,27 @@
 import {readonly, ref} from 'vue'
-import axios from "axios";
-import { ElMessage } from 'element-plus';
+import axios from "../utils/axios";
+import {ElMessage} from 'element-plus';
+import {Response} from "/@/common/models/response";
+
 export function useAnnouceList() {
 
 }
 
-type AnnounceContent = {
+export interface AnnounceContent {
     text: string
     title: string
     type: number
+    signature: string
+    createTime: string
 }
 
 export function useAnnounceContent() {
     const get = (id: number) => {
-        return new Promise<AnnounceContent | string>((resolve, reject) => {
-            axios.get("http://127.0.0.1:4523/mock/371014/api/sys/announce/one", {
+        return new Promise<AnnounceContent>((resolve, reject) => {
+            axios.get<Response<AnnounceContent>>("http://127.0.0.1:4523/mock/371014/api/sys/announce/one", {
                 params: {
-                    id: id
+                    id: id,
+                    testAaa:0,
                 }
             }).then(
                 value => {
@@ -24,12 +29,13 @@ export function useAnnounceContent() {
                         resolve(value.data.data)
                         return
                     }
-                    resolve(value.data.msg)
                     ElMessage.error(value.data.msg)
-                    return;
+                    reject(value.data.msg)
+                    return
                 }
             ).catch(
                 reason => {
+                    ElMessage.error(reason)
                     reject(reason)
                 }
             )

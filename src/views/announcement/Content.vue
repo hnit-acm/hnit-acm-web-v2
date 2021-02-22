@@ -1,9 +1,3 @@
-<template lang="pug">
-h1 {{title}}
-.content(v-html="content")
-.text-align-right Signature
-</template>
-
 <script lang="ts" setup>
 
 import {onUnmounted, onMounted, ref, defineProps,} from 'vue';
@@ -11,11 +5,11 @@ import {useRoute} from 'vue-router';
 import {useBreadcrumbInject} from "/@/composables/Home/useBreadcrumb";
 import {useListInject} from "/@/composables/Home/Announcement/useList";
 import {useMarkdown} from "/@/composables/useMarkdown";
-import {useAnnounceContent} from "/@/repositories/useAnnouncement";
+import {useAnnounceContent, AnnounceContent} from "/@/repositories/useAnnouncement";
 
-const props = defineProps({
-  id: 0
-})
+const props = defineProps<{
+  id:number
+}>()
 
 // 首页面包屑
 const {setVisible, push} = useBreadcrumbInject()
@@ -35,12 +29,14 @@ const {get} = useAnnounceContent()
 const content = ref('')
 const title = ref('')
 get(props.id).then(
-    data => {
+    (data: AnnounceContent) => {
       content.value = useMarkdown(data.text).content.value
       title.value = data.title
       meta.title = data.title
+      console.log(data)
+
       push({
-        breadcrumbName: title,
+        breadcrumbName: title.value,
         path: fullPath
       })
     }
@@ -48,6 +44,12 @@ get(props.id).then(
 
 
 </script>
+
+<template lang="pug">
+  h1 {{title}}
+  .content(v-html="content")
+  .text-align-right Signature
+</template>
 
 <style lang="stylus" scoped>
 @import "../../assets/stylus/main.styl"

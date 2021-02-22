@@ -16,7 +16,7 @@ const routes: Array<RouteRecordRaw> = [
                     title: "首页",
                     isMenu: true
                 },
-                component: () => import('/@/views/Index.vue')
+                component: () => import('/@/views/index/Index.vue')
             },
             {
                 path: '/practice',
@@ -26,7 +26,7 @@ const routes: Array<RouteRecordRaw> = [
                     banner: "",
                     isMenu: true
                 },
-                component: () => import('/@/views/Practice.vue')
+                component: () => import('/@/views/practice/Practice.vue')
             },
             {
                 path: '/competition',
@@ -37,7 +37,7 @@ const routes: Array<RouteRecordRaw> = [
                     isMenu: true
                     // banner:"https://ali-cdn.educoder.net/images/avatars/LaboratorySetting/1_competition_banner?t=1591241723"
                 },
-                component: () => import('/@/views/Competition.vue')
+                component: () => import('/@/views/competition/Competition.vue')
             },
             {
                 path: '/about',
@@ -49,7 +49,7 @@ const routes: Array<RouteRecordRaw> = [
                 // route level code-splitting
                 // this generates a separate chunk (about.[hash].js) for this route
                 // which is lazy-loaded when the route is visited.
-                component: () => import(/* webpackChunkName: "about" */ '/@/views/About.vue')
+                component: () => import(/* webpackChunkName: "about" */ '/@/views/about/About.vue')
             },
             {
                 path: '/register',
