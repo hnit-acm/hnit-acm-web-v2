@@ -5,7 +5,7 @@ import {useRoute} from 'vue-router';
 import {useBreadcrumbInject} from "/@/composables/Home/useBreadcrumb";
 import {useListInject} from "/@/composables/Home/Announcement/useList";
 import {useMarkdown} from "/@/composables/useMarkdown";
-import {useAnnounceContent, AnnounceContent} from "/@/repositories/useAnnouncement";
+import {useAnnounceContent} from "/@/repositories/useAnnouncement";
 
 const props = defineProps<{
   id:number
@@ -29,7 +29,7 @@ const {get} = useAnnounceContent()
 const content = ref('')
 const title = ref('')
 get(props.id).then(
-    (data: AnnounceContent) => {
+    (data) => {
       content.value = useMarkdown(data.text).content.value
       title.value = data.title
       meta.title = data.title

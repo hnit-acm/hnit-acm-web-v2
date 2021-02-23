@@ -1,31 +1,49 @@
-<script lang="ts" setup>
+<script lang="ts" setup="props">
 import {defineProps} from 'vue'
+
+interface LabelItem{
+  name: string
+  type: 'item'
+}
 
 interface AnnounceListItem {
   name: string
   link: string
-  label?: string
+  labels?: string[] | LabelItem[]
 }
 
-interface AnnounceBoxProps {
-  list?: AnnounceListItem[]
-  title?: string
+interface AnnounceBoxProps{
+  list: AnnounceListItem[]
+  title: string
 }
 
-const props = defineProps<{
-  data: AnnounceBoxProps
-}>()
-
+const props = defineProps({
+  data:{
+    type:Object,
+    default:()=>{
+      return {
+        list:[
+          {
+            name:'nekilc',
+            link:'nekilc',
+            labels:['nekilc'],
+          }
+        ],
+        title:'nekilc'
+      } as AnnounceBoxProps
+    }
+  }
+})
 </script>
 
 <template lang="pug">
 .height-100-per.font-color-white
   .flex-row-center.font-size-1em(style={borderBottom: '1px solid', padding: '1em'})
-    router-link.font-color-white(to="/announcement") {{data.title?data.title:'标题'}}
+    router-link.font-color-white(to="/announcement") {{data.title}}
   .text-align-left(style={padding: '1em'})
-    .flex-row-start.flex-align-center(v-for="(item,index) in data.list?data.list:[]")
+    .flex-row-start.flex-align-center(v-for="(item,index) in data.list")
       router-link.list-item(:to="item.link") {{item.name}}
-      el-tag.margin-left-auto(v-show="item.label") {{item.label}}
+      el-tag.margin-left-auto(v-for="(label) in item.labels" size="mini" :type="label.type?label.type:''") {{label.name?label.name:label}}
   .flex-row-end(style={paddingLeft: '1em', paddingRight: '1em'})
     el-button(type="text" icon="el-icon-d-arrow-right")
       router-link(to="/announcement") 更多

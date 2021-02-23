@@ -1,4 +1,4 @@
-import {RouteRecord, RouteRecordNormalized, useRoute, useRouter} from "vue-router";
+import { useRouter} from "vue-router";
 
 export function useMenu() {
     const {getRoutes} = useRouter()
