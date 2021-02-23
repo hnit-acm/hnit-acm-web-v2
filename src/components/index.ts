@@ -1,0 +1,1 @@
+export {default as AnnounceBox} from "./annouceBox/AnnounceBox.vue"

@@ -21,8 +21,8 @@ const login = (form: any) => {
 }
 </script>
 <template lang="pug">
-el-container.main
-  el-affix(z-index="9999" target=".main")
+el-container
+  el-affix(z-index="9999" ta)
     el-header.header-nav.flex-row-start.flex-align-center.main-blue
       .nav-left.flex-row-start.flex-align-center
         router-link(to="/")

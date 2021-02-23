@@ -7,7 +7,7 @@ export function useAnnouceList() {
 
 }
 
-export interface AnnounceContent {
+interface AnnounceContent {
     text: string
     title: string
     type: number

@@ -1,6 +1,10 @@
 
-export interface Response<T = any> {
+interface Response<T = any> {
     msg: string
     data: T
     code: number
+}
+
+export type {
+    Response
 }

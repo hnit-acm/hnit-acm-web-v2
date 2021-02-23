@@ -1,15 +1,15 @@
 <script lang="ts" setup>
 import {defineProps} from 'vue'
 
-export interface AnnounceListItem {
+interface AnnounceListItem {
   name: string
   link: string
   label?: string
 }
 
-export interface AnnounceBoxProps {
-  list: AnnounceListItem[]
-  title: string
+interface AnnounceBoxProps {
+  list?: AnnounceListItem[]
+  title?: string
 }
 
 const props = defineProps<{
@@ -21,9 +21,9 @@ const props = defineProps<{
 <template lang="pug">
 .height-100-per.font-color-white
   .flex-row-center.font-size-1em(style={borderBottom: '1px solid', padding: '1em'})
-    router-link.font-color-white(to="/announcement") {{data.title}}
+    router-link.font-color-white(to="/announcement") {{data.title?data.title:'标题'}}
   .text-align-left(style={padding: '1em'})
-    .flex-row-start.flex-align-center(v-for="(item,index) in data.list")
+    .flex-row-start.flex-align-center(v-for="(item,index) in data.list?data.list:[]")
       router-link.list-item(:to="item.link") {{item.name}}
       el-tag.margin-left-auto(v-show="item.label") {{item.label}}
   .flex-row-end(style={paddingLeft: '1em', paddingRight: '1em'})
@@ -32,9 +32,7 @@ const props = defineProps<{
 </template>
 
 <style lang="stylus" scoped>
-@import "../assets/stylus/font.styl"
-@import "../assets/stylus/main.styl"
-@import "../assets/stylus/margin.styl"
+@import "../../assets/stylus/main.styl"
 
 .list-item
   width 16em

@@ -46,9 +46,9 @@ get(props.id).then(
 </script>
 
 <template lang="pug">
-  h1 {{title}}
-  .content(v-html="content")
-  .text-align-right Signature
+h1 {{title}}
+.content(v-html="content")
+.text-align-right Signature
 </template>
 
 <style lang="stylus" scoped>
