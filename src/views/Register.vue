@@ -1,88 +1,69 @@
-<template>
-  <a-row type="flex" justify="center">
-    <a-col :xs="18" :sm="14" :md="10" :lg="8" :xl="8">
-      <a-card title="注册" :bordered="false" :bodyStyle="{width: 'auto'}">
-        <a-form layout="vertical" :wrapperCol="wrapperCol" v-if="!isSuccess">
-          <a-form-item label="学号" v-bind="validateInfos.schoolNumber" required>
-            <a-input v-model:value="modelRef.schoolNumber"/>
-          </a-form-item>
-          <a-form-item label="密码" v-bind="validateInfos.password">
-            <a-input v-model:value="modelRef.password"/>
-          </a-form-item>
-          <a-form-item label="确认密码" v-bind="validateInfos.confirm">
-            <a-input v-model:value="modelRef.confirm"/>
-          </a-form-item>
-          <a-form-item label="手机号码" v-bind="validateInfos.phone">
-            <a-input-search
-                v-model:value.number="modelRef.phone"
-                @search="sendCode"
-            >
-              <template v-slot:enterButton>
-                <a-button type="primary" @click="sendCode">
-                  发送验证码
-                </a-button>
-              </template>
-            </a-input-search>
-          </a-form-item>
-          <a-form-item label="验证码" v-bind="validateInfos.code">
-            <a-input v-model:value="modelRef.code"/>
-          </a-form-item>
-          <a-form-item :wrapper-col="{ span: 24 }">
-            <a-button type="primary" @click="submit">
-              注册
-            </a-button>
-          </a-form-item>
-        </a-form>
-        <div v-if="isSuccess">
-          注册成功
-        </div>
-      </a-card>
-    </a-col>
-  </a-row>
-</template>
+<script lang="ts" setup>
+import StateButton from '/@/components/stateButton/StateButton.vue'
 
-<script lang="ts">
-import {defineComponent, ref,useContext} from 'vue';
+import {ref, useContext,unref} from 'vue';
 import useRegisterForm from "/@/composables/useRegisterForm";
-import {SetupContext} from "@vue/runtime-core";
 import {message} from 'ant-design-vue'
 import {usePageBannerInject} from "/@/composables/Home/usePageBanner";
+import {useCode} from "/@/repositories/useCode";
+import {useStateButton} from "/@/components/stateButton/useStateButton";
 
-export default defineComponent({
-  name: "Register",
-  props: {},
-  setup(props: {}, ctx: SetupContext<any>) {
-    const {} = usePageBannerInject()
+const {} = usePageBannerInject()
 
-    const isSuccess = ref(false)
-    const {modelRef, validateInfos, onSubmit} = useRegisterForm()
-    const c =useContext()
-    const success = () => {
-      message.success("success")
-    }
-    const fail = () => {
-      message.error("error")
-    }
-    const submit = (e: { preventDefault: () => void }) => {
-      onSubmit(e).then(success).catch(fail)
-    }
-    const sendCode = ()=>{
-      message.success("send code")
-    }
-    return {
-      modelRef,
-      validateInfos,
-      submit,
-      wrapperCol: {
-        span: 24
-      },
-      isSuccess,
-      sendCode
-    }
-  },
-})
+const isSuccess = ref(false)
+const {modelRef, validateInfos, onSubmit} = useRegisterForm()
+const c = useContext()
+const success = () => {
+  message.success("success")
+}
+const fail = () => {
+  message.error("error")
+}
+const submit = (e: { preventDefault: () => void }) => {
+  onSubmit(e).then(success).catch(fail)
+}
+
+const {post} = useCode()
+const sendBtnCtx = useStateButton({name:'发送验证码'})
+
+const sendCode = () => {
+  sendBtnCtx.loading({name:'发送中'})
+  post({}).then(
+      value => {
+        sendBtnCtx.success({name:'发送成功',interval:60})
+      }).catch(
+      reason => {
+        setTimeout(()=>{
+          sendBtnCtx.warning({name:'发送失败',interval:10})
+        },1000)
+      })
+}
+
 </script>
 
-<style scoped>
+<template lang="pug">
+el-row(type="flex" justify="center")
+  el-col(:xs="18" :sm="14" :md="10" :lg="8" :xl="8")
+    el-card(:body-style="{width: 'auto'}" :shadow="'never'")
+      template(#header) 注册
+      el-form(size="mini")
+        el-form-item(label="学号")
+          el-input
+        el-form-item(label="密码")
+          el-input
+        el-form-item(label="确认密码")
+          el-input
+        el-form-item(label="手机号码")
+          el-input
+            template(#append)
+              state-button(v-on:click="sendCode" v-bind:data="unref(sendBtnCtx.data)")
+        el-form-item(label="验证码" )
+          el-input
+        el-form-item
+          el-button(type="primary") 注册
+</template>
 
+
+<style lang="stylus" scoped>
+@import "../assets/stylus/main.styl";
 </style>
