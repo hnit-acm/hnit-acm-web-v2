@@ -1,4 +1,11 @@
 import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
+import indexRouteInfo from "/@/router/index/index";
+import practiceRouteInfo from "/@/router/practice/index"
+import competitionRouteInfo from "/@/router/competition"
+import announcementRouteInfo from "/@/router/announcement";
+import registerRouteInfo from "/@/router/register";
+import aboutRouteInfo from "/@/router/about";
+
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -9,79 +16,12 @@ const routes: Array<RouteRecordRaw> = [
             path: '/index'
         },
         children: [
-            {
-                path: '/index',
-                name: 'Index',
-                meta: {
-                    title: "首页",
-                    isMenu: true
-                },
-                component: () => import('/@/views/index/Index.vue')
-            },
-            {
-                path: '/practice',
-                name: 'Practice',
-                meta: {
-                    title: "算法练习",
-                    banner: "",
-                    isMenu: true
-                },
-                component: () => import('/@/views/practice/Practice.vue')
-            },
-            {
-                path: '/competition',
-                name: 'Competition',
-                meta: {
-                    title: "在线竞赛",
-                    banner: "",
-                    isMenu: true
-                    // banner:"https://ali-cdn.educoder.net/images/avatars/LaboratorySetting/1_competition_banner?t=1591241723"
-                },
-                component: () => import('/@/views/competition/Competition.vue')
-            },
-            {
-                path: '/about',
-                name: 'About',
-                meta: {
-                    title: "关于我们",
-                    isMenu: true
-                },
-                // route level code-splitting
-                // this generates a separate chunk (about.[hash].js) for this route
-                // which is lazy-loaded when the route is visited.
-                component: () => import(/* webpackChunkName: "about" */ '/@/views/about/About.vue')
-            },
-            {
-                path: '/register',
-                name: 'Register',
-                meta: {
-                    title: "注册"
-                },
-                component: () => import('/@/views/Register.vue')
-            },
-            {
-                path: '/announcement',
-                meta: {
-                    title: "公告"
-                },
-                component: () => import('/@/views/announcement/Announcement.vue'),
-                children: [
-                    {
-                        path: "",
-                        component: () => import('/@/views/announcement/List.vue'),
-                    },
-                    {
-                        path: ':id',
-                        component: () => import('/@/views/announcement/Content.vue'),
-                        props: true,
-                    },
-                ]
-            },
-            // {
-            //     path: '/announcement/:id',
-            //     component: () => import('/@/components/Content.vue'),
-            //     props: true,
-            // },
+            indexRouteInfo,
+            practiceRouteInfo,
+            competitionRouteInfo,
+            aboutRouteInfo,
+            registerRouteInfo,
+            announcementRouteInfo
         ]
     },
 ]
