@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import {StateButton, useStateButton} from '/@/components'
 
-import { defineEmit, ref, defineProps,unref} from 'vue';
+import {defineEmit, ref, defineProps, unref} from 'vue';
 import {useLogin} from "/@/repositories/useLogin";
 
 const props = defineProps({
@@ -9,24 +9,36 @@ const props = defineProps({
   codeVisible: () => false,
 })
 
-const emit = defineEmit(['event-cancel', 'event-login'])
+const emit = defineEmit(['event-closed', 'event-login'])
 
 const loginForm = ref({
   username: '',
   password: '',
 })
-const loginBtnCtx = useStateButton({name:'登录'})
+const loginBtnCtx = useStateButton({
+  name: '登录',
+  type: 'primary',
+})
 
 const {post} = useLogin()
 
-const login = ()=>{
+const login = () => {
+  loginBtnCtx.loading({name:'登录中'})
   post(loginForm).then(
       value => {
-        loginBtnCtx.success({name:'登录成功',callback:()=>{emit("event-login")}})
+        loginBtnCtx.success({
+          name: '登录成功', callback: () => {
+            emit("event-login")
+          }
+        })
       }
   ).catch(
       reason => {
-        loginBtnCtx.warning({name:'登录失败',callback:()=>{emit("event-login")}})
+        loginBtnCtx.error({
+          name: '登录失败', interval: 3, callback: () => {
+            // emit("event-login")
+          }
+        })
       }
   )
 }
@@ -34,16 +46,16 @@ const login = ()=>{
 </script>
 
 <template lang="pug">
-el-dialog(title="登录" :model-value="visible" v-on:closed="emit('event-cancel')" :destroy-on-close="true" :center="true")
-  el-form(layout="vertical" v-model="loginForm")
-    el-form-item(v-model="loginForm.username")
-      el-input(placeholder="请输入账号")
-    el-form-item(v-model="loginForm.password")
-      el-input(placeholder="请输入密码")
-    el-form-item(v-model="loginForm.username" v-show="codeVisible")
-      el-input(placeholder="请输入验证码")
+el-dialog(title="登录" :model-value="visible" v-on:closed="emit('event-closed')" :destroy-on-close="true" :center="true")
+  el-form(layout="vertical" v-model="loginForm" size="mini")
+    el-form-item()
+      el-input(label="123" v-model="loginForm.username" placeholder="请输入账号")
+    el-form-item()
+      el-input(v-model="loginForm.password" type="password" placeholder="请输入密码" show-password)
+    el-form-item(v-show="codeVisible")
+      el-input(v-model="loginForm.username" placeholder="请输入验证码")
   template(v-slot:footer)
-    state-button(type="primary" v-on:click="login" v-bind:data="unref(loginBtnCtx.data)") 登录
+    state-button(v-on:click="login" size="mini" v-bind:data="unref(loginBtnCtx.data)") 登录
 </template>
 
 

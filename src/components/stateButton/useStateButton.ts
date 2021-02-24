@@ -2,7 +2,7 @@ import {ref, Ref} from "vue";
 
 interface StateButtonProps {
     loading: false | true
-    type?: 'primary' | 'success' | 'error' | 'warning'
+    type?: 'primary' | 'success' | 'danger' | 'warning'
     name: string
     icon?: string
     interval: number
@@ -26,7 +26,7 @@ interface Options {
 }
 
 export function useStateButton(ctx: StateButtonProps): Context {
-    const data = ref<StateButtonProps>(ctx)
+    const data = ref<StateButtonProps>(ctx as StateButtonProps)
     let opState = false;
     const op = (callback?: () => void) => {
         data.value.disabled = true
@@ -46,7 +46,7 @@ export function useStateButton(ctx: StateButtonProps): Context {
     const reset = () => {
         data.value = ctx
     }
-    const unionPropsSet = (ops: Options, type: 'primary' | 'success' | 'error' | 'warning'): StateButtonProps => {
+    const unionPropsSet = (ops: Options, type: 'primary' | 'success' | 'danger' | 'warning'): StateButtonProps => {
         return {
             loading: false,
             type: type,
@@ -78,7 +78,7 @@ export function useStateButton(ctx: StateButtonProps): Context {
             return
         }
         opState = true
-        data.value = unionPropsSet(ops, 'error')
+        data.value = unionPropsSet(ops, 'danger')
         op(ops.callback)
     }
     const success = (ops: Options) => {

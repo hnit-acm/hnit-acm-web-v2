@@ -4,7 +4,7 @@ import {computed, defineEmit, defineProps} from "vue";
 
 interface StateButtonProps {
   loading: false | true
-  type: 'primary' | 'success' | 'error' | 'warning'
+  type: 'primary' | 'success' | 'danger' | 'warning'
   name: string
   icon: string
   interval: number

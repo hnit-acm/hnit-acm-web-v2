@@ -41,7 +41,29 @@ const sendCode = () => {
       }).catch(
       reason => {
         setTimeout(() => {
-          sendBtnCtx.warning({name: '发送失败', interval: 10})
+          sendBtnCtx.error({name: '发送失败', interval: 10})
+        }, 1000)
+      })
+}
+
+const regBtnCtx = useStateButton({
+  name: '注册',
+  disabled: false,
+  type: 'primary',
+  icon: '',
+  loading: false,
+  interval: 0,
+})
+
+const register = () => {
+  regBtnCtx.loading({name: '注册中'})
+  post({}).then(
+      value => {
+        regBtnCtx.success({name: '注册成功', interval: 60})
+      }).catch(
+      reason => {
+        setTimeout(() => {
+          regBtnCtx.error({name: '注册失败', interval: 10})
         }, 1000)
       })
 }
@@ -67,7 +89,7 @@ el-row(type="flex" justify="center")
         el-form-item(label="验证码" )
           el-input
         el-form-item
-          el-button(type="primary") 注册
+          state-button(v-on:click="register" v-bind:data="unref(regBtnCtx.data)") 注册
 </template>
 
 

@@ -1,10 +1,7 @@
 <script lang="ts" setup>
-import List from "/@/views/announcement/List.vue"
-
 import {onUpdated, ref, onMounted} from 'vue'
 import {useBreadcrumbInject} from "/@/composables/Home/useBreadcrumb"
 import {usePageBannerInject} from "/@/composables/Home/usePageBanner"
-import {useRoute} from "vue-router"
 import {useListProvide} from "/@/composables/Home/Announcement/useList"
 
 // 配置首页面包屑
@@ -48,8 +45,8 @@ const data =
 </script>
 
 <template lang="pug">
-el-row(type="flex" align="center")
-  el-col(:xs="24" :sm="20" :lg="20" :xxl="15")
+el-row(type="flex" justify="center")
+  el-col(:xs="24" :sm="20" :lg="20" :xl="15")
     router-view/
 </template>
 

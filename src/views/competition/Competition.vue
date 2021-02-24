@@ -13,7 +13,9 @@ refresh()
 </script>
 
 <template lang="pug">
-router-view/
+el-row(type="flex" align="center")
+  el-col(:xs="24" :sm="20" :lg="20" :xxl="15")
+    router-view/
 </template>
 
 <style scoped>
