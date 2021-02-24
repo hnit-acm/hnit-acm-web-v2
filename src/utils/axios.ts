@@ -1,4 +1,6 @@
-import axios from "axios";
+import axios, {AxiosRequestConfig} from "axios";
+import {Response} from "/@/common/models/response";
+import {ElMessage} from "element-plus";
 
 function camel(data: any): any {
     if (typeof data != 'object' || !data) return data
@@ -15,7 +17,7 @@ function camel(data: any): any {
 }
 
 function underline(data: any): any {
-    if (!(data instanceof Object )|| !data) return data
+    if (!(data instanceof Object) || !data) return data
     if (Array.isArray(data)) {
         return data.map(item => underline(item))
     }
@@ -40,10 +42,73 @@ axios.interceptors.request.use(value => {
 })
 
 axios.interceptors.response.use(value => {
-    if (value.data){
+    if (value.data) {
         value.data = camel(value.data)
     }
     return value
 })
 
-export default axios
+interface Config extends AxiosRequestConfig {
+    error?: false | true
+    success?: false | true
+}
+
+interface InfoConfig {
+    error?: false | true
+    success?: false | true
+}
+
+function request<T = any>(config: Config): Promise<T> {
+    return new Promise<T>(
+        (resolve, reject) => {
+            axios.request<Response<T>>(config).then(
+                value => {
+                    if (!value.data.code) {
+                        if (config.success){
+                            ElMessage.success(value.data.msg)
+                        }
+                        resolve(value.data.data)
+                        return
+                    }
+                    if (config.error){
+                        ElMessage.error(value.data.msg)
+                    }
+                    reject(value.data.msg)
+                    return
+                }
+            ).catch(
+                reason => {
+                    if (config.error){
+                        ElMessage.error(reason)
+                    }
+                    reject(reason)
+                }
+            )
+        }
+    )
+}
+
+module axiosUtil {
+    export function post<Result = any, Data = object>(url: string, data: Data,config?:InfoConfig): Promise<Result> {
+        return request<Result>({
+            url: url,
+            method: "post",
+            data: data,
+            error:config?.error?config.error:false,
+            success:config?.success?config.success:false,
+        })
+    }
+
+    export function get<Result = any, Data = object>(url: string, data: Data,config?:InfoConfig): Promise<Result> {
+        return request<Result>({
+            url: url,
+            method: "get",
+            params: data,
+            error:config?.error?config.error:false,
+            success:config?.success?config.success:false,
+        })
+    }
+}
+
+export {axios}
+export default axiosUtil

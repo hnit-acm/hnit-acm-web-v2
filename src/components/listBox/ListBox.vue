@@ -1,7 +1,7 @@
 <script lang="ts" setup="props">
 import {defineProps} from 'vue'
 
-interface LabelItem{
+interface LabelItem {
   name: string
   type: 'item'
 }
@@ -12,24 +12,25 @@ interface AnnounceListItem {
   labels?: string[] | LabelItem[]
 }
 
-interface AnnounceBoxProps{
+interface AnnounceBoxProps {
   list: AnnounceListItem[]
+  morePath: string
   title: string
 }
 
 const props = defineProps({
-  data:{
-    type:Object,
-    default:()=>{
+  data: {
+    type: Object,
+    default: () => {
       return {
-        list:[
+        list: [
           {
-            name:'nekilc',
-            link:'nekilc',
-            labels:['nekilc'],
+            name: 'nekilc',
+            link: 'nekilc',
+            labels: ['nekilc'],
           }
         ],
-        title:'nekilc'
+        title: 'nekilc'
       } as AnnounceBoxProps
     }
   }
@@ -44,9 +45,9 @@ const props = defineProps({
     .flex-row-start.flex-align-center(v-for="(item,index) in data.list")
       router-link.list-item(:to="item.link") {{item.name}}
       el-tag.margin-left-auto(v-for="(label) in item.labels" size="mini" :type="label.type?label.type:''") {{label.name?label.name:label}}
-  .flex-row-end(style={paddingLeft: '1em', paddingRight: '1em'})
+  .flex-row-end(style={paddingLeft: '1em', paddingRight: '1em'} v-show="data.list.length>6")
     el-button(type="text" icon="el-icon-d-arrow-right")
-      router-link(to="/announcement") 更多
+      router-link(:to="data.morePath") 更多
 </template>
 
 <style lang="stylus" scoped>

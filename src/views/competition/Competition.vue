@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import CompetitionList from '/@/components/competition/CompetitionList.vue';
+import CompetitionList from '/@/views/competition/List.vue';
 
 import {defineComponent, onMounted} from 'vue';
 import {useBreadcrumbInject} from '/@/composables/Home/useBreadcrumb';

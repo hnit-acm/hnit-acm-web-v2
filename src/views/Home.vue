@@ -1,5 +1,5 @@
 <script lang="ts" setup="props">
-import LoginDialog from "/@/components/LoginDialog.vue";
+import LoginDialog from "/@/views/common/LoginDialog.vue";
 
 import {defineProps, ref} from "vue";
 import {useBreadcrumbProvide} from "/@/composables/Home/useBreadcrumb";
