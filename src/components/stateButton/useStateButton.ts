@@ -2,10 +2,11 @@ import {ref, Ref} from "vue";
 
 interface StateButtonProps {
     loading: false | true
-    type: 'primary' | 'success' | 'error' | 'warning'
+    type?: 'primary' | 'success' | 'error' | 'warning'
     name: string
-    icon: string
+    icon?: string
     interval: number
+    disabled?: boolean
 }
 
 interface Context {
@@ -21,16 +22,21 @@ interface Options {
     name?: string
     interval?: number
     icon?: string
+    callback?: () => void
 }
 
 export function useStateButton(ctx: StateButtonProps): Context {
     const data = ref<StateButtonProps>(ctx)
     let opState = false;
-    const op = () => {
+    const op = (callback?: () => void) => {
+        data.value.disabled = true
         const interval = setInterval(() => {
             if (data.value.interval <= 0) {
                 reset()
                 opState = false
+                if (callback) {
+                    callback()
+                }
                 clearInterval(interval)
                 return
             }
@@ -40,15 +46,22 @@ export function useStateButton(ctx: StateButtonProps): Context {
     const reset = () => {
         data.value = ctx
     }
+    const unionPropsSet = (ops: Options, type: 'primary' | 'success' | 'error' | 'warning'): StateButtonProps => {
+        return {
+            loading: false,
+            type: type,
+            name: ops.name ? ops.name : 'loading',
+            icon: ops.icon ? ops.icon : '',
+            interval: ops.interval ? ops.interval : 0
+        } as StateButtonProps
+    }
     const loading = (ops: Options) => {
         if (opState) {
             return
         }
         data.value = {
             loading: true,
-            type: 'primary',
             name: ops.name ? ops.name : 'loading',
-            icon: ops.icon ? ops.icon : 'loading',
             interval: ops.interval ? ops.interval : 0
         } as StateButtonProps
     }
@@ -57,42 +70,24 @@ export function useStateButton(ctx: StateButtonProps): Context {
             return
         }
         opState = true
-        data.value = {
-            loading: false,
-            type: 'warning',
-            name: ops.name ? ops.name : 'warning',
-            icon: ops.icon ? ops.icon : 'loading',
-            interval: ops.interval ? ops.interval : 0
-        } as StateButtonProps
-        op()
+        data.value = unionPropsSet(ops, 'warning')
+        op(ops.callback)
     }
     const error = (ops: Options) => {
         if (opState) {
             return
         }
         opState = true
-        data.value = {
-            loading: false,
-            type: 'error',
-            name: ops.name ? ops.name : 'error',
-            icon: ops.icon ? ops.icon : 'error',
-            interval: ops.interval ? ops.interval : 0
-        } as StateButtonProps
-        op()
+        data.value = unionPropsSet(ops, 'error')
+        op(ops.callback)
     }
     const success = (ops: Options) => {
         if (opState) {
             return
         }
         opState = true
-        data.value = {
-            loading: false,
-            type: 'success',
-            name: ops.name ? ops.name : 'success',
-            icon: ops.icon ? ops.icon : 'loading',
-            interval: ops.interval ? ops.interval : 0
-        } as StateButtonProps
-        op()
+        data.value = unionPropsSet(ops, 'success')
+        op(ops.callback)
     }
     return {
         data,

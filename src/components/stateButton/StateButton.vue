@@ -8,6 +8,7 @@ interface StateButtonProps {
   name: string
   icon: string
   interval: number
+  disabled: boolean
 }
 
 const props = defineProps({
@@ -36,7 +37,7 @@ const interval = computed(
 </script>
 
 <template lang="pug">
-el-button(:type="data.type" :loading="data.loading" :icon="data.icon"  v-on:click="emit('click')") {{data.name}}{{interval}}
+el-button(:type="data.type" :loading="data.loading" :icon="data.icon" :disabled="data.disabled"  v-on:click="emit('click')") {{data.name}}{{interval}}
 </template>
 
 <style lang="stylus" scoped>

@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import StateButton from '/@/components/stateButton/StateButton.vue'
+import {StateButton} from '/@/components'
 
-import {ref, useContext,unref} from 'vue';
+import {ref, useContext, unref} from 'vue';
 import useRegisterForm from "/@/composables/useRegisterForm";
 import {message} from 'ant-design-vue'
 import {usePageBannerInject} from "/@/composables/Home/usePageBanner";
 import {useCode} from "/@/repositories/useCode";
-import {useStateButton} from "/@/components/stateButton/useStateButton";
+import {useStateButton} from "/@/components";
 
 const {} = usePageBannerInject()
 
@@ -24,18 +24,25 @@ const submit = (e: { preventDefault: () => void }) => {
 }
 
 const {post} = useCode()
-const sendBtnCtx = useStateButton({name:'发送验证码'})
+const sendBtnCtx = useStateButton({
+  name: '发送验证码',
+  disabled: false,
+  type: 'primary',
+  icon: '',
+  loading: false,
+  interval: 0,
+})
 
 const sendCode = () => {
-  sendBtnCtx.loading({name:'发送中'})
+  sendBtnCtx.loading({name: '发送中'})
   post({}).then(
       value => {
-        sendBtnCtx.success({name:'发送成功',interval:60})
+        sendBtnCtx.success({name: '发送成功', interval: 60})
       }).catch(
       reason => {
-        setTimeout(()=>{
-          sendBtnCtx.warning({name:'发送失败',interval:10})
-        },1000)
+        setTimeout(() => {
+          sendBtnCtx.warning({name: '发送失败', interval: 10})
+        }, 1000)
       })
 }
 
