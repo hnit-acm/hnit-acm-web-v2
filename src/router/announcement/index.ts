@@ -15,6 +15,9 @@ const announcementRouteInfo: RouteRecordRaw = {
             path: ':id',
             component: () => import('/@/views/announcement/Content.vue'),
             props: true,
+            meta: {
+                title: ''
+            }
         },
     ]
 }

@@ -73,23 +73,21 @@ const register = () => {
 <template lang="pug">
 el-row(type="flex" justify="center")
   el-col(:xs="18" :sm="14" :md="10" :lg="8" :xl="8")
-    el-card(:body-style="{width: 'auto'}" :shadow="'never'")
-      template(#header) 注册
-      el-form(size="mini")
-        el-form-item(label="学号")
-          el-input
-        el-form-item(label="密码")
-          el-input
-        el-form-item(label="确认密码")
-          el-input
-        el-form-item(label="手机号码")
-          el-input
-            template(#append)
-              state-button(v-on:click="sendCode" v-bind:data="unref(sendBtnCtx.data)")
-        el-form-item(label="验证码" )
-          el-input
-        el-form-item
-          state-button(v-on:click="register" v-bind:data="unref(regBtnCtx.data)") 注册
+    el-form(size="mini")
+      el-form-item(label="学号")
+        el-input
+      el-form-item(label="密码")
+        el-input
+      el-form-item(label="确认密码")
+        el-input
+      el-form-item(label="手机号码")
+        el-input
+          template(#append)
+            state-button(v-on:click="sendCode" v-bind:data="unref(sendBtnCtx.data)")
+      el-form-item(label="验证码" )
+        el-input
+      el-form-item
+        state-button(v-on:click="register" v-bind:data="unref(regBtnCtx.data)") 注册
 </template>
 
 

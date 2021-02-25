@@ -39,14 +39,11 @@ el-container
   el-main.content
     .page-banner.flex-col-start.flex-align-center(v-if="bannerCtx.banner")
       img(:src="bannerCtx.banner")
-    el-row
-      el-col()
-    a-row(type="flex" style="margin-top: 1em;" align="center")
-      a-col(:xs="24" :sm="20" :lg="20" :xxl="15")
+    el-row(type="flex" justify="center")
+      el-col(:xs="24" :sm="20" :lg="20" :xl="15")
         .flex-row-start.flex-align-center(v-if="breadcrumbCtx.visible" style={height:'auto'})
-          a-breadcrumb(:routes="breadcrumbCtx.routes")
-            template(#itemRender="{route, params, routes, paths}")
-              router-link(:to="`/${paths.join('/')}`") {{route.breadcrumbName}}
+          el-breadcrumb(v-show="breadcrumbCtx.visible" separator-class="el-icon-arrow-right")
+            el-breadcrumb-item(v-for="(item) in breadcrumbCtx.routes" :to="item") {{item.meta.title}}
           a-button(type="link" v-on:click="back" style={marginLeft:'auto'})
             template(#icon)
               LeftCircleTwoTone/

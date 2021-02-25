@@ -46,7 +46,7 @@ const login = () => {
 </script>
 
 <template lang="pug">
-el-dialog(title="登录" :model-value="visible" v-on:closed="emit('event-closed')" :destroy-on-close="true" :center="true")
+el-dialog.main(title="登录" :model-value="visible" v-on:closed="emit('event-closed')" :destroy-on-close="true" :center="true")
   el-form(layout="vertical" v-model="loginForm" size="mini")
     el-form-item()
       el-input(label="123" v-model="loginForm.username" placeholder="请输入账号")
@@ -59,6 +59,8 @@ el-dialog(title="登录" :model-value="visible" v-on:closed="emit('event-closed'
 </template>
 
 
-<style scoped>
+<style lang="stylus" scoped>
+.main
+  width 20% !important
 
 </style>
