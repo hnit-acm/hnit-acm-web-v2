@@ -2,7 +2,7 @@
   <div v-for="(item, index) in data" :key="index">
     <el-card class="box-card" shadow="hover">
       <div style="display: flex; flex-direction: row; width: 100%">
-        <img :src="item.avatar" alt="contest picture" style="height: 110px;width: 200px;border-radius: 10px;">
+        <img class="hidden-sm-and-down" :src="item.avatar" alt="contest picture" style="height: 110px;width: 200px;border-radius: 10px;">
         <div style="display: flex; margin-left: 10px; flex-direction: column">
           <div style="display: flex; flex-direction: row">
             <router-link :to="item.href">
