@@ -1,11 +1,11 @@
 import {ref, Ref} from "vue";
 
 interface StateButtonProps {
-    loading: false | true
+    loading?: false | true
     type?: 'primary' | 'success' | 'danger' | 'warning'
-    name: string
+    name?: string
     icon?: string
-    interval: number
+    interval?: number
     disabled?: boolean
 }
 
@@ -30,17 +30,21 @@ export function useStateButton(ctx: StateButtonProps): Context {
     let opState = false;
     const op = (callback?: () => void) => {
         data.value.disabled = true
+        if (!data.value.interval) {
+            reset()
+            opState = false
+            callback?.()
+            return
+        }
         const interval = setInterval(() => {
-            if (data.value.interval <= 0) {
+            if ((!data.value.interval) || (data.value.interval && data.value.interval < 0)) {
                 reset()
                 opState = false
-                if (callback) {
-                    callback()
-                }
+                callback?.()
                 clearInterval(interval)
                 return
             }
-            data.value.interval--
+            data.value.interval && data.value.interval--
         }, 1000)
     }
     const reset = () => {
@@ -50,19 +54,20 @@ export function useStateButton(ctx: StateButtonProps): Context {
         return {
             loading: false,
             type: type,
-            name: ops.name ? ops.name : 'loading',
-            icon: ops.icon ? ops.icon : '',
-            interval: ops.interval ? ops.interval : 0
+            name: ops.name ?? 'loading',
+            icon: ops.icon ?? '',
+            interval: ops.interval ?? 0
         } as StateButtonProps
     }
     const loading = (ops: Options) => {
         if (opState) {
             return
         }
+        ops?.callback?.()
         data.value = {
             loading: true,
-            name: ops.name ? ops.name : 'loading',
-            interval: ops.interval ? ops.interval : 0
+            name: ops.name ?? 'loading',
+            interval: ops.interval ?? 0
         } as StateButtonProps
     }
     const warning = (ops: Options) => {

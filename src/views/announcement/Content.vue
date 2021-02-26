@@ -1,14 +1,12 @@
 <script lang="ts" setup>
 
 import {ref, defineProps,} from 'vue';
-import {useRoute} from 'vue-router';
+import {useRoute, useRouter} from 'vue-router';
 import {useBreadcrumbInject} from "/@/composables/Home/useBreadcrumb";
 import {useMarkdown} from "/@/composables/useMarkdown";
 import {useAnnounceContent} from "/@/repositories/useAnnouncement";
 
-const props = defineProps<{
-  id:number
-}>()
+const props = defineProps({id: () => 0})
 
 // 首页面包屑
 const {setVisible, push} = useBreadcrumbInject()
@@ -27,12 +25,13 @@ const route = useRoute()
 const {get} = useAnnounceContent()
 const content = ref('')
 const title = ref('')
-get(props.id).then(
+
+get(props.id ?? 0).then(
     (data) => {
       content.value = useMarkdown(data.text).content.value
       title.value = data.title
       route.meta.title = data.title
-      route.path = route.fullpath
+      route.path = route.fullPath
       push(route)
     }
 )
