@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import CompetitionList from '/@/views/competition/ListPanel.vue';
+import CompetitionList from '/@/views/competition/List.vue'
 </script>
 
 <template lang="pug">

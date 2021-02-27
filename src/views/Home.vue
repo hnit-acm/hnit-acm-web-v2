@@ -1,5 +1,7 @@
 <script lang="ts" setup="props">
 import LoginDialog from "/@/views/common/LoginDialog.vue";
+import PageLayout from '/@/views/layout/PageLayout.vue';
+import {pageLayout} from '/@/views/layout/layout';
 
 import {defineProps, ref} from "vue";
 import {useBreadcrumbProvide} from "/@/composables/Home/useBreadcrumb";
@@ -42,23 +44,22 @@ el-container
           el-menu-item.nav-font(v-for="(route,index) in menuRouters" :index="route.path") {{route.meta?.title}}
       .nav-right.flex-row-end.flex-align-center
         el-space.font-color-white(spacer="|" size="small")
-          a-button(type='link' @click="loginVisible=true" )
+          el-button(type='text' v-on:click="loginVisible=true" )
             span.navigation-item 登录
-          a-button(type='link')
+          el-button(type='text')
             router-link(to="/register")
               span.navigation-item 注册
   el-main.content
     .page-banner.flex-col-start.flex-align-center(v-show="bannerCtx.banner ?? false")
       img(:src="bannerCtx.banner")
-    el-row(type="flex" justify="center")
-      el-col(:xs="24" :sm="20" :md="20" :lg="20" :xl="20")
-        .flex-row-start.flex-align-center(v-if="breadcrumbCtx.visible" style={height: 'auto'})
-          el-breadcrumb(v-show="breadcrumbCtx.visible" separator-class="el-icon-arrow-right")
-            el-breadcrumb-item(v-for="(item) in breadcrumbCtx.routes" :to="item") {{item.meta.title}}
-          a-button(type="link" v-on:click="back" style={marginLeft: 'auto'})
-            template(#icon)
-              LeftCircleTwoTone/
-            | 返回
+    page-layout(v-bind:layout="pageLayout")
+      .flex-row-start.flex-align-center(v-if="breadcrumbCtx.visible" style={height: 'auto'})
+        el-breadcrumb(v-show="breadcrumbCtx.visible" separator-class="el-icon-arrow-right")
+          el-breadcrumb-item(v-for="(item) in breadcrumbCtx.routes" :to="item") {{item.meta.title}}
+        a-button(type="link" v-on:click="back" style={marginLeft: 'auto'})
+          template(#icon)
+            LeftCircleTwoTone/
+          | 返回
     router-view/
   el-footer
     | ©2020 Power by Nekilc

@@ -1,7 +1,11 @@
 <script lang="ts" setup>
+import PageLayout from "/@/views/layout/PageLayout.vue"
+import {pageLayout} from '/@/views/layout/layout';
+
 import {defineComponent, onMounted} from 'vue';
 import {useBreadcrumbInject} from "/@/composables/Home/useBreadcrumb";
 import {usePageBannerInject} from "/@/composables/Home/usePageBanner";
+
 
 const {setVisible} = useBreadcrumbInject()
 onMounted(() => {
@@ -32,9 +36,8 @@ const data = [
 </script>
 
 <template lang="pug">
-el-row(type="flex" justify="center")
-  el-col(:xs="24" :sm="24" :md="24" :lg="24" :xl="20")
-    router-view/
+page-layout(v-bind:layout="pageLayout")
+  router-view/
 </template>
 
 <style scoped>

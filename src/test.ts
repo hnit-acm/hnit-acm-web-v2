@@ -13,6 +13,11 @@ function TTT(ops:Test1) {
     let c = 'ops.b'
 }
 
-TTT({
+type Record1<K extends keyof any, T> = {
+    [P in K]: T;
+};
 
-})
+
+const a={a:'1'}
+const b={b:'2'}
+console.log(({c:1}&&{d:1}))

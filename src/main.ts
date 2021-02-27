@@ -8,6 +8,7 @@ import * as Icons from "@ant-design/icons-vue";
 import ElementPlus from 'element-plus';
 import 'element-plus/lib/theme-chalk/index.css';
 import '/@/assets/stylus/media.styl';
+import '/@/assets/stylus/main.styl';
 // todo Optimize build.
 // - Introduce on demand
 
