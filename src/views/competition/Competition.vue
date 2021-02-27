@@ -14,7 +14,7 @@ refresh()
 
 <template lang="pug">
 el-row(type="flex" align="center")
-  el-col(:xs="24" :sm="20" :lg="20" :xxl="15")
+  el-col(:xs="24" :sm="24" :lg="24" :xxl="24")
     router-view/
 </template>
 

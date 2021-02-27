@@ -28,7 +28,7 @@ el-container
         router-link(to="/")
           span.logo-font HNITACM
         el-menu.nav-middle.flex-row-start.margin-left-1em(mode='horizontal' :router="true" background-color="#49a9ea"  text-color="white" active-text-color="blue")
-          el-menu-item.nav-font(v-for="(route,index) in menuRouters" :index='route.path') {{route.meta.title}}
+          el-menu-item.nav-font(v-for="(route,index) in menuRouters" :index="route.path") {{route.meta?.title}}
       .nav-right.flex-row-end.flex-align-center
         el-space.font-color-white(spacer="|" size="small")
           a-button(type='link' @click="loginVisible=true" )

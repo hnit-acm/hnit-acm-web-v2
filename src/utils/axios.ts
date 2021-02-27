@@ -64,22 +64,22 @@ function request<T = any>(config: Config): Promise<T> {
             axios.request<Response<T>>(config).then(
                 value => {
                     if (!value.data.code) {
-                        if (config.success){
-                            ElMessage.success(value.data.msg)
+                        if (config.success) {
+                            ElMessage({type: 'success', message: value.data.msg, duration: 2000})
                         }
                         resolve(value.data.data)
                         return
                     }
-                    if (config.error){
-                        ElMessage.error(value.data.msg)
+                    if (config.error) {
+                        ElMessage({type: 'error', message: value.data.msg,duration: 2000})
                     }
                     reject(value.data.msg)
                     return
                 }
             ).catch(
                 reason => {
-                    if (config.error){
-                        ElMessage.error(reason)
+                    if (config.error) {
+                        ElMessage({type: 'error', message: reason,duration: 2000})
                     }
                     reject(reason)
                 }
@@ -89,23 +89,23 @@ function request<T = any>(config: Config): Promise<T> {
 }
 
 module axiosUtil {
-    export function post<Result = any, Data = object>(url: string, data: Data,config?:InfoConfig): Promise<Result> {
+    export function post<Result = any, Data = object>(url: string, data: Data, config?: InfoConfig): Promise<Result> {
         return request<Result>({
             url: url,
             method: "post",
             data: data,
-            error:config?.error?config.error:false,
-            success:config?.success?config.success:false,
+            error: config?.error ? config.error : false,
+            success: config?.success ? config.success : false,
         })
     }
 
-    export function get<Result = any, Data = object>(url: string, data: Data,config?:InfoConfig): Promise<Result> {
+    export function get<Result = any, Data = object>(url: string, data: Data, config?: InfoConfig): Promise<Result> {
         return request<Result>({
             url: url,
             method: "get",
             params: data,
-            error:config?.error?config.error:false,
-            success:config?.success?config.success:false,
+            error: config?.error ? config.error : false,
+            success: config?.success ? config.success : false,
         })
     }
 }

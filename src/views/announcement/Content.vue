@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 
-import {ref, defineProps,} from 'vue';
-import {useRoute, useRouter} from 'vue-router';
+import {ref, defineProps,getCurrentInstance} from 'vue';
+import {useRoute} from 'vue-router';
 import {useBreadcrumbInject} from "/@/composables/Home/useBreadcrumb";
 import {useMarkdown} from "/@/composables/useMarkdown";
 import {useAnnounceContent} from "/@/repositories/useAnnouncement";
@@ -13,22 +13,15 @@ const {setVisible, push} = useBreadcrumbInject()
 setVisible(true)
 // 处理路由参数
 const route = useRoute()
-// 本页面相关
-// const listCtx = useListInject()
-// setListVisible(false)
-// onMounted(() => {
-//   listCtx.setVisible(false)
-// })
-// onUnmounted(() => {
-//   listCtx.setVisible(true)
-// })
-const {get} = useAnnounceContent()
-const content = ref('')
-const title = ref('')
 
+const {content,refresh} = useMarkdown('')
+
+const {get} = useAnnounceContent()
+const title = ref('')
+const ctx =  getCurrentInstance()
 get(props.id ?? 0).then(
     (data) => {
-      content.value = useMarkdown(data.text).content.value
+      refresh(data.text)
       title.value = data.title
       route.meta.title = data.title
       route.path = route.fullPath
