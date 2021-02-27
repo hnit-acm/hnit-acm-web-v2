@@ -19,15 +19,26 @@ const login = (form: any) => {
   // form.username = '12312313'
   loginVisible.value = false
 }
+const drawerEnable = ref(false)
+const drawerToggle = () => {
+  drawerEnable.value = !drawerEnable.value
+}
+
 </script>
 <template lang="pug">
 el-container
   el-affix(z-index="9999" ta)
     el-header.header-nav.flex-row-start.flex-align-center.main-blue
       .nav-left.flex-row-start.flex-align-center
+        // adapt mobile
+        el-popover(trigger="click")
+          template(#reference)
+            i.el-icon-s-unfold.logo-font.hidden-sm-and-up.margin-right-1em
+          el-menu(mode='vertical' :router="true" background-color="#49a9ea"  text-color="white" active-text-color="blue" )
+            el-menu-item.nav-font(v-for="(route,index) in menuRouters" :index="route.path") {{route.meta?.title}}
         router-link(to="/")
           span.logo-font HNITACM
-        el-menu.nav-middle.flex-row-start.margin-left-1em(mode='horizontal' :router="true" background-color="#49a9ea"  text-color="white" active-text-color="blue")
+        el-menu.hidden-xs-only.nav-middle.flex-row-start.margin-left-1em(mode='horizontal' :router="true" background-color="#49a9ea"  text-color="white" active-text-color="blue")
           el-menu-item.nav-font(v-for="(route,index) in menuRouters" :index="route.path") {{route.meta?.title}}
       .nav-right.flex-row-end.flex-align-center
         el-space.font-color-white(spacer="|" size="small")
@@ -37,14 +48,14 @@ el-container
             router-link(to="/register")
               span.navigation-item 注册
   el-main.content
-    .page-banner.flex-col-start.flex-align-center(v-if="bannerCtx.banner")
+    .page-banner.flex-col-start.flex-align-center(v-show="bannerCtx.banner ?? false")
       img(:src="bannerCtx.banner")
     el-row(type="flex" justify="center")
-      el-col(:xs="24" :sm="20" :lg="20" :xl="15")
-        .flex-row-start.flex-align-center(v-if="breadcrumbCtx.visible" style={height:'auto'})
+      el-col(:xs="24" :sm="20" :md="20" :lg="20" :xl="20")
+        .flex-row-start.flex-align-center(v-if="breadcrumbCtx.visible" style={height: 'auto'})
           el-breadcrumb(v-show="breadcrumbCtx.visible" separator-class="el-icon-arrow-right")
             el-breadcrumb-item(v-for="(item) in breadcrumbCtx.routes" :to="item") {{item.meta.title}}
-          a-button(type="link" v-on:click="back" style={marginLeft:'auto'})
+          a-button(type="link" v-on:click="back" style={marginLeft: 'auto'})
             template(#icon)
               LeftCircleTwoTone/
             | 返回

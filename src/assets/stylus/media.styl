@@ -1,0 +1,56 @@
+xs-max-width = 767px
+sm-min-width = 768px
+sm-max-width = 991px
+md-min-width = 992px
+md-max-width = 1199px
+lg-min-width = 1200px
+lg-max-width = 1919px
+xl-min-width = 1920px
+
+@media only screen and (max-width: xs-max-width) {
+  .hidden-xs-only {
+    display: none !important
+  }
+}
+
+@media only screen and (min-width: sm-min-width) {
+  .hidden-sm-and-up {
+    display: none !important
+  }
+}
+
+@media only screen and (max-width: sm-max-width) {
+  .hidden-sm-and-down, .hidden-sm-only {
+    display: none !important
+  }
+}
+
+@media only screen and (min-width: md-min-width) {
+  .hidden-md-and-up {
+    display: none !important
+  }
+}
+
+@media only screen and (max-width: md-max-width) {
+  .hidden-md-and-down, .hidden-md-only {
+    display: none !important
+  }
+}
+
+@media only screen and (min-width: lg-min-width) {
+  .hidden-lg-and-up {
+    display: none !important
+  }
+}
+
+@media only screen and (max-width: lg-max-width) {
+  .hidden-lg-and-down, .hidden-lg-only {
+    display: none !important
+  }
+}
+
+@media only screen and (min-width: xl-min-width) {
+  .hidden-xl-only {
+    display: none !important
+  }
+}

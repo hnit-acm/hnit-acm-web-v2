@@ -9,7 +9,7 @@ const announcementRouteInfo: RouteRecordRaw = {
     children: [
         {
             path: "",
-            component: () => import('/@/views/announcement/List.vue'),
+            component: () => import('/@/views/announcement/ListPanel.vue'),
         },
         {
             path: ':id',

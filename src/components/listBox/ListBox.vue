@@ -42,7 +42,7 @@ const props = defineProps({
   .flex-row-center.font-size-1em(style={borderBottom: '1px solid', padding: '1em'})
     router-link.font-color-white(to="/announcement") {{data.title}}
   .text-align-left(style={padding: '1em'})
-    .flex-row-start.flex-align-center(v-for="(item,index) in data?.list ?? []")
+    .flex-row-start.flex-align-center(v-for="(item,index) in data?.list.slice(0,6) ?? []")
       router-link.list-item(:to="item.link") {{item.name}}
       el-tag.margin-left-auto(v-for="(label) in item.labels" size="mini" :type="label.type ?? ''") {{label.name ?? label}}
   .flex-row-end(style={paddingLeft: '1em', paddingRight: '1em'} v-show="data?.list.length>6")

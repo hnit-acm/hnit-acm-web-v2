@@ -8,7 +8,13 @@ const practiceRouteInfo: RouteRecordRaw = {
         banner: "",
         isMenu: true
     },
-    component: () => import('/@/views/practice/Practice.vue')
+    component: () => import('/@/views/practice/Practice.vue'),
+    children:[
+        {
+            path:'',
+            component: ()=>import('/@/views/practice/ListPanel.vue')
+        }
+    ]
 }
 
 export default practiceRouteInfo
