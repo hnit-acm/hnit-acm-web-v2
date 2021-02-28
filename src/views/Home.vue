@@ -63,7 +63,7 @@ el-container
     router-view/
   el-footer
     | ©2020 Power by Nekilc
-  login-dialog(v-bind:visible="loginVisible" v-on:event-closed="loginVisible=false" v-on:event-login="login")
+  login-dialog(custom-class="border-all-radius-1em width-xs-100per" v-bind:visible="loginVisible" v-on:event-closed="loginVisible=false" v-on:event-login="login")
 
 </template>
 

@@ -1,0 +1,57 @@
+
+border-top-left-radius(size)
+  border-top-left-radius size
+
+border-top-right-radius(size)
+  border-top-right-radius size
+
+border-bottom-left-radius(size)
+  border-bottom-left-radius size
+
+border-bottom-right-radius(size)
+  border-bottom-right-radius size
+
+border-top-radius(size)
+  border-top-left-radius(size)
+  border-top-right-radius(size)
+
+border-bottom-radius(size)
+  border-bottom-left-radius(size)
+  border-bottom-right-radius(size)
+
+border-left-radius(size)
+  border-top-left-radius(size)
+  border-bottom-left-radius(size)
+
+border-right-radius(size)
+  border-top-right-radius(size)
+  border-bottom-right-radius(size)
+
+border-all-radius(size)
+  border-left-radius(size)
+  border-right-radius(size)
+
+@import "func.styl"
+list = range(0.5,1.9,0.1)
+
+for row in list
+  size = s('%sem',toFixed(row))
+  dot = replace('\.','_',s('%s',size))
+  .border-top-radius-{dot}
+    border-top-radius(size)
+  .border-bottom-radius-{dot}
+    border-bottom-radius(size)
+  .border-left-radius-{dot}
+    border-left-radius(size)
+  .border-right-radius-{dot}
+    border-right-radius(size)
+  .border-top-left-radius-{dot}
+    border-top-left-radius(size)
+  .border-bottom-left-radius-{dot}
+    border-bottom-left-radius(size)
+  .border-top-right-radius-{dot}
+    border-top-right-radius(size)
+  .border-top-right-radius-{dot}
+    border-top-right-radius(size)
+  .border-all-radius-{dot}
+    border-all-radius(size)

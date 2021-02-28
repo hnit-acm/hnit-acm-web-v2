@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {StateButton} from '/@/components'
+import {HStateButton} from '/@/components'
 
 import {ref, useContext, unref} from 'vue';
 import useRegisterForm from "/@/composables/useRegisterForm";
@@ -83,11 +83,11 @@ el-row(type="flex" justify="center")
       el-form-item(label="手机号码")
         el-input
           template(#append)
-            state-button(v-on:click="sendCode" v-bind:data="unref(sendBtnCtx.data)")
+            h-state-button(v-on:click="sendCode" v-bind:data="unref(sendBtnCtx.data)")
       el-form-item(label="验证码" )
         el-input
       el-form-item
-        state-button(v-on:click="register" v-bind:data="unref(regBtnCtx.data)") 注册
+        h-state-button(v-on:click="register" v-bind:data="unref(regBtnCtx.data)") 注册
 </template>
 
 

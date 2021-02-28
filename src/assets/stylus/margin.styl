@@ -1,23 +1,31 @@
-.margin-left-1em
-  margin-left 1em
+margin-left(size)
+  margin-left size
 
-.margin-right-1em
-  margin-right 1em
+margin-right(size)
+  margin-right size
 
-.margin-top-1em
-  margin-top 1em
+margin-top(size)
+  margin-top size
 
-.margin-bottom-1em
-  margin-bottom 1em
+margin-bottom(size)
+  margin-bottom size
 
-.margin-left-auto
-  margin-left auto
+list = range(1,2,1)
+push(list,auto)
+for row in range(1,1.9,0.1)
+  push(list,row)
 
-.margin-right-auto
-  margin-right auto
+@import "func.styl"
 
-.margin-top-auto
-  margin-top auto
-
-.margin-bottom-auto
-  margin-bottom auto
+for row in list
+  un = row == auto ?:em
+  size = row==auto ?auto:'%s%s'%(toFixed(row) un)
+  dot = replace('\.','_',size)
+  .margin-left-{dot}
+    margin-left(size)
+  .margin-right-{dot}
+    margin-right(size)
+  .margin-top-{dot}
+    margin-top(size)
+  .margin-bottom-{dot}
+    margin-bottom(size)
