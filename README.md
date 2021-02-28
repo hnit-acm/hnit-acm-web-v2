@@ -15,6 +15,9 @@ Status:
 
 Build and Deploy by Github Action.
 
+## note
+- npm run styl 命令生成的css仅用于代码提示，使用时请使用styl文件
+
 ## todo
 
 #### 2020.10.26

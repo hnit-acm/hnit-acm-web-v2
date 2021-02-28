@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {StateButton, useStateButton} from '/@/components'
+import {HStateButton, useStateButton} from '/@/components'
 
 import {defineEmit, ref, defineProps, unref} from 'vue';
 import {useLogin} from "/@/repositories/useLogin";
@@ -55,11 +55,12 @@ el-dialog(title="登录" :model-value="visible" v-on:closed="emit('event-closed'
     el-form-item(v-show="codeVisible")
       el-input(v-model="loginForm.username" placeholder="请输入验证码")
   template(v-slot:footer)
-    state-button(v-on:click="login" size="mini" v-bind:data="unref(loginBtnCtx.data)") 登录
+    h-state-button(v-on:click="login" size="mini" v-bind:data="unref(loginBtnCtx.data)") 登录
 </template>
 
 
 <style lang="stylus" scoped>
+@import "../../assets/stylus/main.styl"
 .main
   width 20% !important
 

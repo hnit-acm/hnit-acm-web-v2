@@ -6,13 +6,20 @@ md-max-width = 1199px
 lg-min-width = 1200px
 lg-max-width = 1919px
 xl-min-width = 1920px
-
+@import "border.styl"
 @media only screen and (max-width: xs-max-width) {
   .hidden-xs-only {
     display: none !important
   }
-  .width-xs-100{
+
+  .width-xs-100per {
     width 100% !important
+  }
+
+  for row in 1 {
+    .border-all-radius-xs-1em {
+      border-all-radius(1em)
+    }
   }
 }
 
