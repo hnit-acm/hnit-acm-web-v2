@@ -2,6 +2,8 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
+    "declaration": true,
+    "outDir": "lib",
     "moduleResolution": "node",
     "strict": true,
     "jsx": "preserve",
@@ -10,7 +12,7 @@
     "paths": {
       "/@/*": [
         "src/*",
-        "src/*/*"
+        "src/*/**"
       ]
     },
     "lib": ["esnext", "dom"],

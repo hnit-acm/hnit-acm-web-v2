@@ -1,37 +1,38 @@
 import {readonly, ref} from 'vue'
-import axios from "axios";
+import axios from "../utils/axios";
+import {ElMessage} from 'element-plus';
+import {Response} from "/@/common/models/response";
+import axiosUtil from "../utils/axios";
 
 export function useAnnouceList() {
 
 }
 
-type AnnouceContent = {
-    content: string
+interface AnnounceContent {
+    text: string
     title: string
     type: number
+    signature: string
+    createTime: string
 }
 
-export function useAnnouceContent() {
-    const annouceContent = ref({} as AnnouceContent)
+interface Context {
+    get: (id: number) => Promise<AnnounceContent>
+}
+
+export function useAnnounceContent(): Context {
     const get = (id: number) => {
-        return new Promise((resolve, reject) => {
-            axios.get("http://127.0.0.1:4523/mock/371014/api/sys/announce/one?id=1", {
-                data: {
-                    id: id
-                },
-            }).then(
-                value => {
-                    resolve(value.data.data)
-                }
-            ).catch(
-                reason => {
-                    reject(reason)
-                }
-            )
-        })
+        return axiosUtil.get<AnnounceContent>(
+            "http://127.0.0.1:4523/mock/371014/api/sys/announce/one",
+            {
+                id: id
+            },
+            {
+                success: true
+            }
+        )
     }
     return {
-        annouceContent,
         get
     }
 }

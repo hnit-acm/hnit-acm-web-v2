@@ -1,13 +1,18 @@
 import marked from "marked";
-import {ref} from "vue";
+import {Ref, ref, readonly} from "vue";
 
-export function useMarkdown(src: string) {
+interface Context {
+    readonly content: Ref< string>
+    refresh: (src: string) => void
+}
+
+export function useMarkdown(src: string): Context {
     const content = ref(marked(src))
-    const refreshMd = (src: string) => {
+    const refresh = (src: string) => {
         content.value = marked(src)
     }
     return {
-        content,
-        refreshMd
+        content: readonly(content),
+        refresh
     }
 }
