@@ -1,0 +1,47 @@
+
+font-size(size)
+  font-size size
+
+.font-size-3em
+  font-size(3em)
+
+.font-size-2em
+  font-size(2em)
+
+.font-size-1_2em
+  font-size(1.2em)
+
+.font-size-1_1em
+  font-size(1.1em)
+
+.font-size-1_5em
+  font-size(1.5em)
+
+.font-size-1em
+  font-size(1em)
+
+.font-color-white
+  color white
+
+
+.font-color-black
+  color black
+
+.font-family-all
+  font-family -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol
+
+.font-weight-bold
+  font-weight bold
+
+font-bold(size)
+  @extend .font-size-{size}
+  @extend .font-family-all
+  @extend .font-weight-bold
+
+.main-font-bold-1_2em
+  font-bold('1_2em')
+
+.main-font-bold-2em
+  font-bold('2em')
+
+

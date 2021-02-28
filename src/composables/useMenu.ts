@@ -1,9 +1,9 @@
-import {RouteRecord, RouteRecordNormalized, useRoute, useRouter} from "vue-router";
+import { useRouter} from "vue-router";
 
 export function useMenu() {
     const {getRoutes} = useRouter()
     const menuRouters = getRoutes().filter((value, index) => {
-        return !!value.meta.isMenu;
+        return !!value.meta?.isMenu;
     })
     return {
         menuRouters

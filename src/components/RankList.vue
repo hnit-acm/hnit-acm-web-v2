@@ -72,6 +72,10 @@ export class RankList {
   percent!: string
 }
 
+export interface RankListProps{
+
+}
+
 export default defineComponent({
   name: "RankList",
   props: {
