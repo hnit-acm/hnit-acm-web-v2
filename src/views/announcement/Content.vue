@@ -16,10 +16,10 @@ const route = useRoute()
 
 const {content,refresh} = useMarkdown('')
 
-const {get} = useAnnounceContent()
+const {getOne} = useAnnounceContent()
 const title = ref('')
 const ctx =  getCurrentInstance()
-get(props.id ?? 0).then(
+getOne(props.id ?? 0).then(
     (data) => {
       refresh(data.text)
       title.value = data.title

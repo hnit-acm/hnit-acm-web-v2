@@ -19,5 +19,14 @@ export default defineConfig({
             'ant-design-vue/es/form/utils/messages',
             'ant-design-vue/es/form/utils/asyncUtil'
         ]
+    },
+    server:{
+        proxy:{
+            '/api': {
+                target: 'http://127.0.0.1:4523',
+                changeOrigin: true,
+                rewrite: (path) => path.replace(/^\/api/, '')
+            },
+        }
     }
 })

@@ -1,3 +1,14 @@
 
-.width-100-per
-  width 100%
+width(size)
+  width size
+
+list = range(10,100,10)
+
+for row in list
+  un = row == auto ? : 'per'
+  realUn =  row == auto ? : '%'
+  dot = replace('\.','_',s('%s',row))
+  size = ('%s%s'%(row unquote(realUn)))
+
+  .width-{dot}{un}
+    width(size)

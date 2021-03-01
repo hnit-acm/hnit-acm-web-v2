@@ -17,13 +17,14 @@ interface AnnounceContent {
 }
 
 interface Context {
-    get: (id: number) => Promise<AnnounceContent>
+    getOne: (id: number) => Promise<AnnounceContent>
+    getList: (count: number) => Promise<AnnounceContent>
 }
 
 export function useAnnounceContent(): Context {
-    const get = (id: number) => {
+    const getOne = (id: number) => {
         return axiosUtil.get<AnnounceContent>(
-            "http://127.0.0.1:4523/mock/371014/api/sys/announce/one",
+            "/api/mock/371014/api/sys/announce/one",
             {
                 id: id
             },
@@ -32,7 +33,19 @@ export function useAnnounceContent(): Context {
             }
         )
     }
+    const getList = (count: number) => {
+        return axiosUtil.get<AnnounceContent>(
+            "/api/mock/371014/api/sys/announce/list",
+            {
+                count: count ?? 0
+            },
+            {
+                success: true
+            }
+        )
+    }
     return {
-        get
+        getOne,
+        getList
     }
 }
