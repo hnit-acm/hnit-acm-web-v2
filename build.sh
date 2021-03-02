@@ -1,3 +1,4 @@
 npm run build
-cp nginx.conf ./dist
-cp Dockerfile ./dist
+cp nginx.conf ./dist/
+cp Dockerfile ./dist/
+ls .
