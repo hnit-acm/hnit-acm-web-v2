@@ -1,6 +1,6 @@
 FROM nginx:latest
 
-RUN mkdir /home/app && mv ./nginx.conf /etc/nginx/nginx.conf
+RUN pwd && mkdir /home/app && mv ./nginx.conf /etc/nginx/nginx.conf
 
 COPY . /home/app
 
