@@ -12,7 +12,7 @@ jobs:
         DOCKERUSERNAME: ${{ github.actor }}
         DOCKERPASSWORD: ${{ secrets.CR_PAT }}
         NAME: hnit-acm-web-v2
-        CNAME: docker.pkg.github.com/${{ github.repository }}/hnit-acm-web-v2
+        CNAME: hnitacm/hnit-acm-web-v2
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
@@ -21,7 +21,6 @@ jobs:
         envs: DOCKERUSERNAME,DOCKERPASSWORD,NAME,CNAME
         script: |
           echo "$DOCKERUSERNAME,$NAME,$CNAME"
-          docker login https://docker.pkg.github.com -u $DOCKERUSERNAME -p $DOCKERPASSWORD
           docker pull $CNAME
           docker rm -f $NAME | true
           docker run --net=host --name $NAME -d $CNAME
