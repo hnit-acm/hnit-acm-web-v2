@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import {HStateButton} from '/@/components'
+import {HStateButton} from '@/components'
 
 import {ref, useContext, unref} from 'vue';
-import useRegisterForm from "/@/composables/useRegisterForm";
+import useRegisterForm from "@/composables/useRegisterForm";
 import {message} from 'ant-design-vue'
-import {usePageBannerInject} from "/@/composables/Home/usePageBanner";
-import {useCode} from "/@/repositories/useCode";
-import {useStateButton} from "/@/components";
+import {usePageBannerInject} from "@/composables/Home/usePageBanner";
+import {useCode} from "@/repositories/useCode";
+import {useStateButton} from "@/components";
 
 const {} = usePageBannerInject()
 

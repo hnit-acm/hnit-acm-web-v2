@@ -6,7 +6,7 @@ const registerRouteInfo: RouteRecordRaw = {
     meta: {
         title: "注册"
     },
-    component: () => import('/@/views/Register.vue')
+    component: () => import('@/views/Register.vue')
 }
 
 export default registerRouteInfo

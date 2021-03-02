@@ -2,9 +2,9 @@
 
 import {ref, defineProps,getCurrentInstance} from 'vue';
 import {useRoute} from 'vue-router';
-import {useBreadcrumbInject} from "/@/composables/Home/useBreadcrumb";
-import {useMarkdown} from "/@/composables/useMarkdown";
-import {useAnnounceContent} from "/@/repositories/useAnnouncement";
+import {useBreadcrumbInject} from "@/composables/Home/useBreadcrumb";
+import {useMarkdown} from "@/composables/useMarkdown";
+import {useAnnounceContent} from "@/repositories/useAnnouncement";
 
 const props = defineProps({id: () => 0})
 

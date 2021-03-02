@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import PageLayout from "/@/views/layout/PageLayout.vue"
-import {pageLayout} from '/@/views/layout/layout';
+import PageLayout from "@/views/layout/PageLayout.vue"
+import {pageLayout} from '@/views/layout/layout';
 
 import {defineComponent, onMounted} from 'vue';
-import {useBreadcrumbInject} from "/@/composables/Home/useBreadcrumb";
-import {usePageBannerInject} from "/@/composables/Home/usePageBanner";
+import {useBreadcrumbInject} from "@/composables/Home/useBreadcrumb";
+import {usePageBannerInject} from "@/composables/Home/usePageBanner";
 
 
 const {setVisible} = useBreadcrumbInject()

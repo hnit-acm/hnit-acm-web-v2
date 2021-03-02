@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import {onMounted} from 'vue'
-import {usePageBannerInject} from "/@/composables/Home/usePageBanner";
-import {useBreadcrumbInject} from "/@/composables/Home/useBreadcrumb";
+import {usePageBannerInject} from "@/composables/Home/usePageBanner";
+import {useBreadcrumbInject} from "@/composables/Home/useBreadcrumb";
 
 const {setVisible} = useBreadcrumbInject()
 onMounted(() => {

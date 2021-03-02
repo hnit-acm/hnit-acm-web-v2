@@ -7,7 +7,7 @@ const indexRouteInfo: RouteRecordRaw = {
         title: "首页",
         isMenu: true
     },
-    component: () => import('/@/views/index/Index.vue')
+    component: () => import('@/views/index/Index.vue')
 }
 
 export default indexRouteInfo
