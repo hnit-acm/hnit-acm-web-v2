@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import PageLayout from "/@/views/layout/PageLayout.vue"
-import {pageLayout} from '/@/views/layout/layout'
+import PageLayout from "@/views/layout/PageLayout.vue"
+import {pageLayout} from '@/views/layout/layout'
 
 import {onUpdated, ref, onMounted} from 'vue'
-import {useBreadcrumbInject} from "/@/composables/Home/useBreadcrumb"
-import {usePageBannerInject} from "/@/composables/Home/usePageBanner"
-import {useListProvide} from "/@/composables/Home/Announcement/useList"
+import {useBreadcrumbInject} from "@/composables/Home/useBreadcrumb"
+import {usePageBannerInject} from "@/composables/Home/usePageBanner"
+import {useListProvide} from "@/composables/Home/Announcement/useList"
 
 // 配置首页面包屑
 const breadcrumbCtx = useBreadcrumbInject()

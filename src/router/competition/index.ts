@@ -8,11 +8,11 @@ const competitionRouteInfo: RouteRecordRaw = {
         banner: "",
         isMenu: true
     },
-    component: () => import('/@/views/competition/Competition.vue'),
+    component: () => import('@/views/competition/Competition.vue'),
     children: [
         {
             path: '',
-            component: () => import('/@/views/competition/ListPanel.vue'),
+            component: () => import('@/views/competition/ListPanel.vue'),
         }
     ],
 }

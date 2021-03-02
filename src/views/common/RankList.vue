@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import {defineComponent, defineProps, h} from 'vue';
 import {ElAvatar, ElBadge, ElPopover} from "element-plus";
-import {HCard} from "/@/components";
+import {HCard} from "@/components";
 
 interface RankItem {
   avatar?: string

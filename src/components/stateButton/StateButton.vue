@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {useStateButton} from "/@/components/stateButton/useStateButton";
+import {useStateButton} from "@/components/stateButton/useStateButton";
 import {computed, defineEmit, defineProps} from "vue";
 
 interface StateButtonProps {

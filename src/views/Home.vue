@@ -1,13 +1,13 @@
 <script lang="ts" setup="props">
-import LoginDialog from "/@/views/common/LoginDialog.vue";
-import PageLayout from '/@/views/layout/PageLayout.vue';
-import {pageLayout} from '/@/views/layout/layout';
+import LoginDialog from "@/views/common/LoginDialog.vue";
+import PageLayout from '@/views/layout/PageLayout.vue';
+import {pageLayout} from '@/views/layout/layout';
 
 import {defineProps, ref} from "vue";
-import {useBreadcrumbProvide} from "/@/composables/Home/useBreadcrumb";
+import {useBreadcrumbProvide} from "@/composables/Home/useBreadcrumb";
 import {useRouter} from "vue-router";
-import {usePageBannerProvide} from "/@/composables/Home/usePageBanner";
-import {useMenu} from "/@/composables/useMenu";
+import {usePageBannerProvide} from "@/composables/Home/usePageBanner";
+import {useMenu} from "@/composables/useMenu";
 
 const props = defineProps({})
 

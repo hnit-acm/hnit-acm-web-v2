@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import RankList from "/@/views/common/RankList.vue";
-import {HListBox} from "/@/components"
+import RankList from "@/views/common/RankList.vue";
+import {HListBox} from "@/components"
 
-import PageLayout from "/@/views/layout/PageLayout.vue"
-import {pageLayout} from "/@/views/layout/layout"
+import PageLayout from "@/views/layout/PageLayout.vue"
+import {pageLayout} from "@/views/layout/layout"
 
 import {onMounted} from 'vue';
-import {useBreadcrumbInject} from "/@/composables/Home/useBreadcrumb";
-import {usePageBannerInject} from "/@/composables/Home/usePageBanner";
+import {useBreadcrumbInject} from "@/composables/Home/useBreadcrumb";
+import {usePageBannerInject} from "@/composables/Home/usePageBanner";
 
 const {setVisible} = useBreadcrumbInject()
 onMounted(() => {

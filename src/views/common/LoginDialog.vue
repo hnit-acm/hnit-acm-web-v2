@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import {HStateButton, useStateButton} from '/@/components'
+import {HStateButton, useStateButton} from '@/components'
 
 import {defineEmit, ref, defineProps, unref} from 'vue';
-import {useLogin} from "/@/repositories/useLogin";
+import {useLogin} from "@/repositories/useLogin";
 
 const props = defineProps({
   visible: () => false,

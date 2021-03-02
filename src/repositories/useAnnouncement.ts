@@ -1,7 +1,7 @@
 import {readonly, ref} from 'vue'
 import axios from "../utils/axios";
 import {ElMessage} from 'element-plus';
-import {Response} from "/@/common/models/response";
+import {Response} from "@common/models/response";
 import axiosUtil from "../utils/axios";
 
 export function useAnnouceList() {

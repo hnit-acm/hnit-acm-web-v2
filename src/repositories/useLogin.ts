@@ -1,4 +1,4 @@
-import axiosUtil from "/@/utils/axios";
+import axiosUtil from "@/utils/axios";
 
 interface LoginResult {
     token: string
