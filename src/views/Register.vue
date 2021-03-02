@@ -3,7 +3,6 @@ import {HStateButton} from '@/components'
 
 import {ref, useContext, unref} from 'vue';
 import useRegisterForm from "@/composables/useRegisterForm";
-import {message} from 'ant-design-vue'
 import {usePageBannerInject} from "@/composables/Home/usePageBanner";
 import {useCode} from "@/repositories/useCode";
 import {useStateButton} from "@/components";
@@ -14,10 +13,8 @@ const isSuccess = ref(false)
 const {modelRef, validateInfos, onSubmit} = useRegisterForm()
 const c = useContext()
 const success = () => {
-  message.success("success")
 }
 const fail = () => {
-  message.error("error")
 }
 const submit = (e: { preventDefault: () => void }) => {
   onSubmit(e).then(success).catch(fail)
