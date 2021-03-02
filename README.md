@@ -11,7 +11,7 @@ Status:
 
 |Service|Build And Deploy|Link|
 |:---:|:---:|:---:|
-|Web|[![Build and Package and Deploy](https://github.com/hnit-acm/hnit-acm-web-v2/actions/workflows/docker-publish-deploy.yml/badge.svg)](https://github.com/hnit-acm/hnit-acm-web-v2/actions/workflows/docker-publish-deploy.yml)|[链接](http://next.hnitoj.com)|
+|Web|[![Build and Package and Deploy](https://github.com/hnit-acm/hnit-acm-web-v2/actions/workflows/docker-publish-deploy.yml/badge.svg)](https://github.com/hnit-acm/hnit-acm-web-v2/actions/workflows/docker-publish-deploy.yml)|[链接](http://next.hnitoj.cn)|
 
 Build and Deploy by Github Action.
 
