@@ -24,6 +24,10 @@ const routes: Array<RouteRecordRaw> = [
             announcementRouteInfo
         ]
     },
+    {
+        path:'/e',
+        component: ()=>import('@/components/editor/Editor.vue')
+    }
 ]
 
 const router = createRouter({

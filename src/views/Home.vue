@@ -56,10 +56,8 @@ el-container
       .flex-row-start.flex-align-center(v-if="breadcrumbCtx.visible" style={height: 'auto'})
         el-breadcrumb(v-show="breadcrumbCtx.visible" separator-class="el-icon-arrow-right")
           el-breadcrumb-item(v-for="(item) in breadcrumbCtx.routes" :to="item") {{item.meta.title}}
-        a-button(type="link" v-on:click="back" style={marginLeft: 'auto'})
-          template(#icon)
-            LeftCircleTwoTone/
-          | 返回
+        el-button(type="text" v-on:click="back" style={marginLeft: 'auto'})
+          LeftCircleTwoTone/  返回
     router-view/
   el-footer
     | ©2020 Power by Nekilc

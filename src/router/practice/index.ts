@@ -9,10 +9,14 @@ const practiceRouteInfo: RouteRecordRaw = {
         isMenu: true
     },
     component: () => import('@/views/practice/Practice.vue'),
-    children:[
+    children: [
         {
-            path:'',
-            component: ()=>import('@/views/practice/ListPanel.vue')
+            path: '',
+            component: () => import('@/views/practice/ListPanel.vue')
+        },
+        {
+            path: 'woker',
+            component: () => import('@/views/practice/Woker.vue' )
         }
     ]
 }
