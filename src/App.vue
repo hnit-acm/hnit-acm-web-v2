@@ -1,13 +1,12 @@
-<template>
-  <router-view/>
+<script lang="ts" setup>
+
+
+</script>
+
+<template lang="pug">
+router-view
 </template>
 
-<script lang="ts">
-import {defineComponent} from "vue";
-
-
-export default defineComponent({});
-</script>
 
 <style lang="stylus">
 #app
@@ -16,5 +15,4 @@ export default defineComponent({});
   -moz-osx-font-smoothing grayscale
   text-align center
   color #2c3e50
-  //margin-top 60px
 </style>
