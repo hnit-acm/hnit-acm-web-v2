@@ -30,7 +30,7 @@ const drawerToggle = () => {
 <template lang="pug">
 el-container
   el-affix(z-index="9999" ta)
-    el-header.header-nav.flex-row-start.flex-align-center.main-blue
+    el-header.header-nav.flex-row-start.flex-align-center.main-blue.border-bottom-radius-1em
       .nav-left.flex-row-start.flex-align-center
         // adapt mobile
         el-popover(trigger="click")
