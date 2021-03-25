@@ -17,5 +17,4 @@ el-row(type="flex" style="margin-top: 1em;" justify="center")
 </template>
 
 <style scoped>
-
 </style>

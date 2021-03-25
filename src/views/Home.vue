@@ -1,21 +1,21 @@
 <script lang="ts" setup="props">
 import LoginDialog from "@/views/common/LoginDialog.vue";
 import PageLayout from '@/views/layout/PageLayout.vue';
-import {pageLayout} from '@/views/layout/layout';
+import { pageLayout } from '@/views/layout/layout';
 
-import {defineProps, ref} from "vue";
-import {useBreadcrumbProvide} from "@/composables/Home/useBreadcrumb";
-import {useRouter} from "vue-router";
-import {usePageBannerProvide} from "@/composables/Home/usePageBanner";
-import {useMenu} from "@/composables/useMenu";
+import { defineProps, ref } from "vue";
+import { useBreadcrumbProvide } from "@/composables/Home/useBreadcrumb";
+import { useRouter } from "vue-router";
+import { usePageBannerProvide } from "@/composables/Home/usePageBanner";
+import { useMenu } from "@/composables/useMenu";
 
 const props = defineProps({})
 
 const loginVisible = ref(false)
 const breadcrumbCtx = ref(useBreadcrumbProvide())
-const {back} = useRouter()
+const { back } = useRouter()
 const bannerCtx = ref(usePageBannerProvide())
-const {menuRouters} = useMenu()
+const { menuRouters } = useMenu()
 const login = (form: any) => {
   console.log(form)
   // form.username = '12312313'
@@ -37,14 +37,14 @@ el-container
           template(#reference)
             i.el-icon-s-unfold.logo-font.hidden-sm-and-up.margin-right-1em
           el-menu(mode='vertical' :router="true" background-color="#49a9ea"  text-color="white" active-text-color="blue" )
-            el-menu-item.nav-font(v-for="(route,index) in menuRouters" :index="route.path") {{route.meta?.title}}
+            el-menu-item.nav-font(v-for="(route,index) in menuRouters" :index="route.path") {{ route.meta?.title }}
         router-link(to="/")
           span.logo-font HNITACM
         el-menu.hidden-xs-only.nav-middle.flex-row-start.margin-left-1em(mode='horizontal' :router="true" background-color="#49a9ea"  text-color="white" active-text-color="blue")
-          el-menu-item.nav-font(v-for="(route,index) in menuRouters" :index="route.path") {{route.meta?.title}}
+          el-menu-item.nav-font(v-for="(route,index) in menuRouters" :index="route.path") {{ route.meta?.title }}
       .nav-right.flex-row-end.flex-align-center
         el-space.font-color-white(spacer="|" size="small")
-          el-button(type='text' v-on:click="loginVisible=true" )
+          el-button(type='text' v-on:click="loginVisible = true" )
             span.navigation-item 登录
           el-button(type='text')
             router-link(to="/register")
@@ -55,14 +55,13 @@ el-container
     page-layout(v-bind:layout="pageLayout")
       .flex-row-start.flex-align-center(v-if="breadcrumbCtx.visible" style={height: 'auto'})
         el-breadcrumb(v-show="breadcrumbCtx.visible" separator-class="el-icon-arrow-right")
-          el-breadcrumb-item(v-for="(item) in breadcrumbCtx.routes" :to="item") {{item.meta.title}}
+          el-breadcrumb-item(v-for="(item) in breadcrumbCtx.routes" :to="item") {{ item.meta.title }}
         el-button(type="text" v-on:click="back" style={marginLeft: 'auto'})
           LeftCircleTwoTone/  返回
     router-view/
   el-footer
     | ©2020 Power by Nekilc
-  login-dialog(custom-class="border-all-radius-1em width-xs-100per" v-bind:visible="loginVisible" v-on:event-closed="loginVisible=false" v-on:event-login="login")
-
+  login-dialog(custom-class="border-all-radius-1em width-xs-100per" v-bind:visible="loginVisible" v-on:event-closed="loginVisible = false" v-on:event-login="login")
 </template>
 
 <style lang="stylus" scoped>

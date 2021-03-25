@@ -1,17 +1,17 @@
 <script lang="ts" setup>
 import PageLayout from "@/views/layout/PageLayout.vue"
-import {pageLayout} from '@/views/layout/layout';
+import { pageLayout } from '@/views/layout/layout';
 
-import {defineComponent, onMounted} from 'vue';
-import {useBreadcrumbInject} from "@/composables/Home/useBreadcrumb";
-import {usePageBannerInject} from "@/composables/Home/usePageBanner";
+import { defineComponent, onMounted } from 'vue';
+import { useBreadcrumbInject } from "@/composables/Home/useBreadcrumb";
+import { usePageBannerInject } from "@/composables/Home/usePageBanner";
 
 
-const {setVisible} = useBreadcrumbInject()
+const { setVisible } = useBreadcrumbInject()
 onMounted(() => {
   setVisible(true)
 })
-const {} = usePageBannerInject()
+const { } = usePageBannerInject()
 
 const data = [
   {
@@ -41,5 +41,4 @@ page-layout(v-bind:layout="pageLayout")
 </template>
 
 <style scoped>
-
 </style>

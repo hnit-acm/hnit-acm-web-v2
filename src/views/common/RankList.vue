@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import {defineComponent, defineProps, h} from 'vue';
-import {ElAvatar, ElBadge, ElPopover} from "element-plus";
-import {HCard} from "@/components";
+import { defineComponent, defineProps, h } from 'vue';
+import { ElAvatar, ElBadge, ElPopover } from "element-plus";
+import { HCard } from "@/components";
 
 interface RankItem {
   avatar?: string
@@ -33,16 +33,16 @@ const RankItemCom = defineComponent({
   setup: (props: ItemProps, ctx) => {
     console.log(props.data)
     return () =>
-        h('div', {class: ['flex-row-around', 'margin-top-1em']}, [
-          h(ElBadge, {value: props.index ?? ''}, [
-            h(ElPopover, {trigger:'hover',placement:'top'}, {
-              reference: h(ElAvatar, {src: props.data?.avatar ?? '', size: 'small'}),
-              default:h('span',{},props.data?.username)
-            })
-          ]),
-          h('span', props.data?.username ?? ''),
-          h('span', props.data?.number ?? ''),
-        ])
+      h('div', { class: ['flex-row-around', 'margin-top-1em'] }, [
+        h(ElBadge, { value: props.index ?? '' }, [
+          h(ElPopover, { trigger: 'hover', placement: 'top' }, {
+            reference: h(ElAvatar, { src: props.data?.avatar ?? '', size: 'small' }),
+            default: h('span', {}, props.data?.username)
+          })
+        ]),
+        h('span', props.data?.username ?? ''),
+        h('span', props.data?.number ?? ''),
+      ])
   }
 })
 
@@ -51,7 +51,7 @@ const RankItemCom = defineComponent({
 
 <template lang="pug">
 h-card(style="border-radius:1em")
-  template(#header) {{title ?? 'default'}}
+  template(#header) {{ title ?? 'default' }}
   .flex-row-center
     el-col
       .flex-row-center
@@ -69,7 +69,7 @@ h-card(style="border-radius:1em")
             template(#reference)
               el-avatar(:src="list?.[0].avatar" size="large" fit="cover")
       template(v-for="(item,index) in (list?.slice(3,10) ?? [])")
-        rankItemCom(v-bind:index="index+4" :data="item")/
+        rankItemCom(v-bind:index="index + 4" :data="item")/
 </template>
 
 <style lang="stylus" scoped>

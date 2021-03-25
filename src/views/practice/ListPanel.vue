@@ -1,7 +1,7 @@
-<script setup>
-import {HCard} from "../../components";
-import {ref} from 'vue'
-const data = ref([{},{},{},{},{}])
+<script lang="ts" setup>
+import { HCard } from "../../components";
+import { ref } from 'vue'
+const data = ref([{}, {}, {}, {}, {}])
 </script>
 
 <template lang="pug">
@@ -13,7 +13,6 @@ el-row
           div
             span 加载中
       | 测试
-
 </template>
 
 <style lang="stylus" scoped>

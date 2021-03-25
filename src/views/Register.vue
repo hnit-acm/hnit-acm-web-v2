@@ -1,16 +1,16 @@
 <script lang="ts" setup>
-import {HStateButton} from '@/components'
+import { HStateButton } from '@/components'
 
-import {ref, useContext, unref} from 'vue';
+import { ref, useContext, unref } from 'vue';
 import useRegisterForm from "@/composables/useRegisterForm";
-import {usePageBannerInject} from "@/composables/Home/usePageBanner";
-import {useCode} from "@/repositories/useCode";
-import {useStateButton} from "@/components";
+import { usePageBannerInject } from "@/composables/Home/usePageBanner";
+import { useCode } from "@/repositories/useCode";
+import { useStateButton } from "@/components";
 
-const {} = usePageBannerInject()
+const { } = usePageBannerInject()
 
 const isSuccess = ref(false)
-const {modelRef, validateInfos, onSubmit} = useRegisterForm()
+const { modelRef, validateInfos, onSubmit } = useRegisterForm()
 const c = useContext()
 const success = () => {
 }
@@ -20,7 +20,7 @@ const submit = (e: { preventDefault: () => void }) => {
   onSubmit(e).then(success).catch(fail)
 }
 
-const {post} = useCode()
+const { post } = useCode()
 const sendBtnCtx = useStateButton({
   name: '发送验证码',
   disabled: false,
@@ -31,14 +31,14 @@ const sendBtnCtx = useStateButton({
 })
 
 const sendCode = () => {
-  sendBtnCtx.loading({name: '发送中'})
+  sendBtnCtx.loading({ name: '发送中' })
   post({}).then(
-      value => {
-        sendBtnCtx.success({name: '发送成功', interval: 60})
-      }).catch(
+    value => {
+      sendBtnCtx.success({ name: '发送成功', interval: 60 })
+    }).catch(
       reason => {
         setTimeout(() => {
-          sendBtnCtx.error({name: '发送失败', interval: 10})
+          sendBtnCtx.error({ name: '发送失败', interval: 10 })
         }, 1000)
       })
 }
@@ -53,14 +53,14 @@ const regBtnCtx = useStateButton({
 })
 
 const register = () => {
-  regBtnCtx.loading({name: '注册中'})
+  regBtnCtx.loading({ name: '注册中' })
   post({}).then(
-      value => {
-        regBtnCtx.success({name: '注册成功', interval: 60})
-      }).catch(
+    value => {
+      regBtnCtx.success({ name: '注册成功', interval: 60 })
+    }).catch(
       reason => {
         setTimeout(() => {
-          regBtnCtx.error({name: '注册失败', interval: 10})
+          regBtnCtx.error({ name: '注册失败', interval: 10 })
         }, 1000)
       })
 }

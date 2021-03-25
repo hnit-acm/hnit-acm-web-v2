@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {defineProps} from "vue";
+import { defineProps } from "vue";
 
 interface LayoutItem {
   xs?: number
@@ -14,9 +14,9 @@ interface Props {
 }
 
 const props = defineProps(
-    {
-      layout: {} as LayoutItem
-    } as Props
+  {
+    layout: {} as LayoutItem
+  } as Props
 )
 
 </script>

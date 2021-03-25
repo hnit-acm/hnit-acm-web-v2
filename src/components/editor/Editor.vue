@@ -6,7 +6,7 @@ import cssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker'
 import htmlWorker from 'monaco-editor/esm/vs/language/html/html.worker?worker'
 import tsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker'
 
-import {defineEmit, onMounted, ref, defineProps, computed, watch} from "vue";
+import { defineEmit, onMounted, ref, defineProps, computed, watch } from "vue";
 
 // todo 需要优化
 
@@ -92,9 +92,9 @@ onMounted(() => {
     extraEditorClassName: 'editor'
   })
   instance.onDidChangeModelContent(
-      (e) => {
-        codeValue.value = instance.getValue()
-      }
+    (e) => {
+      codeValue.value = instance.getValue()
+    }
   )
   watch(codeValue, value => {
     emit('update:modelValue', value)

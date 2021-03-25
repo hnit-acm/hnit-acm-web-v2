@@ -1,16 +1,16 @@
 <script lang="ts" setup>
 import PageLayout from "@/views/layout/PageLayout.vue"
-import {pageLayout} from '@/views/layout/layout'
+import { pageLayout } from '@/views/layout/layout'
 
-import {onMounted} from 'vue';
-import {useBreadcrumbInject} from '@/composables/Home/useBreadcrumb';
-import {usePageBannerInject} from "@/composables/Home/usePageBanner";
+import { onMounted } from 'vue';
+import { useBreadcrumbInject } from '@/composables/Home/useBreadcrumb';
+import { usePageBannerInject } from "@/composables/Home/usePageBanner";
 
-const {setVisible} = useBreadcrumbInject()
+const { setVisible } = useBreadcrumbInject()
 onMounted(() => {
   setVisible(true)
 })
-const {refresh} = usePageBannerInject()
+const { refresh } = usePageBannerInject()
 refresh()
 </script>
 
@@ -20,5 +20,4 @@ page-layout(v-bind:layout="pageLayout")
 </template>
 
 <style scoped>
-
 </style>

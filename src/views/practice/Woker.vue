@@ -1,9 +1,9 @@
-<script setup>
-import {HEditor} from "../../components";
-import {ref, watch} from "vue";
+<script lang="ts"setup>
+import { HEditor } from "../../components";
+import { ref, watch } from "vue";
 
 const codeValue = ref('123132')
-watch(codeValue,(newVal,oldVal) => {
+watch(codeValue, (newVal, oldVal) => {
   console.log(newVal)
 })
 </script>
