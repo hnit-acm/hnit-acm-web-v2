@@ -2,6 +2,8 @@
 node_modules
 /dist
 src/test.ts
+src/assets/css
+src/assets/stylus/css
 
 # local env files
 .env.local
