@@ -30,7 +30,7 @@ const drawerToggle = () => {
 <template lang="pug">
 el-container
   el-affix(z-index="9999" ta)
-    el-header.header-nav.flex-row-start.flex-align-center.main-blue.border-bottom-radius-1em
+    el-header.header-nav.flex-row-start.flex-align-center.main-blue
       .nav-left.flex-row-start.flex-align-center
         // adapt mobile
         el-popover(trigger="click")
@@ -53,10 +53,10 @@ el-container
     .page-banner.flex-col-start.flex-align-center(v-show="bannerCtx.banner ?? false")
       img(:src="bannerCtx.banner")
     page-layout(v-bind:layout="pageLayout")
-      .flex-row-start.flex-align-center(v-if="breadcrumbCtx.visible" style={height: 'auto'})
+      .flex-row-start.flex-align-center(v-if="breadcrumbCtx.visible" style="height:auto;")
         el-breadcrumb(v-show="breadcrumbCtx.visible" separator-class="el-icon-arrow-right")
           el-breadcrumb-item(v-for="(item) in breadcrumbCtx.routes" :to="item") {{ item.meta.title }}
-        el-button(type="text" v-on:click="back" style={marginLeft: 'auto'})
+        el-button(type="text" v-on:click="back" style="margin-left:auto;")
           LeftCircleTwoTone/  返回
     router-view/
   el-footer

@@ -1,23 +1,15 @@
 <script lang="ts" setup>
 import { defineProps } from "vue";
 
-interface LayoutItem {
-  xs?: number
-  sm?: number
-  md?: number
-  lg?: number
-  xl?: number
-}
-
-interface Props {
-  layout: LayoutItem
-}
-
-const props = defineProps(
-  {
-    layout: {} as LayoutItem
-  } as Props
-)
+const props = defineProps<{
+  layout: {
+    xs?: number
+    sm?: number
+    md?: number
+    lg?: number
+    xl?: number
+  }
+}>()
 
 </script>
 

@@ -2,29 +2,16 @@
 import { useStateButton } from "@/components/stateButton/useStateButton";
 import { computed, defineEmit, defineProps } from "vue";
 
-interface StateButtonProps {
-  loading?: false | true
-  type?: 'primary' | 'success' | 'danger' | 'warning'
-  name?: string
-  icon?: string
-  interval?: number
-  disabled?: boolean
-}
-
-const props = defineProps({
-  data: {
-    type: Object,
-    default: () => {
-      return {
-        loading: false,
-        type: 'primary',
-        name: 'default',
-        icon: 'default',
-        interval: 0,
-      } as StateButtonProps
-    }
+const props = defineProps<{
+  data?: {
+    loading?: false | true
+    type?: 'primary' | 'success' | 'danger' | 'warning'
+    icon?: string
+    name?: 'default' | string
+    interval?: 0 | number
+    disabled?: false | true
   }
-})
+}>()
 
 const emit = defineEmit(['click'])
 
@@ -37,7 +24,8 @@ const interval = computed(
 </script>
 
 <template lang="pug">
-el-button(:type="data?.type ?? 'primary'" :loading="data.loading" :icon="data.icon" :disabled="data.disabled"  v-on:click="emit('click')") {{ data.name }}{{ interval }}
+div
+  el-button(:type="data?.type ?? 'primary'" :loading="data?.loading ?? false" :icon="data?.icon ?? ''" :disabled="data?.disabled ?? false"  v-on:click="emit('click')") {{ data?.name ?? 'default' }}{{ interval }}
 </template>
 
 <style lang="stylus" scoped>

@@ -1,5 +1,5 @@
 import axios, {AxiosRequestConfig} from "axios";
-import {Response} from "@common/models/response";
+import {Response} from "@/common/models/response";
 import {ElMessage} from "element-plus";
 
 function camel(data: any): any {

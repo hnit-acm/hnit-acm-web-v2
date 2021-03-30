@@ -11,7 +11,7 @@ import { defineEmit, onMounted, ref, defineProps, computed, watch } from "vue";
 // todo 需要优化
 
 const props = defineProps({
-  modelValue: ''
+  modelValue: String
 })
 
 const emit = defineEmit(['update:modelValue'])
@@ -22,10 +22,10 @@ interface SelectItem<T> {
   value: T
 }
 
-let instance = null
+let instance: monaco.editor.IStandaloneCodeEditor|null = null
 
 self.MonacoEnvironment = {
-  getWorker(_, label) {
+  getWorker(_: any, label: string) {
     if (label === 'json') {
       return new jsonWorker()
     }

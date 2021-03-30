@@ -5,12 +5,12 @@ interface Result {
 }
 
 interface Context {
-    post: () => Promise<Result>
+    post: (phone: number) => Promise<Result>
 }
 
 export function useCode(): Context {
-    const post = () => {
-        return axiosUtil.post<Result>('', {})
+    const post = (phone: number) => {
+        return axiosUtil.post<Result>('', {phone: phone})
     }
     return {
         post

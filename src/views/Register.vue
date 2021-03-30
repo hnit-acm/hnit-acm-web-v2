@@ -10,14 +10,11 @@ import { useStateButton } from "@/components";
 const { } = usePageBannerInject()
 
 const isSuccess = ref(false)
-const { modelRef, validateInfos, onSubmit } = useRegisterForm()
+const { modelRef } = useRegisterForm()
 const c = useContext()
 const success = () => {
 }
 const fail = () => {
-}
-const submit = (e: { preventDefault: () => void }) => {
-  onSubmit(e).then(success).catch(fail)
 }
 
 const { post } = useCode()
@@ -32,7 +29,7 @@ const sendBtnCtx = useStateButton({
 
 const sendCode = () => {
   sendBtnCtx.loading({ name: '发送中' })
-  post({}).then(
+  post(13090900909).then(
     value => {
       sendBtnCtx.success({ name: '发送成功', interval: 60 })
     }).catch(
@@ -54,7 +51,7 @@ const regBtnCtx = useStateButton({
 
 const register = () => {
   regBtnCtx.loading({ name: '注册中' })
-  post({}).then(
+  post(13090900909).then(
     value => {
       regBtnCtx.success({ name: '注册成功', interval: 60 })
     }).catch(

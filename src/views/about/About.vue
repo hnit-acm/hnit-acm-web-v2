@@ -12,5 +12,5 @@ usePageBannerInject()
 
 <template lang="pug">
 .about
-  img(style={width: '20%', height: '20%'} src="../../assets/nav-logo-color.png")/
+  img(style="width: '20%';height: '20%'" src="../../assets/nav-logo-color.png")/
 </template>

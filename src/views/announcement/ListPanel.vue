@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useRoute } from "vue-router";
-
+const loading = false
 // 处理路由相关
 const fullPath = () => {
   const { fullPath } = useRoute()
