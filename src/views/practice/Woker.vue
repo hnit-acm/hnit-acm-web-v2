@@ -12,7 +12,7 @@ watch(codeValue, (newVal, oldVal) => {
 h-editor(v-model="codeValue")
 .flex-row-start
   div(style="height:'100px';background:'red';width:'100%'")
-  div(style="height:'100px';background:'blue';width:'1%',left:'30%'")
+  div(style="height:'100px';background:'blue';width:'1%';left:'30%'")
   div(style="height:'100px';background:'yellow',;width:'100%'")
 </template>
 
