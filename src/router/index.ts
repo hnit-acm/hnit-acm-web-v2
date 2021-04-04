@@ -27,6 +27,10 @@ const routes: Array<RouteRecordRaw> = [
     {
         path:'/e',
         component: ()=>import('@/components/editor/Editor.vue')
+    },
+    {
+        path:'/split',
+        component: ()=>import('@/views/Test.vue')
     }
 ]
 
