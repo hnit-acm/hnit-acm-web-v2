@@ -47,12 +47,12 @@ axios.interceptors.response.use(value => {
     }
     return value
 })
-
+// 为官方配置补充
 interface Config extends AxiosRequestConfig {
     error?: false | true
     success?: false | true
 }
-
+// 暴露给使用者的配置
 interface InfoConfig {
     error?: false | true
     success?: false | true

@@ -9,10 +9,10 @@ import { onMounted } from 'vue';
 import { useBreadcrumbInject } from "@/composables/Home/useBreadcrumb";
 import { usePageBannerInject } from "@/composables/Home/usePageBanner";
 
-const { setVisible } = useBreadcrumbInject()
-onMounted(() => {
-  setVisible(false)
-})
+// const { setVisible } = useBreadcrumbInject()
+// onMounted(() => {
+//   setVisible(false)
+// })
 
 const { } = usePageBannerInject()
 
@@ -58,52 +58,53 @@ const announceBoxProps = {
 
 const listMock = [
   {
-    username: '123213',
+    username: 'nekilc',
+    avatar: '',
+    number: 123,
+    percent:'100%'
+  },
+  {
+    username: 'nekilc1',
     avatar: '',
     number: 123,
   },
   {
-    username: '123213',
+    username: 'nekilc2',
     avatar: '',
     number: 123,
   },
   {
-    username: '123213',
+    username: 'nekilc3',
     avatar: '',
     number: 123,
   },
   {
-    username: '123213',
+    username: 'nekilc4',
     avatar: '',
     number: 123,
   },
   {
-    username: '123213',
+    username: 'nekilc5',
     avatar: '',
     number: 123,
   },
   {
-    username: '123213',
+    username: 'nekilc6',
     avatar: '',
     number: 123,
   },
   {
-    username: '123213',
+    username: 'nekilc7',
     avatar: '',
     number: 123,
   },
   {
-    username: '123213',
+    username: 'nekilc8',
     avatar: '',
     number: 123,
   },
   {
-    username: '123213',
-    avatar: '',
-    number: 123,
-  },
-  {
-    username: '123213',
+    username: 'nekilc9',
     avatar: '',
     number: 123,
   },
@@ -112,7 +113,7 @@ const listMock = [
 </script>
 
 <template lang="pug">
-page-layout(v-bind:layout="pageLayout")
+page-layout(v-bind:layout="pageLayout" space)
   el-row(type="flex" justify="center")
     el-col.hidden-xs-only(:sm="14" :md="16" :lg="17" :xl="18")
       el-carousel.border-left-radius-1em
@@ -120,11 +121,11 @@ page-layout(v-bind:layout="pageLayout")
           .img-t {{ item }}
     el-col(:xs="24" :sm="10" :md="8" :lg="7" :xl="6")
       h-list-box.border-right-radius-1em.border-all-radius-xs-1em(:data="announceBoxProps" style="opacity: 80%;background: #ea4949;color: white;")
-el-row(type="flex" justify="center")
-  el-col(:xs="24" :sm="12" :md="12" :lg="11" :xl="10")
-    rank-list(:title="'123'" :list="listMock")/
-  el-col(:xs="24" :sm="12" :md="12" :lg="11" :xl="10")
-    rank-list/
+  el-row(type="flex" justify="center" gutter="15")
+    el-col(:xs="24" :sm="12" :md="12" :lg="12" :xl="12")
+      rank-list(:title="'123'" :list="listMock")/
+    el-col(:xs="24" :sm="12" :md="12" :lg="12" :xl="12")
+      rank-list(:list="listMock")/
 </template>
 
 

@@ -1,10 +1,11 @@
 import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
-import indexRouteInfo from "@//router/index/index";
+import indexRouteInfo from "@/router/index/index";
 import practiceRouteInfo from "@/router/practice/index"
 import competitionRouteInfo from "@/router/competition"
 import announcementRouteInfo from "@/router/announcement";
 import registerRouteInfo from "@/router/register";
 import aboutRouteInfo from "@/router/about";
+import profileRouteInfo from "@/router/profile";
 
 
 const routes: Array<RouteRecordRaw> = [
@@ -21,12 +22,17 @@ const routes: Array<RouteRecordRaw> = [
             competitionRouteInfo,
             aboutRouteInfo,
             registerRouteInfo,
-            announcementRouteInfo
+            announcementRouteInfo,
+            profileRouteInfo
         ]
     },
     {
         path:'/e',
         component: ()=>import('@/components/editor/Editor.vue')
+    },
+    {
+        path:'/split',
+        component: ()=>import('@/views/Test.vue')
     }
 ]
 

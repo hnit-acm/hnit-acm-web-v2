@@ -4,14 +4,18 @@ interface LoginResult {
     token: string
 }
 
+interface LoginParams {
+    username: string
+    password: string
+}
+
+
 interface Context {
-    post: (data: object) => Promise<LoginResult>
+    post: (data: { username: string,password: string}) => Promise<LoginResult>
 }
 
 export function useLogin(): Context {
-    const post = (data: object) => {
-        return axiosUtil.post<LoginResult>("", data)
-    }
+    const post = (data: { username: string,password: string}) =>  axiosUtil.post<LoginResult>("http://127.0.0.1:4523/mock/371014/auth_service/auth", data)
     return {
         post
     }
