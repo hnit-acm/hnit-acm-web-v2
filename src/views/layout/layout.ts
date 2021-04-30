@@ -7,6 +7,6 @@ interface LayoutItem {
 }
 
 export const pageLayout:LayoutItem = {
-    lg: 22,
-    xl: 21
+    lg: 20,
+    xl: 18
 }

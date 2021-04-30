@@ -13,7 +13,7 @@ const BreadcrumbSymbol = Symbol();
 
 export function useBreadcrumbProvide(): BreadcrumbContext {
 
-    const visible = ref(true)
+    const visible = ref(false)
 
     const route = useRoute()
 

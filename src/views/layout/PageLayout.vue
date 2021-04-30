@@ -9,16 +9,22 @@ const props = defineProps<{
     lg?: number
     xl?: number
   }
+  spaceSize?: "mini"|"small"|'medium',
+  space?: boolean
 }>()
 
 </script>
 
 <template lang="pug">
 el-row(type="flex" justify="center")
-  el-col(:xs="layout?.xs ?? 24" :sm="layout?.sm ?? 24" :md="layout?.md ?? 24" :lg="layout?.lg ?? 24" :xl="layout?.xl ?? 24")
-    slot
+  el-col(:xs="layout?.xs ?? 24" v-bind:sm="layout?.sm ?? 24" v-bind:md="layout?.md ?? 24" v-bind:lg="layout?.lg ?? 24" v-bind:xl="layout?.xl ?? 24")
+    el-space.width-100per(direction="vertical" prefixCls="h-space" v-if="space ?? false" v-bind:size="spaceSize?? 'medium'")
+      slot
+    div(v-else)
+      slot
 </template>
 
-<style lang="stylus" scoped>
-
+<style lang="stylus">
+.h-space__item
+  width 100%
 </style>

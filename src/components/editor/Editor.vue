@@ -11,7 +11,10 @@ import { defineEmit, onMounted, ref, defineProps, computed, watch } from "vue";
 // todo 需要优化
 
 const props = defineProps({
-  modelValue: String
+  modelValue: {
+    type: String,
+    default: ()=>'//please input your  code'
+  }
 })
 
 const emit = defineEmit(['update:modelValue'])
@@ -22,7 +25,7 @@ interface SelectItem<T> {
   value: T
 }
 
-let instance: monaco.editor.IStandaloneCodeEditor|null = null
+let instance: monaco.editor.IStandaloneCodeEditor | null = null
 
 self.MonacoEnvironment = {
   getWorker(_: any, label: string) {

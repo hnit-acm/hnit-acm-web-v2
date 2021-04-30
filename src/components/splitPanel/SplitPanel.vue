@@ -20,7 +20,7 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmit(['input'])
+const emit = defineEmit(['update:value'])
 
 const isHorizontal = () => props.mode == 'horizontal'
 const offsetSize = () => isHorizontal() ? 'offsetWidth' : 'offsetHeight'
@@ -29,16 +29,17 @@ const state = ref({
   initOffset: 0,
   oldOffset: 0,
   offset: 0,
-  value: 0.5,
+  currentValue: 0.5,
 })
-const outerWrapper = ref({})
+const outerWrapper = ref<HTMLDivElement>()
 const trrigerMouseMoving = (e: MouseEvent) => {
   let pageOffset = isHorizontal() ? e.pageX : e.pageY
   let offset = pageOffset - state.value.initOffset;
-  let outerWidth = outerWrapper.value[offsetSize()]
+  let outerWidth = outerWrapper?.value?.[offsetSize()] ?? 0
   console.log(outerWidth)
   let value = (outerWidth * state.value.oldOffset + offset) / outerWidth
-  emit('input', value)
+  console.log(value)
+  emit('update:value', value)
 }
 const trrigerMouseUp = (e: MouseEvent) => {
   document.removeEventListener("mousemove", trrigerMouseMoving)
@@ -52,31 +53,33 @@ const trrigerMouseDown = (e: MouseEvent) => {
 }
 const setOffset = () => {
   nextTick(() => {
-    state.value.offset = state.value.value * 10000 / 100
+    state.value.offset = props.value * 10000 / 100
   })
 }
 
-watch(props.value, (val: number) => {
-  if (val !== state.value.value) {
-    state.value.value = val;
-    setOffset();
-  }
-})
+watch(()=>props.value, (val: number) => {
+    console.log(val)
+    if (val !== state.value.currentValue) {
+      state.value.currentValue = val
+      setOffset()
+    }
+  },{deep:true})
 
 onMounted(() => {
   setOffset()
 })
+
 </script>
 
 <template lang="pug">
 .main(ref="outerWrapper" :class="wrapperClasses")
   div(v-if="isHorizontal()" :class="`${prefix}-horizontal`")
-    .left-pane(:style="{ right: `${anotherOffset}%` }" :class="paneClasses")
+    .left-pane(:style="{ right: `${100 - state.value}%` }" :class="paneClasses")
       slot(name="left")
-    div(:class="`${prefix}-trigger-con`" :style="{ left: `${offset}%` }" @mousedown="trrigerMouseDown")
+    div(:class="`${prefix}-trigger-con`" :style="{ left: `${state.offset}%` }" @mousedown="trrigerMouseDown")
       slot(name="trigger")
         trigger(mode="vertical")
-    .right-pane(:style="{ left: `${offset}%` }" :class="paneClasses")
+    .right-pane(:style="{ left: `${state.offset}%` }" :class="paneClasses")
       slot(name="right")
   div(v-else :class="`${prefix}-vertical`")
     .top-pane(:style="{ bottom: `${100 - state.offset}%` }" :class="paneClasses")

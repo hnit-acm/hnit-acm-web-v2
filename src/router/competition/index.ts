@@ -13,6 +13,10 @@ const competitionRouteInfo: RouteRecordRaw = {
         {
             path: '',
             component: () => import('@/views/competition/ListPanel.vue'),
+        },
+        {
+            path: 'detail',
+            component: () => import('@/views/competition/Detail.vue'),
         }
     ],
 }

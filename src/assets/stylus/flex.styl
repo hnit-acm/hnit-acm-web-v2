@@ -10,6 +10,10 @@
   @extend .flex-col
   justify-content space-around
 
+.flex-col-between
+  @extend .flex-col
+  justify-content space-between
+
 .flex-col-start
   @extend .flex-col
   justify-content flex-start
@@ -46,3 +50,14 @@
 .flex-row-around
   @extend .flex-row
   justify-content space-around
+
+.flex-row-between
+  @extend .flex-row
+  justify-content space-between
+
+.flex-wrap-wrap
+  flex-wrap wrap
+
+for i in 1..9
+  .flex-grow-{i}
+    flex-grow i

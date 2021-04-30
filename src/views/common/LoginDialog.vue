@@ -24,7 +24,7 @@ const { post } = useLogin()
 
 const login = () => {
   loginBtnCtx.loading({ name: '登录中' })
-  post(loginForm).then(
+  post(unref(loginForm)).then(
     value => {
       loginBtnCtx.success({
         name: '登录成功', callback: () => {
@@ -34,6 +34,7 @@ const login = () => {
     }
   ).catch(
     reason => {
+      console.log(reason)
       loginBtnCtx.error({
         name: '登录失败', interval: 3, callback: () => {
           // emit("event-login")

@@ -8,6 +8,6 @@ div.trigger(style="border: 1px solid")
 
 <style lang="stylus">
 .trigger
-    :hover
-        cursor row-resize
+  :hover
+    cursor row-resize
 </style>

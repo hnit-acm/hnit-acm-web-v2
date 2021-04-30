@@ -38,9 +38,9 @@ el-container
             i.el-icon-s-unfold.logo-font.hidden-sm-and-up.margin-right-1em
           el-menu(mode='vertical' :router="true" background-color="#49a9ea"  text-color="white" active-text-color="blue" )
             el-menu-item.nav-font(v-for="(route,index) in menuRouters" :index="route.path") {{ route.meta?.title }}
-        router-link(to="/")
-          span.logo-font HNITACM
-        el-menu.hidden-xs-only.nav-middle.flex-row-start.margin-left-1em(mode='horizontal' :router="true" background-color="#49a9ea"  text-color="white" active-text-color="blue")
+        router-link.height-100per(to="/")
+          img.height-100per(src="/src/assets/nav-logo.png" style="vertical-align:middle;")
+        el-menu.hidden-xs-only.nav-middle.flex-row-start(mode='horizontal' :router="true" background-color="#49a9ea"  text-color="white" active-text-color="blue")
           el-menu-item.nav-font(v-for="(route,index) in menuRouters" :index="route.path") {{ route.meta?.title }}
       .nav-right.flex-row-end.flex-align-center
         el-space.font-color-white(spacer="|" size="small")
@@ -49,11 +49,12 @@ el-container
           el-button(type='text')
             router-link(to="/register")
               span.navigation-item 注册
+        //- img.height-100per(src="/src/assets/nav-logo.png" style="vertical-align:middle;")
   el-main.content
     .page-banner.flex-col-start.flex-align-center(v-show="bannerCtx.banner ?? false")
       img(:src="bannerCtx.banner")
     page-layout(v-bind:layout="pageLayout")
-      .flex-row-start.flex-align-center(v-if="breadcrumbCtx.visible" style="height:auto;")
+      .flex-row-between.flex-align-center(v-if="breadcrumbCtx.visible" style="height:auto;")
         el-breadcrumb(v-show="breadcrumbCtx.visible" separator-class="el-icon-arrow-right")
           el-breadcrumb-item(v-for="(item) in breadcrumbCtx.routes" :to="item") {{ item.meta.title }}
         el-button(type="text" v-on:click="back" style="margin-left:auto;")
