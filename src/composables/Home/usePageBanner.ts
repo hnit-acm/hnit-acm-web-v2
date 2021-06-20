@@ -4,6 +4,7 @@
 import {useRoute} from "vue-router";
 import axios from "axios";
 import {inject, onBeforeMount, provide, readonly, Ref, ref} from "vue";
+import {useSystemService} from "@/repositories/useSystemService";
 
 type PageBannerContext = {
     readonly banner: Ref<string>
@@ -17,9 +18,14 @@ export function usePageBannerProvide(): PageBannerContext {
     const refresh = () => {
         const {path} = useRoute()
         banner.value = ''
-        axios.get("http://localhost:4523/mock/371014/api/sys/banner?page_name=" + path.split("/")[1]).then(
-            (value: { data: { data: string; }; }) => {
-                banner.value = value.data.data
+        const {fetchBannerOne} = useSystemService()
+        fetchBannerOne(path).then(
+            value => {
+                banner.value = value.url
+            }
+        ).catch(
+            err =>{
+                banner.value = ''
             }
         )
     }

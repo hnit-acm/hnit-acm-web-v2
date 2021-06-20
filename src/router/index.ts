@@ -6,6 +6,7 @@ import announcementRouteInfo from "@/router/announcement";
 import registerRouteInfo from "@/router/register";
 import aboutRouteInfo from "@/router/about";
 import profileRouteInfo from "@/router/profile";
+import adminRouteInfo from "@/router/admin";
 
 
 const routes: Array<RouteRecordRaw> = [
@@ -23,7 +24,7 @@ const routes: Array<RouteRecordRaw> = [
             aboutRouteInfo,
             registerRouteInfo,
             announcementRouteInfo,
-            profileRouteInfo
+            profileRouteInfo,
         ]
     },
     {
@@ -33,7 +34,8 @@ const routes: Array<RouteRecordRaw> = [
     {
         path:'/split',
         component: ()=>import('@/views/Test.vue')
-    }
+    },
+    adminRouteInfo
 ]
 
 const router = createRouter({

@@ -1,12 +1,18 @@
 <script lang="ts" setup>
-import { HStateButton, useStateButton } from '@/components'
+import {HStateButton, useStateButton} from '@/components'
 
-import { defineEmit, ref, defineProps, unref } from 'vue';
-import { useLogin } from "@/repositories/useLogin";
+import {defineEmit, ref, defineProps, unref} from 'vue';
+import {useLogin} from "@/repositories/useLogin";
 
 const props = defineProps({
-  visible: () => false,
-  codeVisible: () => false,
+  visible: {
+    type: Boolean,
+    default: () => false
+  },
+  codeVisible: {
+    type: Boolean,
+    default: () => false
+  },
 })
 
 const emit = defineEmit(['event-closed', 'event-login'])
@@ -20,27 +26,27 @@ const loginBtnCtx = useStateButton({
   type: 'primary',
 })
 
-const { post } = useLogin()
+const {post} = useLogin()
 
 const login = () => {
-  loginBtnCtx.loading({ name: '登录中' })
+  loginBtnCtx.loading({name: '登录中'})
   post(unref(loginForm)).then(
-    value => {
-      loginBtnCtx.success({
-        name: '登录成功', callback: () => {
-          emit("event-login")
-        }
-      })
-    }
+      value => {
+        loginBtnCtx.success({
+          name: '登录成功', callback: () => {
+            emit("event-login")
+          }
+        })
+      }
   ).catch(
-    reason => {
-      console.log(reason)
-      loginBtnCtx.error({
-        name: '登录失败', interval: 3, callback: () => {
-          // emit("event-login")
-        }
-      })
-    }
+      reason => {
+        console.log(reason)
+        loginBtnCtx.error({
+          name: '登录失败', interval: 3, callback: () => {
+            // emit("event-login")
+          }
+        })
+      }
   )
 }
 

@@ -11,7 +11,7 @@ import { useMenu } from "@/composables/useMenu";
 
 const props = defineProps({})
 
-const loginVisible = ref(false)
+const loginVisible = ref(Boolean(false))
 const breadcrumbCtx = ref(useBreadcrumbProvide())
 const { back } = useRouter()
 const bannerCtx = ref(usePageBannerProvide())
@@ -29,7 +29,7 @@ const drawerToggle = () => {
 </script>
 <template lang="pug">
 el-container
-  el-affix(z-index="9999" ta)
+  el-affix(:z-index="9999" ta)
     el-header.header-nav.flex-row-start.flex-align-center.main-blue
       .nav-left.flex-row-start.flex-align-center
         // adapt mobile
@@ -51,8 +51,8 @@ el-container
               span.navigation-item 注册
         //- img.height-100per(src="/src/assets/nav-logo.png" style="vertical-align:middle;")
   el-main.content
-    .page-banner.flex-col-start.flex-align-center(v-show="bannerCtx.banner ?? false")
-      img(:src="bannerCtx.banner")
+    .page-banner.flex-col-start.flex-align-center.border-all-radius-1em(v-show="bannerCtx.banner ?? false")
+      el-image.height-200px(:src="bannerCtx.banner")
     page-layout(v-bind:layout="pageLayout")
       .flex-row-between.flex-align-center(v-if="breadcrumbCtx.visible" style="height:auto;")
         el-breadcrumb(v-show="breadcrumbCtx.visible" separator-class="el-icon-arrow-right")
@@ -62,7 +62,7 @@ el-container
     router-view/
   el-footer
     | ©2020 Power by Nekilc
-  login-dialog(custom-class="border-all-radius-1em width-xs-100per" v-bind:visible="loginVisible" v-on:event-closed="loginVisible = false" v-on:event-login="login")
+  login-dialog(custom-class="border-all-radius-1em width-xs-100per" :visible="loginVisible" v-on:event-closed="loginVisible = false" v-on:event-login="login")
 </template>
 
 <style lang="stylus" scoped>

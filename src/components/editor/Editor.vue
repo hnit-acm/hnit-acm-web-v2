@@ -1,47 +1,44 @@
 <script lang="ts" setup>
 import * as monaco from 'monaco-editor'
-import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
-import jsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker'
-import cssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker'
-import htmlWorker from 'monaco-editor/esm/vs/language/html/html.worker?worker'
-import tsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker'
+import EditorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
+import JsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker'
+import CssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker'
+import HtmlWorker from 'monaco-editor/esm/vs/language/html/html.worker?worker'
+import TsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker'
 
-import { defineEmit, onMounted, ref, defineProps, computed, watch } from "vue";
-
-// todo 需要优化
+import {defineEmit, onMounted, ref, defineProps, computed, watch} from "vue";
 
 const props = defineProps({
   modelValue: {
     type: String,
-    default: ()=>'//please input your  code'
+    default: () => '//please input your  code'
   }
 })
 
 const emit = defineEmit(['update:modelValue'])
-
 
 interface SelectItem<T> {
   label: string
   value: T
 }
 
-let instance: monaco.editor.IStandaloneCodeEditor | null = null
+let instance: monaco.editor.IStandaloneCodeEditor
 
-self.MonacoEnvironment = {
+window.MonacoEnvironment  = {
   getWorker(_: any, label: string) {
     if (label === 'json') {
-      return new jsonWorker()
+      return new JsonWorker()
     }
     if (label === 'css' || label === 'scss' || label === 'less') {
-      return new cssWorker()
+      return new CssWorker()
     }
     if (label === 'html' || label === 'handlebars' || label === 'razor') {
-      return new htmlWorker()
+      return new HtmlWorker()
     }
     if (label === 'typescript' || label === 'javascript') {
-      return new tsWorker()
+      return new TsWorker()
     }
-    return new editorWorker()
+    return new EditorWorker()
   }
 }
 
@@ -74,34 +71,31 @@ const config = ref({
       }
     ] as SelectItem<string>[],
     change: (value: string) => {
-      console.log(value)
-      monaco.editor.setModelLanguage(instance.getModel(), value.toString())
+      monaco.editor.setModelLanguage(instance.getModel(), value)
     },
     value: 'go'
   }
 })
 
-const codeValue = ref('')
+const editorDiv = ref<HTMLElement>()
 
 onMounted(() => {
-  instance = monaco.editor.create(document.getElementById('editor'), {
+  instance = monaco.editor.create(editorDiv.value, {
     overviewRulerBorder: false,
     language: 'go',
     value: props.modelValue,
     automaticLayout: true,
     acceptSuggestionOnEnter: 'smart',
-    lineNumbers: true,
+    lineNumbers: "on",
     readOnly: false,
     extraEditorClassName: 'editor'
   })
   instance.onDidChangeModelContent(
-    (e) => {
-      codeValue.value = instance.getValue()
-    }
+      (e) => {
+        const value = instance.getValue()
+        emit('update:modelValue', value)
+      }
   )
-  watch(codeValue, value => {
-    emit('update:modelValue', value)
-  })
 
 })
 
@@ -114,7 +108,7 @@ el-select(@change="config.theme.change" v-model="config.theme.value")
 el-select(@change="config.language.change" v-model="config.language.value")
   el-option(v-for="(item) in config.language.list" :label="item.label" :value="item.value")
 
-#editor.text-align-left(style={height: '100px'})
+.text-align-left(style={height: '100px'} ref="editorDiv")
 </template>
 
 <style lang="stylus" scoped>
