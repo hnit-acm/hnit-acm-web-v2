@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: default
+  name: hfunc-web
+spec:
+  selector:
+    matchLabels:
+      app: hfunc-web
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: hfunc-web
+    spec:
+      containers:
+        - name: hfunc-web
+          image: hfunc/web:qa
+          ports:
+            - containerPort: 9000
+            - containerPort: 9001
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: hfunc-web
+spec:
+  selector:
+    app: hfunc-web
+  type: NodePort
+  ports:
+    - name: http
+      port: 9000
+      nodePort: 30000
+    - name: https
+      port: 9001
+      nodePort: 30001
+    - name: http3
+      protocol: UDP
+      port: 9001
+      nodePort: 30001
