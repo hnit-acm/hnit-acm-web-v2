@@ -14,7 +14,7 @@ on:
   pull_request:
 
 env:
-  IMAGE_NAME: web
+  IMAGE_NAME: hfunc/web:qa
 
 jobs:
   Build:
@@ -41,19 +41,19 @@ jobs:
 
       - name: Push image to GitHub Container Registry
         run: |
-          IMAGE_ID=hfunc/$IMAGE_NAME
+#          IMAGE_ID=hfunc/$IMAGE_NAME:qa
           # Change all uppercase to lowercase
-          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+#          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
           # Strip git ref prefix from version
-          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+#          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
           # Strip "v" prefix from tag name
-          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+#          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
           # Use Docker `latest` tag convention
-          [ "$VERSION" == "main" ] && VERSION=qa
-          echo IMAGE_ID=$IMAGE_ID
-          echo VERSION=$VERSION
-          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
-          docker push $IMAGE_ID:$VERSION
+#          [ "$VERSION" == "main" ] && VERSION=qa
+#          echo IMAGE_ID=$IMAGE_ID
+#          echo VERSION=$VERSION
+#          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+          docker push $IMAGE_NAME:$VERSION
 #  Deploy:
 #    needs:
 #      - Build
