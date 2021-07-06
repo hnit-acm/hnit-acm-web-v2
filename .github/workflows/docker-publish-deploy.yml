@@ -1,59 +1,59 @@
-#name: Build and Package and Deploy
-#
-#on:
-#  push:
-#    # Publish `master` as Docker `latest` image.
-#    branches:
-#      - main
-#
-#    # Publish `v1.2.3` tags as releases.
-#    tags:
-#      - v*
-#
-#  # Run tests for any PRs.
-#  pull_request:
-#
-#env:
-#  IMAGE_NAME: hnit-acm-web-v2
-#
-#jobs:
-#  Build:
-#    # Ensure test job passes before pushing image.
-#    runs-on: ubuntu-latest
-#    if: github.event_name == 'push'
-#
-#    steps:
-#      - uses: actions/checkout@v2
-#      - uses: actions/setup-node@v2.1.2
-#
-#
-#      - name: Install
-#        run: npm install
-#
-#      - name: Build Dist
-#        run: chmod 777 build.sh && ./build.sh
-#
-#      - name: Build image
-#        run: docker build ./dist --file ./dist/Dockerfile --tag $IMAGE_NAME
-#
-#      - name: Log into GitHub Container Registry
-#        run: echo "${{ secrets.CR_PAT }}" | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
-#
-#      - name: Push image to GitHub Container Registry
-#        run: |
-#          IMAGE_ID=hnitacm/$IMAGE_NAME
-#          # Change all uppercase to lowercase
-#          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
-#          # Strip git ref prefix from version
-#          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-#          # Strip "v" prefix from tag name
-#          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-#          # Use Docker `latest` tag convention
-#          [ "$VERSION" == "main" ] && VERSION=latest
-#          echo IMAGE_ID=$IMAGE_ID
-#          echo VERSION=$VERSION
-#          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
-#          docker push $IMAGE_ID:$VERSION
+name: Build and Package and Deploy
+
+on:
+  push:
+    # Publish `master` as Docker `latest` image.
+    branches:
+      - main
+
+    # Publish `v1.2.3` tags as releases.
+    tags:
+      - v*
+
+  # Run tests for any PRs.
+  pull_request:
+
+env:
+  IMAGE_NAME: web
+
+jobs:
+  Build:
+    # Ensure test job passes before pushing image.
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2.1.2
+
+
+      - name: Install
+        run: npm install
+
+      - name: Build Dist
+        run: chmod 777 build.sh && ./build.sh
+
+      - name: Build image
+        run: docker buildx build --platform linux/arm64 ./dist --file ./dist/Dockerfile --tag $IMAGE_NAME
+
+      - name: Log into GitHub Container Registry
+        run: echo "${{ secrets.CR_PAT }}" | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
+
+      - name: Push image to GitHub Container Registry
+        run: |
+          IMAGE_ID=hfunc/$IMAGE_NAME
+          # Change all uppercase to lowercase
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+          # Strip git ref prefix from version
+          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          # Strip "v" prefix from tag name
+          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+          # Use Docker `latest` tag convention
+          [ "$VERSION" == "main" ] && VERSION=qa
+          echo IMAGE_ID=$IMAGE_ID
+          echo VERSION=$VERSION
+          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+          docker push $IMAGE_ID:$VERSION
 #  Deploy:
 #    needs:
 #      - Build
