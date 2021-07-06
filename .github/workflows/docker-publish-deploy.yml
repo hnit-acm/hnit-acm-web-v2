@@ -29,18 +29,18 @@ jobs:
       - name: Install
         run: npm install
 
-      - name: Build Dist
-        run: chmod 777 build.sh && ./build.sh
-
       - name: Log into GitHub Container Registry
         run: echo "${{ secrets.CR_PAT }}" | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
 
-      - name: Build image
-        run: docker buildx build --platform linux/arm64 --file ./dist/Dockerfile --tag $IMAGE_NAME ./dist
+      - name: Build Dist
+        run: chmod 777 build.sh && ./build.sh
 
-      - name: Push image to GitHub Container Registry
-        run: |
-          docker push $IMAGE_NAME
+#      - name: Build image
+#        run: docker buildx build --platform linux/arm64 --file ./dist/Dockerfile --tag $IMAGE_NAME ./dist
+#
+#      - name: Push image to GitHub Container Registry
+#        run: |
+#          docker push $IMAGE_NAME
 
 #          IMAGE_ID=hfunc/$IMAGE_NAME:qa
 # Change all uppercase to lowercase
