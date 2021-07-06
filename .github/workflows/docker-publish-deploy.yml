@@ -40,8 +40,10 @@ jobs:
 
       - name: Push image to GitHub Container Registry
         run: |
+          docker push $IMAGE_NAME
+
 #          IMAGE_ID=hfunc/$IMAGE_NAME:qa
-          # Change all uppercase to lowercase
+# Change all uppercase to lowercase
 #          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
           # Strip git ref prefix from version
 #          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
@@ -52,7 +54,6 @@ jobs:
 #          echo IMAGE_ID=$IMAGE_ID
 #          echo VERSION=$VERSION
 #          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
-          docker push $IMAGE_NAME
 #  Deploy:
 #    needs:
 #      - Build
